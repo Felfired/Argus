@@ -1,0 +1,1028 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1549</width>
+    <height>864</height>
+   </rect>
+  </property>
+  <property name="minimumSize">
+   <size>
+    <width>900</width>
+    <height>600</height>
+   </size>
+  </property>
+  <property name="windowTitle">
+   <string>Argus</string>
+  </property>
+  <property name="windowIcon">
+   <iconset resource="resources.qrc">
+    <normaloff>:/res/icons/warden.ico</normaloff>:/res/icons/warden.ico</iconset>
+  </property>
+  <property name="styleSheet">
+   <string notr="true"/>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <property name="styleSheet">
+    <string notr="true"/>
+   </property>
+   <widget class="QWidget" name="gridLayoutWidget">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>510</y>
+      <width>691</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <layout class="QGridLayout" name="gridVideoControl">
+     <item row="1" column="0" alignment="Qt::AlignVCenter">
+      <widget class="QSlider" name="sliderSeek">
+       <property name="maximumSize">
+        <size>
+         <width>600</width>
+         <height>16777215</height>
+        </size>
+       </property>
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
+       </property>
+      </widget>
+     </item>
+     <item row="1" column="3" alignment="Qt::AlignHCenter|Qt::AlignVCenter">
+      <widget class="QLabel" name="labelDuration">
+       <property name="layoutDirection">
+        <enum>Qt::LeftToRight</enum>
+       </property>
+       <property name="text">
+        <string>00:00:00</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
+       </property>
+      </widget>
+     </item>
+     <item row="1" column="1" alignment="Qt::AlignVCenter">
+      <widget class="QLabel" name="labelCurrent">
+       <property name="text">
+        <string>00:00:00</string>
+       </property>
+      </widget>
+     </item>
+     <item row="1" column="2" alignment="Qt::AlignHCenter|Qt::AlignVCenter">
+      <widget class="QLabel" name="labelSep">
+       <property name="text">
+        <string>/</string>
+       </property>
+      </widget>
+     </item>
+     <item row="0" column="0" colspan="4">
+      <widget class="Line" name="lineSepT">
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </widget>
+   <widget class="QWidget" name="horizontalLayoutWidget">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>20</y>
+      <width>691</width>
+      <height>451</height>
+     </rect>
+    </property>
+    <layout class="QHBoxLayout" name="videoFrame"/>
+   </widget>
+   <widget class="QWidget" name="horizontalLayoutWidget_2">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>470</y>
+      <width>691</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <layout class="QHBoxLayout" name="videoButtons">
+     <item alignment="Qt::AlignVCenter">
+      <widget class="QSlider" name="sliderVolume">
+       <property name="maximumSize">
+        <size>
+         <width>80</width>
+         <height>16777215</height>
+        </size>
+       </property>
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
+       </property>
+      </widget>
+     </item>
+     <item alignment="Qt::AlignVCenter">
+      <widget class="QLabel" name="labelVolume">
+       <property name="maximumSize">
+        <size>
+         <width>30</width>
+         <height>16777215</height>
+        </size>
+       </property>
+       <property name="text">
+        <string>0%</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="Line" name="lineSepL">
+       <property name="orientation">
+        <enum>Qt::Vertical</enum>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="buttonPause">
+       <property name="maximumSize">
+        <size>
+         <width>30</width>
+         <height>30</height>
+        </size>
+       </property>
+       <property name="styleSheet">
+        <string notr="true"/>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+       <property name="icon">
+        <iconset resource="resources.qrc">
+         <normaloff>:/res/icons/pause.png</normaloff>:/res/icons/pause.png</iconset>
+       </property>
+       <property name="iconSize">
+        <size>
+         <width>16</width>
+         <height>16</height>
+        </size>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="buttonDecRate">
+       <property name="maximumSize">
+        <size>
+         <width>30</width>
+         <height>30</height>
+        </size>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+       <property name="icon">
+        <iconset resource="resources.qrc">
+         <normaloff>:/res/icons/backwards.png</normaloff>:/res/icons/backwards.png</iconset>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="buttonPlay">
+       <property name="maximumSize">
+        <size>
+         <width>30</width>
+         <height>30</height>
+        </size>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+       <property name="icon">
+        <iconset resource="resources.qrc">
+         <normaloff>:/res/icons/play.png</normaloff>:/res/icons/play.png</iconset>
+       </property>
+       <property name="iconSize">
+        <size>
+         <width>16</width>
+         <height>16</height>
+        </size>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="buttonIncRate">
+       <property name="maximumSize">
+        <size>
+         <width>30</width>
+         <height>30</height>
+        </size>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+       <property name="icon">
+        <iconset resource="resources.qrc">
+         <normaloff>:/res/icons/forward.png</normaloff>:/res/icons/forward.png</iconset>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="buttonStop">
+       <property name="maximumSize">
+        <size>
+         <width>30</width>
+         <height>30</height>
+        </size>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+       <property name="icon">
+        <iconset resource="resources.qrc">
+         <normaloff>:/res/icons/stop.png</normaloff>:/res/icons/stop.png</iconset>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="Line" name="lineSepR">
+       <property name="orientation">
+        <enum>Qt::Vertical</enum>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLabel" name="labelRateTxt">
+       <property name="maximumSize">
+        <size>
+         <width>70</width>
+         <height>16777215</height>
+        </size>
+       </property>
+       <property name="font">
+        <font>
+         <pointsize>9</pointsize>
+        </font>
+       </property>
+       <property name="text">
+        <string>Ταχύτητα:</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLabel" name="labelRate">
+       <property name="maximumSize">
+        <size>
+         <width>40</width>
+         <height>16777215</height>
+        </size>
+       </property>
+       <property name="text">
+        <string>1x</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </widget>
+   <widget class="QWidget" name="gridLayoutWidget_2">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>550</y>
+      <width>691</width>
+      <height>161</height>
+     </rect>
+    </property>
+    <layout class="QGridLayout" name="gridLayout">
+     <item row="1" column="0">
+      <widget class="QTextEdit" name="textLogger">
+       <property name="maximumSize">
+        <size>
+         <width>16777215</width>
+         <height>120</height>
+        </size>
+       </property>
+       <property name="toolTip">
+        <string>Log output.</string>
+       </property>
+       <property name="frameShape">
+        <enum>QFrame::WinPanel</enum>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </widget>
+   <widget class="QWidget" name="gridLayoutWidget_3">
+    <property name="geometry">
+     <rect>
+      <x>840</x>
+      <y>510</y>
+      <width>681</width>
+      <height>221</height>
+     </rect>
+    </property>
+    <layout class="QGridLayout" name="gridLayout_2">
+     <item row="0" column="0">
+      <widget class="QWidget" name="fileviewWidget" native="true">
+       <widget class="QListView" name="galleryListView">
+        <property name="geometry">
+         <rect>
+          <x>0</x>
+          <y>0</y>
+          <width>681</width>
+          <height>221</height>
+         </rect>
+        </property>
+        <property name="frameShape">
+         <enum>QFrame::WinPanel</enum>
+        </property>
+       </widget>
+      </widget>
+     </item>
+    </layout>
+   </widget>
+   <widget class="QFrame" name="filecontrolFrame">
+    <property name="enabled">
+     <bool>true</bool>
+    </property>
+    <property name="geometry">
+     <rect>
+      <x>810</x>
+      <y>510</y>
+      <width>30</width>
+      <height>221</height>
+     </rect>
+    </property>
+    <property name="frameShape">
+     <enum>QFrame::StyledPanel</enum>
+    </property>
+    <property name="frameShadow">
+     <enum>QFrame::Raised</enum>
+    </property>
+    <widget class="QToolButton" name="buttonOpenFolder">
+     <property name="geometry">
+      <rect>
+       <x>0</x>
+       <y>0</y>
+       <width>30</width>
+       <height>30</height>
+      </rect>
+     </property>
+     <property name="maximumSize">
+      <size>
+       <width>30</width>
+       <height>30</height>
+      </size>
+     </property>
+     <property name="toolTip">
+      <string>Επιλογή φακέλου.</string>
+     </property>
+     <property name="text">
+      <string>...</string>
+     </property>
+     <property name="icon">
+      <iconset resource="resources.qrc">
+       <normaloff>:/res/icons/open.png</normaloff>:/res/icons/open.png</iconset>
+     </property>
+    </widget>
+    <widget class="QToolButton" name="toolButton_2">
+     <property name="geometry">
+      <rect>
+       <x>0</x>
+       <y>30</y>
+       <width>30</width>
+       <height>30</height>
+      </rect>
+     </property>
+     <property name="maximumSize">
+      <size>
+       <width>30</width>
+       <height>30</height>
+      </size>
+     </property>
+     <property name="text">
+      <string>...</string>
+     </property>
+     <property name="icon">
+      <iconset resource="resources.qrc">
+       <normaloff>:/res/icons/refresh.png</normaloff>:/res/icons/refresh.png</iconset>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="buttonToggleView">
+     <property name="geometry">
+      <rect>
+       <x>0</x>
+       <y>60</y>
+       <width>30</width>
+       <height>30</height>
+      </rect>
+     </property>
+     <property name="maximumSize">
+      <size>
+       <width>30</width>
+       <height>30</height>
+      </size>
+     </property>
+     <property name="toolTip">
+      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Εναλλαγή προεπισκόπισης εικόνας.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+     <property name="icon">
+      <iconset resource="resources.qrc">
+       <normaloff>:/res/icons/viewoff.png</normaloff>
+       <normalon>:/res/icons/view.png</normalon>:/res/icons/viewoff.png</iconset>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="buttonImageUp">
+     <property name="geometry">
+      <rect>
+       <x>0</x>
+       <y>90</y>
+       <width>30</width>
+       <height>30</height>
+      </rect>
+     </property>
+     <property name="maximumSize">
+      <size>
+       <width>30</width>
+       <height>30</height>
+      </size>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+     <property name="icon">
+      <iconset resource="resources.qrc">
+       <normaloff>:/res/icons/arrow.png</normaloff>:/res/icons/arrow.png</iconset>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="buttonImageDown">
+     <property name="geometry">
+      <rect>
+       <x>0</x>
+       <y>120</y>
+       <width>30</width>
+       <height>30</height>
+      </rect>
+     </property>
+     <property name="maximumSize">
+      <size>
+       <width>30</width>
+       <height>30</height>
+      </size>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+     <property name="icon">
+      <iconset resource="resources.qrc">
+       <normaloff>:/res/icons/arrowdown.png</normaloff>:/res/icons/arrowdown.png</iconset>
+     </property>
+    </widget>
+    <widget class="QToolButton" name="toolButton">
+     <property name="geometry">
+      <rect>
+       <x>0</x>
+       <y>150</y>
+       <width>30</width>
+       <height>30</height>
+      </rect>
+     </property>
+     <property name="minimumSize">
+      <size>
+       <width>30</width>
+       <height>30</height>
+      </size>
+     </property>
+     <property name="maximumSize">
+      <size>
+       <width>30</width>
+       <height>30</height>
+      </size>
+     </property>
+     <property name="text">
+      <string>...</string>
+     </property>
+     <property name="icon">
+      <iconset resource="resources.qrc">
+       <normaloff>:/res/icons/close.png</normaloff>:/res/icons/close.png</iconset>
+     </property>
+    </widget>
+   </widget>
+   <widget class="QTabWidget" name="tabWidget">
+    <property name="geometry">
+     <rect>
+      <x>810</x>
+      <y>20</y>
+      <width>711</width>
+      <height>481</height>
+     </rect>
+    </property>
+    <property name="currentIndex">
+     <number>0</number>
+    </property>
+    <widget class="QWidget" name="tab">
+     <attribute name="icon">
+      <iconset resource="resources.qrc">
+       <normaloff>:/res/icons/select.png</normaloff>:/res/icons/select.png</iconset>
+     </attribute>
+     <attribute name="title">
+      <string>Προβολή Εικόνων</string>
+     </attribute>
+     <widget class="QWidget" name="horizontalLayoutWidget_3">
+      <property name="geometry">
+       <rect>
+        <x>-250</x>
+        <y>-270</y>
+        <width>751</width>
+        <height>451</height>
+       </rect>
+      </property>
+      <layout class="QHBoxLayout" name="horizontalLayout"/>
+     </widget>
+     <widget class="QGraphicsView" name="imagegraphicsView">
+      <property name="geometry">
+       <rect>
+        <x>-10</x>
+        <y>0</y>
+        <width>731</width>
+        <height>421</height>
+       </rect>
+      </property>
+      <property name="minimumSize">
+       <size>
+        <width>689</width>
+        <height>400</height>
+       </size>
+      </property>
+     </widget>
+     <widget class="Line" name="line">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>410</y>
+        <width>721</width>
+        <height>16</height>
+       </rect>
+      </property>
+      <property name="orientation">
+       <enum>Qt::Horizontal</enum>
+      </property>
+     </widget>
+     <widget class="Line" name="line_2">
+      <property name="geometry">
+       <rect>
+        <x>480</x>
+        <y>420</y>
+        <width>16</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="orientation">
+       <enum>Qt::Vertical</enum>
+      </property>
+     </widget>
+     <widget class="QFrame" name="frame">
+      <property name="geometry">
+       <rect>
+        <x>490</x>
+        <y>420</y>
+        <width>221</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="frameShape">
+       <enum>QFrame::StyledPanel</enum>
+      </property>
+      <property name="frameShadow">
+       <enum>QFrame::Raised</enum>
+      </property>
+      <widget class="QToolButton" name="buttonZoomIn">
+       <property name="geometry">
+        <rect>
+         <x>60</x>
+         <y>0</y>
+         <width>30</width>
+         <height>30</height>
+        </rect>
+       </property>
+       <property name="toolTip">
+        <string>Μεγέθυνση εικόνας.</string>
+       </property>
+       <property name="text">
+        <string>...</string>
+       </property>
+       <property name="icon">
+        <iconset resource="resources.qrc">
+         <normaloff>:/res/icons/zoom-in.png</normaloff>:/res/icons/zoom-in.png</iconset>
+       </property>
+      </widget>
+      <widget class="QToolButton" name="buttonZoomOut">
+       <property name="geometry">
+        <rect>
+         <x>90</x>
+         <y>0</y>
+         <width>30</width>
+         <height>30</height>
+        </rect>
+       </property>
+       <property name="toolTip">
+        <string>Σμίκρυνση εικόνας.</string>
+       </property>
+       <property name="text">
+        <string>...</string>
+       </property>
+       <property name="icon">
+        <iconset resource="resources.qrc">
+         <normaloff>:/res/icons/zoom-out.png</normaloff>:/res/icons/zoom-out.png</iconset>
+       </property>
+      </widget>
+      <widget class="QToolButton" name="buttonZoomReset">
+       <property name="geometry">
+        <rect>
+         <x>120</x>
+         <y>0</y>
+         <width>30</width>
+         <height>30</height>
+        </rect>
+       </property>
+       <property name="toolTip">
+        <string>Επαναφορά εικόνας.</string>
+       </property>
+       <property name="text">
+        <string>...</string>
+       </property>
+       <property name="icon">
+        <iconset resource="resources.qrc">
+         <normaloff>:/res/icons/zoom-reset.png</normaloff>:/res/icons/zoom-reset.png</iconset>
+       </property>
+      </widget>
+     </widget>
+    </widget>
+   </widget>
+   <widget class="Line" name="line_3">
+    <property name="geometry">
+     <rect>
+      <x>810</x>
+      <y>490</y>
+      <width>710</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="orientation">
+     <enum>Qt::Horizontal</enum>
+    </property>
+   </widget>
+  </widget>
+  <widget class="QStatusBar" name="statusbar"/>
+  <widget class="QMenuBar" name="menubar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>1549</width>
+     <height>22</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true"/>
+   </property>
+   <property name="locale">
+    <locale language="Greek" country="Greece"/>
+   </property>
+   <widget class="QMenu" name="menuFile">
+    <property name="styleSheet">
+     <string notr="true"/>
+    </property>
+    <property name="title">
+     <string>Αρχείο</string>
+    </property>
+    <property name="toolTipsVisible">
+     <bool>true</bool>
+    </property>
+    <addaction name="actionOpen"/>
+    <addaction name="separator"/>
+    <addaction name="actionExit"/>
+   </widget>
+   <widget class="QMenu" name="menuHelp">
+    <property name="title">
+     <string>Βοήθεια</string>
+    </property>
+    <property name="toolTipsVisible">
+     <bool>true</bool>
+    </property>
+    <widget class="QMenu" name="menuAbout">
+     <property name="title">
+      <string>Σχετικά</string>
+     </property>
+     <property name="icon">
+      <iconset resource="resources.qrc">
+       <normaloff>:/res/icons/info.png</normaloff>:/res/icons/info.png</iconset>
+     </property>
+     <addaction name="actionQt"/>
+     <addaction name="actionOpenCV"/>
+     <addaction name="actionVS"/>
+     <addaction name="separator"/>
+     <addaction name="actionArgus"/>
+    </widget>
+    <addaction name="actionHelp"/>
+    <addaction name="menuAbout"/>
+    <addaction name="separator"/>
+    <addaction name="actionContact"/>
+   </widget>
+   <widget class="QMenu" name="menuSettings">
+    <property name="title">
+     <string>Ρυθμίσεις</string>
+    </property>
+    <widget class="QMenu" name="menuDNN">
+     <property name="enabled">
+      <bool>true</bool>
+     </property>
+     <property name="title">
+      <string>Ρυθμίσεις Νευρωνικού Δικτύου</string>
+     </property>
+     <property name="icon">
+      <iconset resource="resources.qrc">
+       <normaloff>:/res/icons/neural.png</normaloff>:/res/icons/neural.png</iconset>
+     </property>
+     <addaction name="actionNames"/>
+     <addaction name="actionWeights"/>
+     <addaction name="actionConfig"/>
+    </widget>
+    <addaction name="menuDNN"/>
+    <addaction name="actionSavePrefs"/>
+   </widget>
+   <widget class="QMenu" name="menuTools">
+    <property name="title">
+     <string>Εργαλεία</string>
+    </property>
+    <addaction name="actionCatalog"/>
+    <addaction name="actionTrain"/>
+   </widget>
+   <addaction name="menuFile"/>
+   <addaction name="menuTools"/>
+   <addaction name="menuSettings"/>
+   <addaction name="menuHelp"/>
+  </widget>
+  <widget class="QToolBar" name="toolBar">
+   <property name="windowTitle">
+    <string>toolBar</string>
+   </property>
+   <property name="styleSheet">
+    <string notr="true"/>
+   </property>
+   <property name="locale">
+    <locale language="Greek" country="Greece"/>
+   </property>
+   <property name="movable">
+    <bool>false</bool>
+   </property>
+   <attribute name="toolBarArea">
+    <enum>TopToolBarArea</enum>
+   </attribute>
+   <attribute name="toolBarBreak">
+    <bool>false</bool>
+   </attribute>
+   <addaction name="actionMetadata"/>
+   <addaction name="actionClearLog"/>
+   <addaction name="actionUnload"/>
+   <addaction name="separator"/>
+   <addaction name="actionDetectMotion"/>
+   <addaction name="actionExtractFrames"/>
+   <addaction name="actionVideoList"/>
+  </widget>
+  <action name="actionOpen">
+   <property name="icon">
+    <iconset resource="resources.qrc">
+     <normaloff>:/res/icons/open.png</normaloff>:/res/icons/open.png</iconset>
+   </property>
+   <property name="text">
+    <string>Άνοιγμα</string>
+   </property>
+   <property name="toolTip">
+    <string>Άνοιγμα ενός αρχείου.</string>
+   </property>
+  </action>
+  <action name="actionExit">
+   <property name="icon">
+    <iconset resource="resources.qrc">
+     <normaloff>:/res/icons/exit.png</normaloff>:/res/icons/exit.png</iconset>
+   </property>
+   <property name="text">
+    <string>Έξοδος</string>
+   </property>
+   <property name="toolTip">
+    <string>Έξοδος απο το πρόγραμμα.</string>
+   </property>
+  </action>
+  <action name="actionHelp">
+   <property name="icon">
+    <iconset resource="resources.qrc">
+     <normaloff>:/res/icons/help.png</normaloff>:/res/icons/help.png</iconset>
+   </property>
+   <property name="text">
+    <string>Οδηγός...</string>
+   </property>
+   <property name="iconText">
+    <string>Help</string>
+   </property>
+   <property name="toolTip">
+    <string>Άνοιγμα του οδηγού χρήσης.</string>
+   </property>
+  </action>
+  <action name="actionMetadata">
+   <property name="icon">
+    <iconset resource="resources.qrc">
+     <normaloff>:/res/icons/metadata.png</normaloff>:/res/icons/metadata.png</iconset>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+   <property name="toolTip">
+    <string>Προβολή μεταδεδομένων.</string>
+   </property>
+  </action>
+  <action name="actionClearLog">
+   <property name="icon">
+    <iconset resource="resources.qrc">
+     <normaloff>:/res/icons/duster.png</normaloff>:/res/icons/duster.png</iconset>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+   <property name="toolTip">
+    <string>Καθαρισμός ημερολογίου εκτέλεσης.</string>
+   </property>
+  </action>
+  <action name="actionDetectMotion">
+   <property name="icon">
+    <iconset resource="resources.qrc">
+     <normaloff>:/res/icons/runner.png</normaloff>:/res/icons/runner.png</iconset>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+   <property name="toolTip">
+    <string>Ανίχνευση κίνησης.</string>
+   </property>
+  </action>
+  <action name="actionExtractFrames">
+   <property name="icon">
+    <iconset resource="resources.qrc">
+     <normaloff>:/res/icons/select.png</normaloff>:/res/icons/select.png</iconset>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+   <property name="toolTip">
+    <string>Εξαγωγή καρέ.</string>
+   </property>
+   <property name="visible">
+    <bool>false</bool>
+   </property>
+  </action>
+  <action name="actionUnload">
+   <property name="icon">
+    <iconset resource="resources.qrc">
+     <normaloff>:/res/icons/remove.png</normaloff>:/res/icons/remove.png</iconset>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+   <property name="toolTip">
+    <string>Αφαίρεση φορτωμένου αρχείου.</string>
+   </property>
+  </action>
+  <action name="actionVideoList">
+   <property name="icon">
+    <iconset resource="resources.qrc">
+     <normaloff>:/res/icons/video-camera.png</normaloff>:/res/icons/video-camera.png</iconset>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+   <property name="iconText">
+    <string/>
+   </property>
+   <property name="toolTip">
+    <string>Προβολή αποθηκευμένων βίντεο.</string>
+   </property>
+   <property name="menuRole">
+    <enum>QAction::NoRole</enum>
+   </property>
+  </action>
+  <action name="actionNames">
+   <property name="icon">
+    <iconset resource="resources.qrc">
+     <normaloff>:/res/icons/object-alignment.png</normaloff>:/res/icons/object-alignment.png</iconset>
+   </property>
+   <property name="text">
+    <string>Αρχείο Ονομάτων...</string>
+   </property>
+   <property name="visible">
+    <bool>true</bool>
+   </property>
+  </action>
+  <action name="actionWeights">
+   <property name="icon">
+    <iconset resource="resources.qrc">
+     <normaloff>:/res/icons/weigh-scale.png</normaloff>:/res/icons/weigh-scale.png</iconset>
+   </property>
+   <property name="text">
+    <string>Αρχείο Βαρών...</string>
+   </property>
+  </action>
+  <action name="actionConfig">
+   <property name="icon">
+    <iconset resource="resources.qrc">
+     <normaloff>:/res/icons/settings.png</normaloff>:/res/icons/settings.png</iconset>
+   </property>
+   <property name="text">
+    <string>Αρχείο Παραμετροποιήσεων...</string>
+   </property>
+  </action>
+  <action name="actionQt">
+   <property name="icon">
+    <iconset resource="resources.qrc">
+     <normaloff>:/res/icons/qt.png</normaloff>:/res/icons/qt.png</iconset>
+   </property>
+   <property name="text">
+    <string>Σχετικά με το Qt...</string>
+   </property>
+  </action>
+  <action name="actionOpenCV">
+   <property name="icon">
+    <iconset resource="resources.qrc">
+     <normaloff>:/res/icons/opencv.png</normaloff>:/res/icons/opencv.png</iconset>
+   </property>
+   <property name="text">
+    <string>Σχετικά με το OpenCV...</string>
+   </property>
+  </action>
+  <action name="actionVS">
+   <property name="icon">
+    <iconset resource="resources.qrc">
+     <normaloff>:/res/icons/vs.png</normaloff>:/res/icons/vs.png</iconset>
+   </property>
+   <property name="text">
+    <string>Σχετικά με το Visual Studio 2022...</string>
+   </property>
+  </action>
+  <action name="actionArgus">
+   <property name="icon">
+    <iconset resource="resources.qrc">
+     <normaloff>:/res/icons/warden.ico</normaloff>:/res/icons/warden.ico</iconset>
+   </property>
+   <property name="text">
+    <string>Σχετικά με το Argus...</string>
+   </property>
+  </action>
+  <action name="actionContact">
+   <property name="icon">
+    <iconset resource="resources.qrc">
+     <normaloff>:/res/icons/contact-us.png</normaloff>:/res/icons/contact-us.png</iconset>
+   </property>
+   <property name="text">
+    <string>Επικοινωνία</string>
+   </property>
+  </action>
+  <action name="actionCatalog">
+   <property name="icon">
+    <iconset resource="resources.qrc">
+     <normaloff>:/res/icons/id.png</normaloff>:/res/icons/id.png</iconset>
+   </property>
+   <property name="text">
+    <string>Κατάλογος Ατόμων...</string>
+   </property>
+  </action>
+  <action name="actionTrain">
+   <property name="icon">
+    <iconset resource="resources.qrc">
+     <normaloff>:/res/icons/robot.png</normaloff>:/res/icons/robot.png</iconset>
+   </property>
+   <property name="text">
+    <string>Εκπαίδευση Νευρωνικού Δικτύου...</string>
+   </property>
+  </action>
+  <action name="actionSavePrefs">
+   <property name="icon">
+    <iconset resource="resources.qrc">
+     <normaloff>:/res/icons/diskette.png</normaloff>:/res/icons/diskette.png</iconset>
+   </property>
+   <property name="text">
+    <string>Ρυθμίσεις Αποθήκευσης...</string>
+   </property>
+  </action>
+ </widget>
+ <resources>
+  <include location="resources.qrc"/>
+ </resources>
+ <connections/>
+</ui>

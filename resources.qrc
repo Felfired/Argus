@@ -1,0 +1,47 @@
+<RCC>
+    <qresource prefix="/">
+        <file>res/icons/about.png</file>
+        <file>res/icons/backwards.png</file>
+        <file>res/icons/exit.png</file>
+        <file>res/icons/forward.png</file>
+        <file>res/icons/help.png</file>
+        <file>res/icons/open.png</file>
+        <file>res/icons/pause.png</file>
+        <file>res/icons/play.png</file>
+        <file>res/icons/stop.png</file>
+        <file>res/icons/warden.ico</file>
+        <file>res/icons/metadata.png</file>
+        <file>res/icons/duster.png</file>
+        <file>res/icons/refresh.png</file>
+        <file>res/icons/close.png</file>
+        <file>res/icons/view.png</file>
+        <file>res/icons/viewoff.png</file>
+        <file>res/icons/arrow.png</file>
+        <file>res/icons/arrowdown.png</file>
+        <file>res/icons/move-right.png</file>
+        <file>res/icons/runner.png</file>
+        <file>res/icons/placeholder-image.png</file>
+        <file>res/icons/zoom-in.png</file>
+        <file>res/icons/zoom-out.png</file>
+        <file>res/icons/zoom-reset.png</file>
+        <file>res/icons/select.png</file>
+        <file>res/icons/remove.png</file>
+        <file>res/icons/film.png</file>
+        <file>res/icons/neural.png</file>
+        <file>res/icons/object-alignment.png</file>
+        <file>res/icons/weigh-scale.png</file>
+        <file>res/icons/settings.png</file>
+        <file>res/icons/vs.png</file>
+        <file>res/icons/qt.png</file>
+        <file>res/icons/info.png</file>
+        <file>res/icons/contact-us.png</file>
+        <file>res/icons/video-camera.png</file>
+        <file>res/icons/opencv.png</file>
+        <file>res/icons/id.png</file>
+        <file>res/icons/robot.png</file>
+        <file>res/icons/search.png</file>
+        <file>res/icons/plus.png</file>
+        <file>res/icons/diskette.png</file>
+        <file>res/icons/shell32_16810.ico</file>
+    </qresource>
+</RCC>
