@@ -204,6 +204,7 @@ int CatalogService::deletePerson(QString id) const
         // Remove the directory and all its contents recursively.
         if (directory.removeRecursively()) 
         {
+            CatalogService::sortCatalog(true, id);
             return 0;
         }
         else 
@@ -217,58 +218,61 @@ int CatalogService::deletePerson(QString id) const
     }
 }
 
-void CatalogService::sortCatalog(bool deletionFlag = false, QString id = "0") const
+void CatalogService::sortCatalog(bool deletionFlag, QString id) const
 {
-    std::vector<QStringList> allEntries = CatalogService::getAllEntries();
-    int allEntriesSize = static_cast<int>(allEntries.size());
-    QStringList tempList;
-    if (deletionFlag == true && id != "0")
+    // Get all entries from the catalog file.
+    std::vector<QStringList> allEntries = getAllEntries();
+    int allEntriesSize = static_cast<int>(allEntries.size()); // Convert size_t to int.
+
+    // If deletionFlag is true and id is not "0", remove the entry with the specified id.
+    if (deletionFlag && id != "0")
     {
-        // Using a lambda expression because we have a list in a vector to iterate.
-        auto iterator = std::find_if(allEntries.begin(), allEntries.end(), [id](const QStringList& entry) 
-        {
-            return entry.size() > 0 && entry[0] == id;
-        });
-        if (iterator != allEntries.end()) 
+        auto iterator = std::find_if(allEntries.begin(), allEntries.end(), [id](const QStringList& entry)
+            {
+                return !entry.isEmpty() && entry[0] == id;
+            });
+        if (iterator != allEntries.end())
         {
             // Calculate the position of the item and erase it.
             int pos = std::distance(allEntries.begin(), iterator);
             allEntries.erase(allEntries.begin() + pos);
+            // Refreshing the size variable so it doesn't go out of bounds after deletion.
+            allEntriesSize = static_cast<int>(allEntries.size());
         }
-        else 
+        else
         {
-            return;
+            return; // Entry not found, nothing to delete.
         }
-
     }
-    for (int i = 0; i < allEntriesSize; i++)
+
+    // Sort the entries based on the ID (assuming the ID is the first element in each QStringList).
+    for (int i = 0; i < allEntriesSize; ++i)
     {
-        for (int z = 0; z < allEntriesSize - 1; z++)
+        for (int j = 0; j < allEntriesSize - 1; ++j)
         {
-            QStringList line_first = allEntries.at(z);
-            QString id_first = line_first.at(0);
-            QStringList line_second = allEntries.at(z + 1);
-            QString id_second = line_second.at(0);
-            if (id_first > id_second)
+            if (allEntries[j][0] > allEntries[j + 1][0])
             {
-                std::swap(allEntries[z], allEntries[z + 1]);
+                std::swap(allEntries[j], allEntries[j + 1]);
             }
         }
     }
+
+    // Write the sorted entries back to the catalog file.
     QFile catalogFile(catalogFolderPath + "/catalog.txt");
     if (!catalogFile.open(QIODevice::WriteOnly | QIODevice::Text))
     {
-        return;
+        return; // Unable to open the file for writing.
     }
+
     QTextStream stream(&catalogFile);
-    for (int y = 0; y < allEntriesSize; ++y)
+    for (const QStringList& entry : allEntries)
     {
-        tempList = allEntries.at(y);
-        for (const QString& str : tempList)
+        for (const QString& str : entry)
         {
             stream << str << " ";
         }
         stream << "\n";
     }
+
     catalogFile.close();
 }

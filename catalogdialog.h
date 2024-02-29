@@ -33,8 +33,8 @@ private slots:
 	void onTableItemClicked(int row, int col);
 	void buttonRefreshClicked();
 	void buttonDeleteClicked();
-	QMessageBox* createWarningDialog();
-	void createSuccessDialog() const;
+	int createWarningDialog();
+	void createSuccessDialog(QString id) const;
 
 private:
 	Ui::CatalogDialog* ui;

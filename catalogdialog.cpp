@@ -151,12 +151,12 @@ void CatalogDialog::buttonDeleteClicked()
     if (selectedRow >= 0) 
     {
         QString id = catalogTableWidget->item(selectedRow, 0)->text();
-        QMessageBox* warningBox = CatalogDialog::createWarningDialog();
-        warningBox->exec();
-        if (warningBox->clickedButton() == warningBox->button(QMessageBox::Ok))
+        int returnVal = CatalogDialog::createWarningDialog();
+        
+        if (returnVal == 0)
         {
             CatalogService service = new CatalogService();
-            int returnVal = service.deletePerson(id);
+            returnVal = service.deletePerson(id);
             if (returnVal == 1)
             {
                 QMessageBox::critical(this, tr("Σφάλμα!"), "Αποτυχία διαγραφής του φακέλου.");
@@ -167,14 +167,13 @@ void CatalogDialog::buttonDeleteClicked()
             }
             else if (returnVal == 0)
             {
-                CatalogDialog::createSuccessDialog();
+                CatalogDialog::createSuccessDialog(id);
             }
         }
-        else if (warningBox->clickedButton() == warningBox->button(QMessageBox::Cancel)) 
+        else if (returnVal == 1) 
         {
             return;
         }
-        delete warningBox;
     }
     else 
     {
@@ -183,26 +182,39 @@ void CatalogDialog::buttonDeleteClicked()
     
 }
 
-QMessageBox* CatalogDialog::createWarningDialog()
+int CatalogDialog::createWarningDialog()
 {
-    QMessageBox* warningBox = new QMessageBox;
-    warningBox->setWindowTitle("Επιβεβαίωση Διαγραφής");
-    warningBox->setText("Όλα τα δεδομένα για το συγκεκριμένο άτομο θα διαγραφούν. Συνέχεια;");
-    QPushButton* okButton = warningBox->addButton(tr("ΟΚ"), QMessageBox::AcceptRole);
-    QPushButton* cancelButton = warningBox->addButton(tr("Ακύρωση"), QMessageBox::RejectRole);
-    warningBox->setDefaultButton(okButton);
-    warningBox->setIcon(QMessageBox::Warning);
-    return warningBox;
+    QMessageBox warningBox;
+    warningBox.setWindowTitle("Επιβεβαίωση Διαγραφής");
+    warningBox.setText("Όλα τα δεδομένα για το συγκεκριμένο άτομο θα διαγραφούν. Συνέχεια;");
+    QPushButton* okButton = warningBox.addButton(tr("ΟΚ"), QMessageBox::AcceptRole);
+    QPushButton* cancelButton = warningBox.addButton(tr("Ακύρωση"), QMessageBox::RejectRole);
+    warningBox.setDefaultButton(okButton);
+    warningBox.setIcon(QMessageBox::Warning);
+    QIcon winIcon = QIcon("C:/Users/matdi/Documents/Argus/res/icons/id.png");
+    warningBox.setWindowIcon(winIcon);
+    warningBox.exec();
+
+    if (warningBox.clickedButton() == okButton) 
+    {
+        return 0;
+    }
+    else if (warningBox.clickedButton() == cancelButton) 
+    {
+        return 1;
+    }
 }
 
-void AddPersonDialog::createSuccessDialog() const
+void CatalogDialog::createSuccessDialog(QString id) const
 {
     QMessageBox successBox;
     successBox.setWindowTitle("Επιτυχία.");
-    successBox.setText("Ο φάκελος με αναγνωριστικο: " + id + " διαγράφηκε.");
+    successBox.setText("Ο φάκελος με αναγνωριστικο " + id + " διαγράφηκε.");
     QPixmap successIcon("C:/Users/matdi/Documents/Argus/res/icons/shell32_16810_24.png");
     successBox.setIconPixmap(successIcon);
     successBox.addButton(QMessageBox::Ok);
+    QIcon winIcon = QIcon("C:/Users/matdi/Documents/Argus/res/icons/id.png");
+    successBox.setWindowIcon(winIcon);
     successBox.exec();
 }
 
