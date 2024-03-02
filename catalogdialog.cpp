@@ -16,6 +16,16 @@ CatalogDialog::CatalogDialog(QWidget* parent)
     deleteButton = ui->deleteButton;
     connect(deleteButton, &QPushButton::clicked, this, &CatalogDialog::buttonDeleteClicked);
 
+    sortComboBox = ui->sortComboBox;
+    sortComboBox->addItem("ID " + QString(QChar(0x2191)) + " (Αύξουσα)");
+    sortComboBox->addItem("ID " + QString(QChar(0x2193)) + " (Φθίνουσα)");
+    sortComboBox->addItem("Επίθετο (Α-Ω)");
+    sortComboBox->addItem("Επίθετο (Ω-Α)");
+    connect(sortComboBox, QOverload<int>::of(&QComboBox::activated), this, &CatalogDialog::sortTable);
+
+    searchLineEdit = ui->searchLineEdit;
+    connect(searchLineEdit, &QLineEdit::textChanged, this, &CatalogDialog::filterTable);
+
     QSettings settings("config.ini", QSettings::IniFormat);
     catalogFolderPath = settings.value("Save_Preferences/Catalog_Path").toString();
     QDir folderInfo(catalogFolderPath);
@@ -44,6 +54,7 @@ CatalogDialog::CatalogDialog(QWidget* parent)
     catalogTableWidget->setEditTriggers(QAbstractItemView::NoEditTriggers);
     catalogTableWidget->setSelectionMode(QAbstractItemView::SingleSelection);
     catalogTableWidget->setSelectionBehavior(QAbstractItemView::SelectRows);
+    catalogTableWidget->setSortingEnabled(false);
     connect(catalogTableWidget, &QTableWidget::cellClicked, this, &CatalogDialog::onTableItemClicked);
 
     if (CatalogDialog::isFolderEmpty() == true)
@@ -70,6 +81,7 @@ CatalogDialog::CatalogDialog(QWidget* parent)
                 catalogTableWidget->setItem(row, i, item);
             }
         }
+        catalogTableWidget->setSortingEnabled(true);
     }
 }
 
@@ -100,11 +112,12 @@ bool CatalogDialog::isFolderEmpty()
     return entries.isEmpty();
 }
 
-void CatalogDialog::onTableItemClicked(int row, int col)
+void CatalogDialog::onTableItemClicked(int row)
 {
     QString idEntry = catalogTableWidget->item(row, 0)->text();
     CatalogService service = new CatalogService();
     QStringList entryData = service.getEntryData(idEntry);
+    addDataButton->setEnabled(true);
 
     idLabel->setText(entryData.at(2));
     birthLabel->setText(entryData.at(3));
@@ -125,6 +138,7 @@ void CatalogDialog::onTableItemClicked(int row, int col)
 
 void CatalogDialog::buttonRefreshClicked()
 {
+    catalogTableWidget->setSortingEnabled(false);
     catalogTableWidget->clearContents();
     catalogTableWidget->setRowCount(0);
     CatalogService service = new CatalogService();
@@ -143,6 +157,7 @@ void CatalogDialog::buttonRefreshClicked()
             catalogTableWidget->setItem(row, i, item);
         }
     }
+    catalogTableWidget->setSortingEnabled(true);
 }
 
 void CatalogDialog::buttonDeleteClicked()
@@ -203,6 +218,8 @@ int CatalogDialog::createWarningDialog()
     {
         return 1;
     }
+
+    return 1;
 }
 
 void CatalogDialog::createSuccessDialog(QString id) const
@@ -218,3 +235,45 @@ void CatalogDialog::createSuccessDialog(QString id) const
     successBox.exec();
 }
 
+void CatalogDialog::sortTable(int index)
+{
+    if (index == 0)
+    {
+        catalogTableWidget->sortByColumn(0, Qt::AscendingOrder);
+    }
+    else if (index == 1)
+    {
+        catalogTableWidget->sortByColumn(0, Qt::DescendingOrder);
+    }
+    else if (index == 2)
+    {
+        catalogTableWidget->sortByColumn(2, Qt::AscendingOrder);
+    }
+    else if (index == 3)
+    {
+        catalogTableWidget->sortByColumn(2, Qt::DescendingOrder);
+    }
+}
+
+void CatalogDialog::filterTable(const QString& searchText)
+{
+    for (int row = 0; row < catalogTableWidget->rowCount(); ++row) 
+    {
+        bool rowVisible = false;
+        for (int col = 0; col < catalogTableWidget->columnCount(); ++col) 
+        {
+            QTableWidgetItem* item = catalogTableWidget->item(row, col);
+            if (item && item->text().contains(searchText, Qt::CaseInsensitive)) 
+            {
+                rowVisible = true;
+                break;
+            }
+        }
+        catalogTableWidget->setRowHidden(row, !rowVisible);
+    }
+}
+
+void CatalogDialog::buttonAddDataClicked()
+{
+
+}

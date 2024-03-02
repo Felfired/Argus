@@ -58,23 +58,6 @@
     </rect>
    </property>
   </widget>
-  <widget class="QToolButton" name="searchButton">
-   <property name="geometry">
-    <rect>
-     <x>690</x>
-     <y>10</y>
-     <width>23</width>
-     <height>23</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string/>
-   </property>
-   <property name="icon">
-    <iconset>
-     <normaloff>res/icons/search.png</normaloff>res/icons/search.png</iconset>
-   </property>
-  </widget>
   <widget class="QPushButton" name="addButton">
    <property name="geometry">
     <rect>
@@ -88,7 +71,7 @@
     <string>Προσθήκη</string>
    </property>
   </widget>
-  <widget class="QLineEdit" name="lineEdit">
+  <widget class="QLineEdit" name="searchLineEdit">
    <property name="geometry">
     <rect>
      <x>560</x>

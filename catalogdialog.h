@@ -6,6 +6,8 @@
 #include <QFileInfo>
 #include <QListView>
 #include <QMessageBox>
+#include <QComboBox>
+#include <QLineEdit>
 #include <QFrame>
 #include <QPixmap>
 #include <QTableWidget>
@@ -30,17 +32,21 @@ private slots:
 	void buttonAddClicked();
 	bool isFolderEmpty();
 	void showFolderSetupError(const QString& errorMessage);
-	void onTableItemClicked(int row, int col);
+	void onTableItemClicked(int row);
 	void buttonRefreshClicked();
 	void buttonDeleteClicked();
 	int createWarningDialog();
 	void createSuccessDialog(QString id) const;
+	void sortTable(int index);
+	void filterTable(const QString& searchText);
+	void buttonAddDataClicked();
 
 private:
 	Ui::CatalogDialog* ui;
 	QPushButton* addButton;
 	QToolButton* refreshTableButton;
 	QPushButton* deleteButton;
+	QLineEdit* searchLineEdit;
 	AddPersonDialog* addDialog;
 	QString catalogFolderPath;
 	QLabel* pathLabel;
@@ -51,6 +57,7 @@ private:
 	QLabel* pictureLabel;
 	QFrame* frame;
 	QTableWidget* catalogTableWidget;
+	QComboBox* sortComboBox;
 };
 
 #endif //CATALOGDIALOG_H

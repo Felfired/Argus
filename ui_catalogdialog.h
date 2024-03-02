@@ -31,9 +31,8 @@ public:
     QFrame *line_2;
     QLabel *sortLabel;
     QComboBox *sortComboBox;
-    QToolButton *searchButton;
     QPushButton *addButton;
-    QLineEdit *lineEdit;
+    QLineEdit *searchLineEdit;
     QLabel *pathLabel;
     QGroupBox *groupBox;
     QLabel *label_3;
@@ -72,18 +71,12 @@ public:
         sortComboBox = new QComboBox(CatalogDialog);
         sortComboBox->setObjectName("sortComboBox");
         sortComboBox->setGeometry(QRect(360, 10, 151, 22));
-        searchButton = new QToolButton(CatalogDialog);
-        searchButton->setObjectName("searchButton");
-        searchButton->setGeometry(QRect(690, 10, 23, 23));
-        QIcon icon1;
-        icon1.addFile(QString::fromUtf8("res/icons/search.png"), QSize(), QIcon::Normal, QIcon::Off);
-        searchButton->setIcon(icon1);
         addButton = new QPushButton(CatalogDialog);
         addButton->setObjectName("addButton");
         addButton->setGeometry(QRect(30, 10, 75, 22));
-        lineEdit = new QLineEdit(CatalogDialog);
-        lineEdit->setObjectName("lineEdit");
-        lineEdit->setGeometry(QRect(560, 10, 131, 22));
+        searchLineEdit = new QLineEdit(CatalogDialog);
+        searchLineEdit->setObjectName("searchLineEdit");
+        searchLineEdit->setGeometry(QRect(560, 10, 131, 22));
         pathLabel = new QLabel(CatalogDialog);
         pathLabel->setObjectName("pathLabel");
         pathLabel->setGeometry(QRect(110, 20, 16, 16));
@@ -140,9 +133,9 @@ public:
         refreshTableButton = new QToolButton(CatalogDialog);
         refreshTableButton->setObjectName("refreshTableButton");
         refreshTableButton->setGeometry(QRect(400, 40, 25, 25));
-        QIcon icon2;
-        icon2.addFile(QString::fromUtf8("res/icons/refresh.png"), QSize(), QIcon::Normal, QIcon::Off);
-        refreshTableButton->setIcon(icon2);
+        QIcon icon1;
+        icon1.addFile(QString::fromUtf8("res/icons/refresh.png"), QSize(), QIcon::Normal, QIcon::Off);
+        refreshTableButton->setIcon(icon1);
         deleteButton = new QPushButton(CatalogDialog);
         deleteButton->setObjectName("deleteButton");
         deleteButton->setGeometry(QRect(150, 10, 75, 22));
@@ -156,9 +149,8 @@ public:
     {
         CatalogDialog->setWindowTitle(QCoreApplication::translate("CatalogDialog", "\316\232\316\261\317\204\316\254\316\273\316\277\316\263\316\277\317\202 \316\221\317\204\317\214\316\274\317\211\316\275", nullptr));
         sortLabel->setText(QCoreApplication::translate("CatalogDialog", "\316\244\316\261\316\276\316\271\316\275\317\214\316\274\316\267\317\203\316\267 \316\272\316\261\317\204\316\261:", nullptr));
-        searchButton->setText(QString());
         addButton->setText(QCoreApplication::translate("CatalogDialog", "\316\240\317\201\316\277\317\203\316\270\316\256\316\272\316\267", nullptr));
-        lineEdit->setPlaceholderText(QCoreApplication::translate("CatalogDialog", "\316\221\316\275\316\261\316\266\316\256\317\204\316\267\317\203\316\267...", nullptr));
+        searchLineEdit->setPlaceholderText(QCoreApplication::translate("CatalogDialog", "\316\221\316\275\316\261\316\266\316\256\317\204\316\267\317\203\316\267...", nullptr));
         pathLabel->setText(QCoreApplication::translate("CatalogDialog", "?", nullptr));
         groupBox->setTitle(QCoreApplication::translate("CatalogDialog", "\316\222\316\261\317\203\316\271\316\272\316\254 \316\243\317\204\316\277\316\271\317\207\316\265\316\257\316\261", nullptr));
         label_3->setText(QCoreApplication::translate("CatalogDialog", "\316\227\316\274. \316\223\316\255\316\275\316\275\316\267\317\203\316\267\317\202:", nullptr));

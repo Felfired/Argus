@@ -43,5 +43,6 @@
         <file>res/icons/plus.png</file>
         <file>res/icons/diskette.png</file>
         <file>res/icons/shell32_16810.ico</file>
+        <file>res/icons/add-image.png</file>
     </qresource>
 </RCC>
