@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>DatasetDialog</class>
+ <widget class="QDialog" name="DatasetDialog">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>429</width>
+    <height>409</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Δεδομένα Φωτογραφιών</string>
+  </property>
+  <property name="windowIcon">
+   <iconset>
+    <normaloff>res/icons/select.png</normaloff>res/icons/select.png</iconset>
+  </property>
+  <widget class="QTabWidget" name="tabWidget">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>10</y>
+     <width>411</width>
+     <height>351</height>
+    </rect>
+   </property>
+   <property name="currentIndex">
+    <number>0</number>
+   </property>
+   <widget class="QWidget" name="tabSelectPerson">
+    <attribute name="title">
+     <string>Επιλογή Ατόμου</string>
+    </attribute>
+    <widget class="QTableWidget" name="catalogDisplayTableWidget">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>111</y>
+       <width>381</width>
+       <height>201</height>
+      </rect>
+     </property>
+     <property name="frameShape">
+      <enum>QFrame::WinPanel</enum>
+     </property>
+    </widget>
+    <widget class="QLabel" name="descriptionSelectLabel">
+     <property name="geometry">
+      <rect>
+       <x>50</x>
+       <y>10</y>
+       <width>321</width>
+       <height>61</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Πριν προχωρήσετε στην προσθήκη φωτογραφικών δεδομένων πρέπει να επιλέξετε για ποιό άτομο θα τις εισάγετε. Η διαδικασία μπορεί να γίνει για ένα άτομο την φορά.</string>
+     </property>
+     <property name="wordWrap">
+      <bool>true</bool>
+     </property>
+    </widget>
+    <widget class="QLabel" name="selectPersonImageLabel">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>20</y>
+       <width>32</width>
+       <height>32</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+    </widget>
+    <widget class="QTextEdit" name="searchTextEdit">
+     <property name="geometry">
+      <rect>
+       <x>287</x>
+       <y>83</y>
+       <width>104</width>
+       <height>31</height>
+      </rect>
+     </property>
+     <property name="frameShape">
+      <enum>QFrame::WinPanel</enum>
+     </property>
+     <property name="frameShadow">
+      <enum>QFrame::Sunken</enum>
+     </property>
+     <property name="placeholderText">
+      <string>Αναζήτηση...</string>
+     </property>
+    </widget>
+   </widget>
+   <widget class="QWidget" name="tabAddImg">
+    <attribute name="title">
+     <string>Προσθήκη</string>
+    </attribute>
+    <widget class="QLabel" name="datasetImageLabel">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>20</y>
+       <width>32</width>
+       <height>32</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+    </widget>
+    <widget class="QTableWidget" name="tableWidget">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>151</y>
+       <width>381</width>
+       <height>161</height>
+      </rect>
+     </property>
+     <property name="frameShape">
+      <enum>QFrame::WinPanel</enum>
+     </property>
+    </widget>
+    <widget class="QLabel" name="datasetDescriptionLabel">
+     <property name="geometry">
+      <rect>
+       <x>50</x>
+       <y>10</y>
+       <width>341</width>
+       <height>71</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Εδώ μπορείτε να προσθέσετε τις εικόνες με στοιχεία προσώπου που θα χρησιμοποιήσει ο αλγόριθμος του νευρωνικού δικτύου. Το απαιτούμενο μέγεθος φωτογραφίας ειναι 512x512.</string>
+     </property>
+     <property name="scaledContents">
+      <bool>false</bool>
+     </property>
+     <property name="wordWrap">
+      <bool>true</bool>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="openButton">
+     <property name="geometry">
+      <rect>
+       <x>294</x>
+       <y>110</y>
+       <width>91</width>
+       <height>24</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string> Άνοιγμα...</string>
+     </property>
+     <property name="icon">
+      <iconset>
+       <normaloff>res/icons/open.png</normaloff>res/icons/open.png</iconset>
+     </property>
+    </widget>
+   </widget>
+  </widget>
+  <widget class="QPushButton" name="cancelButton">
+   <property name="geometry">
+    <rect>
+     <x>340</x>
+     <y>370</y>
+     <width>75</width>
+     <height>24</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Ακύρωση</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="saveButton">
+   <property name="geometry">
+    <rect>
+     <x>260</x>
+     <y>370</y>
+     <width>75</width>
+     <height>24</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Αποθήκευση</string>
+   </property>
+  </widget>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

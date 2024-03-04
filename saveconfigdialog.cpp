@@ -20,6 +20,12 @@ SaveConfigDialog::SaveConfigDialog(QWidget* parent)
     catalogFolderDisplay = ui->catalogFolderDisplay;
     catalogFolderDisplay->setReadOnly(true);
 
+    catalogImageLabel = ui->catalogImageLabel;
+    QPixmap image("C:/Users/matdi/Documents/Argus/res/icons/shell32_16786.png");
+    catalogImageLabel->setPixmap(image);
+    catalogImageLabel->setSizePolicy(QSizePolicy::Ignored, QSizePolicy::Ignored);
+    catalogImageLabel->setScaledContents(true);
+
     QSettings settings("config.ini", QSettings::IniFormat);
     if (settings.contains("Save_Preferences/Catalog_Path"))
     {

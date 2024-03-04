@@ -32,6 +32,7 @@
 #include "configfiledialog.h"
 #include "catalogdialog.h"
 #include "saveconfigdialog.h"
+#include "datasetdialog.h"
 #include "motiondetection.h"
 
 QT_BEGIN_NAMESPACE
@@ -74,6 +75,7 @@ private slots:
     void actionConfigTriggered();
     void actionCatalogTriggered();
     void actionSavePrefsTriggered();
+    void actionDatasetTriggered();
     void buttonOpenFolderClicked();
     void buttonToggleViewClicked();
     void buttonZoomInClicked();
@@ -88,29 +90,30 @@ private slots:
     bool validateDNNFiles();
 
 private:
-    Ui::MainWindow *ui;
-    QMediaPlayer *videoPlayer;
-    QVideoWidget *videoWidget;
-    QAudioOutput *audioOutput;
-    QSlider *sliderSeek;
-    QSlider *sliderVolume;
-    QHBoxLayout *videoFrame;
-    QLabel *labelDuration;
-    QLabel *labelCurrent;
-    QLabel *labelVolume;
-    QLabel *labelRate;
-    QAction *actionOpen;
-    QAction *actionExit;
-    QAction *actionMetadata;
-    QAction *actionClearLog;
-    QAction *actionDetectMotion;
-    QAction *actionExtractFrames;
-    QAction *actionUnload;
-    QAction *actionNames;
-    QAction *actionWeights;
-    QAction *actionConfig;
-    QAction *actionCatalog;
-    QAction *actionSavePrefs;
+    Ui::MainWindow* ui;
+    QMediaPlayer* videoPlayer;
+    QVideoWidget* videoWidget;
+    QAudioOutput* audioOutput;
+    QSlider* sliderSeek;
+    QSlider* sliderVolume;
+    QHBoxLayout* videoFrame;
+    QLabel* labelDuration;
+    QLabel* labelCurrent;
+    QLabel* labelVolume;
+    QLabel* labelRate;
+    QAction* actionOpen;
+    QAction* actionExit;
+    QAction* actionMetadata;
+    QAction* actionClearLog;
+    QAction* actionDetectMotion;
+    QAction* actionExtractFrames;
+    QAction* actionUnload;
+    QAction* actionNames;
+    QAction* actionWeights;
+    QAction* actionConfig;
+    QAction* actionCatalog;
+    QAction* actionSavePrefs;
+    QAction* actionDataset;
     QPushButton *buttonPlay;
     QPushButton *buttonPause;
     QPushButton *buttonStop;
@@ -125,8 +128,6 @@ private:
     QFileSystemModel galleryModel;
     QListView *galleryListView;
     QPushButton *buttonToggleView;
-    QPushButton *buttonImageUp;
-    QPushButton *buttonImageDown;
     QGraphicsView *imagegraphicsView;
     QGraphicsScene *imagegraphicsScene;
     QGraphicsPixmapItem *imageDisplayed;
@@ -148,6 +149,7 @@ private:
     ConfigFileDialog *configfileDialog;
     CatalogDialog *catalogDialog;
     SaveConfigDialog *saveConfigDialog;
+    DatasetDialog* datasetDialog;
     bool videoLoaded;
     bool toggleViewButtonState;
     int zoomCap;

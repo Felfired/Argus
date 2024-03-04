@@ -20,7 +20,7 @@
   </property>
   <property name="windowIcon">
    <iconset>
-    <normaloff>res/icons/id.png</normaloff>res/icons/id.png</iconset>
+    <normaloff>res/app_icons/catalog.png</normaloff>res/app_icons/catalog.png</iconset>
   </property>
   <widget class="Line" name="line_2">
    <property name="geometry">
@@ -287,8 +287,8 @@
     <rect>
      <x>400</x>
      <y>40</y>
-     <width>25</width>
-     <height>25</height>
+     <width>30</width>
+     <height>30</height>
     </rect>
    </property>
    <property name="text">
@@ -296,7 +296,7 @@
    </property>
    <property name="icon">
     <iconset>
-     <normaloff>res/icons/refresh.png</normaloff>res/icons/refresh.png</iconset>
+     <normaloff>res/app_icons/refresh.png</normaloff>res/app_icons/refresh.png</iconset>
    </property>
   </widget>
   <widget class="QPushButton" name="deleteButton">

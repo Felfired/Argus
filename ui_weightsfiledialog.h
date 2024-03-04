@@ -55,14 +55,14 @@ public:
         openButton->setObjectName("openButton");
         openButton->setGeometry(QRect(10, 20, 25, 25));
         QIcon icon1;
-        icon1.addFile(QString::fromUtf8("res/icons/open.png"), QSize(), QIcon::Normal, QIcon::Off);
+        icon1.addFile(QString::fromUtf8("res/app_icons/folder.png"), QSize(), QIcon::Normal, QIcon::Off);
         openButton->setIcon(icon1);
         filepathLineEdit = new QLineEdit(WeightsFileDialog);
         filepathLineEdit->setObjectName("filepathLineEdit");
         filepathLineEdit->setGeometry(QRect(40, 20, 291, 25));
         applyButton = new QPushButton(WeightsFileDialog);
         applyButton->setObjectName("applyButton");
-        applyButton->setGeometry(QRect(150, 330, 81, 24));
+        applyButton->setGeometry(QRect(160, 330, 81, 24));
         cancelButton = new QPushButton(WeightsFileDialog);
         cancelButton->setObjectName("cancelButton");
         cancelButton->setGeometry(QRect(250, 330, 81, 24));

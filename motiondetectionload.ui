@@ -18,7 +18,7 @@
   </property>
   <property name="windowIcon">
    <iconset>
-    <normaloff>res/icons/video-camera.png</normaloff>res/icons/video-camera.png</iconset>
+    <normaloff>res/app_icons/motion_detection.png</normaloff>res/app_icons/motion_detection.png</iconset>
   </property>
   <widget class="QWidget" name="layoutWidget">
    <property name="geometry">

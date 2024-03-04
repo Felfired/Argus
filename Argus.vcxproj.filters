@@ -92,6 +92,9 @@
     <ClCompile Include="catalogservice.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="datasetdialog.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <QtMoc Include="mainwindow.h">
@@ -130,6 +133,9 @@
     <QtMoc Include="catalogservice.h">
       <Filter>Header Files</Filter>
     </QtMoc>
+    <QtMoc Include="datasetdialog.h">
+      <Filter>Header Files</Filter>
+    </QtMoc>
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="debug\moc_predefs.h.cbt">
@@ -164,92 +170,14 @@
     <QtUic Include="saveconfigdialog.ui">
       <Filter>Form Files</Filter>
     </QtUic>
+    <QtUic Include="datasetdialog.ui">
+      <Filter>Form Files</Filter>
+    </QtUic>
   </ItemGroup>
   <ItemGroup>
-    <None Include="res\icons\about.png">
-      <Filter>Resource Files</Filter>
-    </None>
-    <None Include="res\icons\arrow.png">
-      <Filter>Resource Files</Filter>
-    </None>
-    <None Include="res\icons\arrowdown.png">
-      <Filter>Resource Files</Filter>
-    </None>
-    <None Include="res\icons\backwards.png">
-      <Filter>Resource Files</Filter>
-    </None>
-    <None Include="res\icons\close.png">
-      <Filter>Resource Files</Filter>
-    </None>
-    <None Include="res\icons\duster.png">
-      <Filter>Resource Files</Filter>
-    </None>
-    <None Include="res\icons\exit.png">
-      <Filter>Resource Files</Filter>
-    </None>
-    <None Include="res\icons\film.png">
-      <Filter>Resource Files</Filter>
-    </None>
-    <None Include="res\icons\forward.png">
-      <Filter>Resource Files</Filter>
-    </None>
-    <None Include="res\icons\help.png">
-      <Filter>Resource Files</Filter>
-    </None>
-    <None Include="res\icons\metadata.png">
-      <Filter>Resource Files</Filter>
-    </None>
-    <None Include="res\icons\move-right.png">
-      <Filter>Resource Files</Filter>
-    </None>
-    <None Include="res\icons\open.png">
-      <Filter>Resource Files</Filter>
-    </None>
-    <None Include="res\icons\pause.png">
-      <Filter>Resource Files</Filter>
-    </None>
-    <None Include="res\icons\placeholder-image.png">
-      <Filter>Resource Files</Filter>
-    </None>
-    <None Include="res\icons\play.png">
-      <Filter>Resource Files</Filter>
-    </None>
-    <None Include="res\icons\refresh.png">
-      <Filter>Resource Files</Filter>
-    </None>
-    <None Include="res\icons\remove.png">
-      <Filter>Resource Files</Filter>
-    </None>
     <QtRcc Include="resources.qrc">
       <Filter>Resource Files</Filter>
     </QtRcc>
-    <None Include="res\icons\runner.png">
-      <Filter>Resource Files</Filter>
-    </None>
-    <None Include="res\icons\select.png">
-      <Filter>Resource Files</Filter>
-    </None>
-    <None Include="res\icons\stop.png">
-      <Filter>Resource Files</Filter>
-    </None>
-    <None Include="res\icons\view.png">
-      <Filter>Resource Files</Filter>
-    </None>
-    <None Include="res\icons\viewoff.png">
-      <Filter>Resource Files</Filter>
-    </None>
-    <None Include="res\icons\warden.ico">
-      <Filter>Resource Files</Filter>
-    </None>
-    <None Include="res\icons\zoom-in.png">
-      <Filter>Resource Files</Filter>
-    </None>
-    <None Include="res\icons\zoom-out.png">
-      <Filter>Resource Files</Filter>
-    </None>
-    <None Include="res\icons\zoom-reset.png">
-      <Filter>Resource Files</Filter>
-    </None>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ui_mainwindow.h">
@@ -280,6 +208,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="latinlettervalidator.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ui_datasetdialog.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

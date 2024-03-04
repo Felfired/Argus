@@ -38,6 +38,7 @@ public:
     QLineEdit *catalogFolderDisplay;
     QPushButton *catalogFolderSelect;
     QLabel *label;
+    QLabel *catalogImageLabel;
 
     void setupUi(QDialog *SaveConfigDialog)
     {
@@ -46,7 +47,7 @@ public:
         SaveConfigDialog->setWindowModality(Qt::ApplicationModal);
         SaveConfigDialog->resize(411, 351);
         QIcon icon;
-        icon.addFile(QString::fromUtf8("res/icons/diskette.png"), QSize(), QIcon::Normal, QIcon::Off);
+        icon.addFile(QString::fromUtf8("res/app_icons/diskette.png"), QSize(), QIcon::Normal, QIcon::Off);
         SaveConfigDialog->setWindowIcon(icon);
         layoutWidget = new QWidget(SaveConfigDialog);
         layoutWidget->setObjectName("layoutWidget");
@@ -79,26 +80,31 @@ public:
         tabGeneral->setObjectName("tabGeneral");
         groupBox = new QGroupBox(tabGeneral);
         groupBox->setObjectName("groupBox");
-        groupBox->setGeometry(QRect(10, 10, 361, 111));
+        groupBox->setGeometry(QRect(10, 10, 361, 121));
         groupBox->setFlat(false);
         groupBox->setCheckable(false);
         catalogFolderDisplay = new QLineEdit(groupBox);
         catalogFolderDisplay->setObjectName("catalogFolderDisplay");
-        catalogFolderDisplay->setGeometry(QRect(150, 70, 201, 22));
+        catalogFolderDisplay->setGeometry(QRect(160, 80, 181, 22));
         catalogFolderSelect = new QPushButton(groupBox);
         catalogFolderSelect->setObjectName("catalogFolderSelect");
-        catalogFolderSelect->setGeometry(QRect(10, 70, 131, 24));
+        catalogFolderSelect->setGeometry(QRect(20, 80, 131, 24));
         QIcon icon1;
         icon1.addFile(QString::fromUtf8("res/icons/open.png"), QSize(), QIcon::Normal, QIcon::Off);
         catalogFolderSelect->setIcon(icon1);
         label = new QLabel(groupBox);
         label->setObjectName("label");
-        label->setGeometry(QRect(10, 20, 341, 31));
+        label->setGeometry(QRect(70, 30, 271, 32));
         label->setFrameShape(QFrame::NoFrame);
         label->setFrameShadow(QFrame::Plain);
         label->setWordWrap(true);
         label->setMargin(0);
         label->setIndent(-1);
+        catalogImageLabel = new QLabel(groupBox);
+        catalogImageLabel->setObjectName("catalogImageLabel");
+        catalogImageLabel->setGeometry(QRect(20, 30, 32, 32));
+        catalogImageLabel->setPixmap(QPixmap(QString::fromUtf8("res/app_icons/save_folder.png")));
+        catalogImageLabel->setScaledContents(true);
         tabWidget->addTab(tabGeneral, QString());
 
         retranslateUi(SaveConfigDialog);
@@ -117,6 +123,7 @@ public:
         groupBox->setTitle(QCoreApplication::translate("SaveConfigDialog", "\316\244\316\277\317\200\316\277\316\270\316\265\317\203\316\257\316\261 \316\221\317\200\316\277\316\270\316\256\316\272\316\265\317\205\317\203\316\267\317\202 \316\232\316\261\317\204\316\261\316\273\317\214\316\263\316\277\317\205", nullptr));
         catalogFolderSelect->setText(QCoreApplication::translate("SaveConfigDialog", "\316\225\317\200\316\271\316\273\316\277\316\263\316\256 \316\246\316\261\316\272\316\255\316\273\316\277\317\205...", nullptr));
         label->setText(QCoreApplication::translate("SaveConfigDialog", "\316\225\316\264\317\216 \316\274\317\200\316\277\317\201\316\265\316\257\317\204\316\265 \316\275\316\261 \316\277\317\201\316\257\317\203\316\265\317\204\316\265 \317\204\316\267\316\275 \317\204\316\277\317\200\316\277\316\270\316\265\317\203\316\257\316\261 \317\214\317\200\316\277\317\205 \316\270\316\261 \316\261\317\200\316\277\316\270\316\267\316\272\316\265\317\215\316\277\316\275\317\204\316\261\316\271 \317\204\316\261 \316\264\316\265\316\264\316\277\316\274\316\255\316\275\316\261 \317\204\317\211\316\275 \316\261\317\204\317\214\316\274\317\211\316\275.", nullptr));
+        catalogImageLabel->setText(QString());
         tabWidget->setTabText(tabWidget->indexOf(tabGeneral), QCoreApplication::translate("SaveConfigDialog", "\316\223\316\265\316\275\316\271\316\272\316\254", nullptr));
     } // retranslateUi
 

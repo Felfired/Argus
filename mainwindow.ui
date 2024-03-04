@@ -21,7 +21,7 @@
   </property>
   <property name="windowIcon">
    <iconset resource="resources.qrc">
-    <normaloff>:/res/icons/warden.ico</normaloff>:/res/icons/warden.ico</iconset>
+    <normaloff>:/argus/res/app_icons/argus.ico</normaloff>:/argus/res/app_icons/argus.ico</iconset>
   </property>
   <property name="styleSheet">
    <string notr="true"/>
@@ -159,7 +159,7 @@
        </property>
        <property name="icon">
         <iconset resource="resources.qrc">
-         <normaloff>:/res/icons/pause.png</normaloff>:/res/icons/pause.png</iconset>
+         <normaloff>:/argus/res/app_icons/pause.png</normaloff>:/argus/res/app_icons/pause.png</iconset>
        </property>
        <property name="iconSize">
         <size>
@@ -182,7 +182,7 @@
        </property>
        <property name="icon">
         <iconset resource="resources.qrc">
-         <normaloff>:/res/icons/backwards.png</normaloff>:/res/icons/backwards.png</iconset>
+         <normaloff>:/argus/res/app_icons/decrease_speed.png</normaloff>:/argus/res/app_icons/decrease_speed.png</iconset>
        </property>
       </widget>
      </item>
@@ -199,7 +199,7 @@
        </property>
        <property name="icon">
         <iconset resource="resources.qrc">
-         <normaloff>:/res/icons/play.png</normaloff>:/res/icons/play.png</iconset>
+         <normaloff>:/argus/res/app_icons/play.png</normaloff>:/argus/res/app_icons/play.png</iconset>
        </property>
        <property name="iconSize">
         <size>
@@ -222,7 +222,7 @@
        </property>
        <property name="icon">
         <iconset resource="resources.qrc">
-         <normaloff>:/res/icons/forward.png</normaloff>:/res/icons/forward.png</iconset>
+         <normaloff>:/argus/res/app_icons/increase_speed.png</normaloff>:/argus/res/app_icons/increase_speed.png</iconset>
        </property>
       </widget>
      </item>
@@ -239,7 +239,7 @@
        </property>
        <property name="icon">
         <iconset resource="resources.qrc">
-         <normaloff>:/res/icons/stop.png</normaloff>:/res/icons/stop.png</iconset>
+         <normaloff>:/argus/res/app_icons/stop.png</normaloff>:/argus/res/app_icons/stop.png</iconset>
        </property>
       </widget>
      </item>
@@ -387,10 +387,10 @@
      </property>
      <property name="icon">
       <iconset resource="resources.qrc">
-       <normaloff>:/res/icons/open.png</normaloff>:/res/icons/open.png</iconset>
+       <normaloff>:/argus/res/app_icons/folder.png</normaloff>:/argus/res/app_icons/folder.png</iconset>
      </property>
     </widget>
-    <widget class="QToolButton" name="toolButton_2">
+    <widget class="QToolButton" name="buttonDeleteImage">
      <property name="geometry">
       <rect>
        <x>0</x>
@@ -410,7 +410,7 @@
      </property>
      <property name="icon">
       <iconset resource="resources.qrc">
-       <normaloff>:/res/icons/refresh.png</normaloff>:/res/icons/refresh.png</iconset>
+       <normaloff>:/argus/res/app_icons/x.png</normaloff>:/argus/res/app_icons/x.png</iconset>
      </property>
     </widget>
     <widget class="QPushButton" name="buttonToggleView">
@@ -436,11 +436,10 @@
      </property>
      <property name="icon">
       <iconset resource="resources.qrc">
-       <normaloff>:/res/icons/viewoff.png</normaloff>
-       <normalon>:/res/icons/view.png</normalon>:/res/icons/viewoff.png</iconset>
+       <normaloff>:/argus/res/app_icons/view_off.png</normaloff>:/argus/res/app_icons/view_off.png</iconset>
      </property>
     </widget>
-    <widget class="QPushButton" name="buttonImageUp">
+    <widget class="QToolButton" name="toolButton">
      <property name="geometry">
       <rect>
        <x>0</x>
@@ -449,70 +448,12 @@
        <height>30</height>
       </rect>
      </property>
-     <property name="maximumSize">
-      <size>
-       <width>30</width>
-       <height>30</height>
-      </size>
-     </property>
-     <property name="text">
-      <string/>
-     </property>
-     <property name="icon">
-      <iconset resource="resources.qrc">
-       <normaloff>:/res/icons/arrow.png</normaloff>:/res/icons/arrow.png</iconset>
-     </property>
-    </widget>
-    <widget class="QPushButton" name="buttonImageDown">
-     <property name="geometry">
-      <rect>
-       <x>0</x>
-       <y>120</y>
-       <width>30</width>
-       <height>30</height>
-      </rect>
-     </property>
-     <property name="maximumSize">
-      <size>
-       <width>30</width>
-       <height>30</height>
-      </size>
-     </property>
-     <property name="text">
-      <string/>
-     </property>
-     <property name="icon">
-      <iconset resource="resources.qrc">
-       <normaloff>:/res/icons/arrowdown.png</normaloff>:/res/icons/arrowdown.png</iconset>
-     </property>
-    </widget>
-    <widget class="QToolButton" name="toolButton">
-     <property name="geometry">
-      <rect>
-       <x>0</x>
-       <y>150</y>
-       <width>30</width>
-       <height>30</height>
-      </rect>
-     </property>
-     <property name="minimumSize">
-      <size>
-       <width>30</width>
-       <height>30</height>
-      </size>
-     </property>
-     <property name="maximumSize">
-      <size>
-       <width>30</width>
-       <height>30</height>
-      </size>
-     </property>
      <property name="text">
       <string>...</string>
      </property>
      <property name="icon">
       <iconset resource="resources.qrc">
-       <normaloff>:/res/icons/close.png</normaloff>:/res/icons/close.png</iconset>
+       <normaloff>:/argus/res/app_icons/refresh.png</normaloff>:/argus/res/app_icons/refresh.png</iconset>
      </property>
     </widget>
    </widget>
@@ -530,23 +471,12 @@
     </property>
     <widget class="QWidget" name="tab">
      <attribute name="icon">
-      <iconset resource="resources.qrc">
+      <iconset>
        <normaloff>:/res/icons/select.png</normaloff>:/res/icons/select.png</iconset>
      </attribute>
      <attribute name="title">
       <string>Προβολή Εικόνων</string>
      </attribute>
-     <widget class="QWidget" name="horizontalLayoutWidget_3">
-      <property name="geometry">
-       <rect>
-        <x>-250</x>
-        <y>-270</y>
-        <width>751</width>
-        <height>451</height>
-       </rect>
-      </property>
-      <layout class="QHBoxLayout" name="horizontalLayout"/>
-     </widget>
      <widget class="QGraphicsView" name="imagegraphicsView">
       <property name="geometry">
        <rect>
@@ -599,7 +529,7 @@
        </rect>
       </property>
       <property name="frameShape">
-       <enum>QFrame::StyledPanel</enum>
+       <enum>QFrame::WinPanel</enum>
       </property>
       <property name="frameShadow">
        <enum>QFrame::Raised</enum>
@@ -621,7 +551,7 @@
        </property>
        <property name="icon">
         <iconset resource="resources.qrc">
-         <normaloff>:/res/icons/zoom-in.png</normaloff>:/res/icons/zoom-in.png</iconset>
+         <normaloff>:/argus/res/app_icons/zoom_in.png</normaloff>:/argus/res/app_icons/zoom_in.png</iconset>
        </property>
       </widget>
       <widget class="QToolButton" name="buttonZoomOut">
@@ -641,7 +571,7 @@
        </property>
        <property name="icon">
         <iconset resource="resources.qrc">
-         <normaloff>:/res/icons/zoom-out.png</normaloff>:/res/icons/zoom-out.png</iconset>
+         <normaloff>:/argus/res/app_icons/zoom_out.png</normaloff>:/argus/res/app_icons/zoom_out.png</iconset>
        </property>
       </widget>
       <widget class="QToolButton" name="buttonZoomReset">
@@ -661,7 +591,7 @@
        </property>
        <property name="icon">
         <iconset resource="resources.qrc">
-         <normaloff>:/res/icons/zoom-reset.png</normaloff>:/res/icons/zoom-reset.png</iconset>
+         <normaloff>:/argus/res/app_icons/zoom_reset.png</normaloff>:/argus/res/app_icons/zoom_reset.png</iconset>
        </property>
       </widget>
      </widget>
@@ -723,7 +653,7 @@
       <string>Σχετικά</string>
      </property>
      <property name="icon">
-      <iconset resource="resources.qrc">
+      <iconset>
        <normaloff>:/res/icons/info.png</normaloff>:/res/icons/info.png</iconset>
      </property>
      <addaction name="actionQt"/>
@@ -750,7 +680,7 @@
      </property>
      <property name="icon">
       <iconset resource="resources.qrc">
-       <normaloff>:/res/icons/neural.png</normaloff>:/res/icons/neural.png</iconset>
+       <normaloff>:/argus/res/app_icons/neural.png</normaloff>:/argus/res/app_icons/neural.png</iconset>
      </property>
      <addaction name="actionNames"/>
      <addaction name="actionWeights"/>
@@ -765,6 +695,7 @@
     </property>
     <addaction name="actionCatalog"/>
     <addaction name="actionTrain"/>
+    <addaction name="actionDataset"/>
    </widget>
    <addaction name="menuFile"/>
    <addaction name="menuTools"/>
@@ -795,13 +726,13 @@
    <addaction name="actionUnload"/>
    <addaction name="separator"/>
    <addaction name="actionDetectMotion"/>
-   <addaction name="actionExtractFrames"/>
-   <addaction name="actionVideoList"/>
+   <addaction name="actionFaceDetection"/>
+   <addaction name="actionFaceRecognition"/>
   </widget>
   <action name="actionOpen">
    <property name="icon">
     <iconset resource="resources.qrc">
-     <normaloff>:/res/icons/open.png</normaloff>:/res/icons/open.png</iconset>
+     <normaloff>:/argus/res/app_icons/folder.png</normaloff>:/argus/res/app_icons/folder.png</iconset>
    </property>
    <property name="text">
     <string>Άνοιγμα</string>
@@ -813,7 +744,7 @@
   <action name="actionExit">
    <property name="icon">
     <iconset resource="resources.qrc">
-     <normaloff>:/res/icons/exit.png</normaloff>:/res/icons/exit.png</iconset>
+     <normaloff>:/argus/res/app_icons/exit.png</normaloff>:/argus/res/app_icons/exit.png</iconset>
    </property>
    <property name="text">
     <string>Έξοδος</string>
@@ -824,7 +755,7 @@
   </action>
   <action name="actionHelp">
    <property name="icon">
-    <iconset resource="resources.qrc">
+    <iconset>
      <normaloff>:/res/icons/help.png</normaloff>:/res/icons/help.png</iconset>
    </property>
    <property name="text">
@@ -840,7 +771,7 @@
   <action name="actionMetadata">
    <property name="icon">
     <iconset resource="resources.qrc">
-     <normaloff>:/res/icons/metadata.png</normaloff>:/res/icons/metadata.png</iconset>
+     <normaloff>:/argus/res/app_icons/metadata.png</normaloff>:/argus/res/app_icons/metadata.png</iconset>
    </property>
    <property name="text">
     <string/>
@@ -852,7 +783,7 @@
   <action name="actionClearLog">
    <property name="icon">
     <iconset resource="resources.qrc">
-     <normaloff>:/res/icons/duster.png</normaloff>:/res/icons/duster.png</iconset>
+     <normaloff>:/argus/res/app_icons/clear.png</normaloff>:/argus/res/app_icons/clear.png</iconset>
    </property>
    <property name="text">
     <string/>
@@ -864,7 +795,7 @@
   <action name="actionDetectMotion">
    <property name="icon">
     <iconset resource="resources.qrc">
-     <normaloff>:/res/icons/runner.png</normaloff>:/res/icons/runner.png</iconset>
+     <normaloff>:/argus/res/app_icons/motion_detection.png</normaloff>:/argus/res/app_icons/motion_detection.png</iconset>
    </property>
    <property name="text">
     <string/>
@@ -873,25 +804,10 @@
     <string>Ανίχνευση κίνησης.</string>
    </property>
   </action>
-  <action name="actionExtractFrames">
-   <property name="icon">
-    <iconset resource="resources.qrc">
-     <normaloff>:/res/icons/select.png</normaloff>:/res/icons/select.png</iconset>
-   </property>
-   <property name="text">
-    <string/>
-   </property>
-   <property name="toolTip">
-    <string>Εξαγωγή καρέ.</string>
-   </property>
-   <property name="visible">
-    <bool>false</bool>
-   </property>
-  </action>
   <action name="actionUnload">
    <property name="icon">
     <iconset resource="resources.qrc">
-     <normaloff>:/res/icons/remove.png</normaloff>:/res/icons/remove.png</iconset>
+     <normaloff>:/argus/res/app_icons/remove.png</normaloff>:/argus/res/app_icons/remove.png</iconset>
    </property>
    <property name="text">
     <string/>
@@ -900,28 +816,10 @@
     <string>Αφαίρεση φορτωμένου αρχείου.</string>
    </property>
   </action>
-  <action name="actionVideoList">
-   <property name="icon">
-    <iconset resource="resources.qrc">
-     <normaloff>:/res/icons/video-camera.png</normaloff>:/res/icons/video-camera.png</iconset>
-   </property>
-   <property name="text">
-    <string/>
-   </property>
-   <property name="iconText">
-    <string/>
-   </property>
-   <property name="toolTip">
-    <string>Προβολή αποθηκευμένων βίντεο.</string>
-   </property>
-   <property name="menuRole">
-    <enum>QAction::NoRole</enum>
-   </property>
-  </action>
   <action name="actionNames">
    <property name="icon">
     <iconset resource="resources.qrc">
-     <normaloff>:/res/icons/object-alignment.png</normaloff>:/res/icons/object-alignment.png</iconset>
+     <normaloff>:/argus/res/app_icons/object.png</normaloff>:/argus/res/app_icons/object.png</iconset>
    </property>
    <property name="text">
     <string>Αρχείο Ονομάτων...</string>
@@ -933,7 +831,7 @@
   <action name="actionWeights">
    <property name="icon">
     <iconset resource="resources.qrc">
-     <normaloff>:/res/icons/weigh-scale.png</normaloff>:/res/icons/weigh-scale.png</iconset>
+     <normaloff>:/argus/res/app_icons/weight.png</normaloff>:/argus/res/app_icons/weight.png</iconset>
    </property>
    <property name="text">
     <string>Αρχείο Βαρών...</string>
@@ -942,7 +840,7 @@
   <action name="actionConfig">
    <property name="icon">
     <iconset resource="resources.qrc">
-     <normaloff>:/res/icons/settings.png</normaloff>:/res/icons/settings.png</iconset>
+     <normaloff>:/argus/res/app_icons/cogs.png</normaloff>:/argus/res/app_icons/cogs.png</iconset>
    </property>
    <property name="text">
     <string>Αρχείο Παραμετροποιήσεων...</string>
@@ -950,7 +848,7 @@
   </action>
   <action name="actionQt">
    <property name="icon">
-    <iconset resource="resources.qrc">
+    <iconset>
      <normaloff>:/res/icons/qt.png</normaloff>:/res/icons/qt.png</iconset>
    </property>
    <property name="text">
@@ -959,7 +857,7 @@
   </action>
   <action name="actionOpenCV">
    <property name="icon">
-    <iconset resource="resources.qrc">
+    <iconset>
      <normaloff>:/res/icons/opencv.png</normaloff>:/res/icons/opencv.png</iconset>
    </property>
    <property name="text">
@@ -968,7 +866,7 @@
   </action>
   <action name="actionVS">
    <property name="icon">
-    <iconset resource="resources.qrc">
+    <iconset>
      <normaloff>:/res/icons/vs.png</normaloff>:/res/icons/vs.png</iconset>
    </property>
    <property name="text">
@@ -977,7 +875,7 @@
   </action>
   <action name="actionArgus">
    <property name="icon">
-    <iconset resource="resources.qrc">
+    <iconset>
      <normaloff>:/res/icons/warden.ico</normaloff>:/res/icons/warden.ico</iconset>
    </property>
    <property name="text">
@@ -986,7 +884,7 @@
   </action>
   <action name="actionContact">
    <property name="icon">
-    <iconset resource="resources.qrc">
+    <iconset>
      <normaloff>:/res/icons/contact-us.png</normaloff>:/res/icons/contact-us.png</iconset>
    </property>
    <property name="text">
@@ -996,7 +894,7 @@
   <action name="actionCatalog">
    <property name="icon">
     <iconset resource="resources.qrc">
-     <normaloff>:/res/icons/id.png</normaloff>:/res/icons/id.png</iconset>
+     <normaloff>:/argus/res/app_icons/catalog.png</normaloff>:/argus/res/app_icons/catalog.png</iconset>
    </property>
    <property name="text">
     <string>Κατάλογος Ατόμων...</string>
@@ -1005,7 +903,7 @@
   <action name="actionTrain">
    <property name="icon">
     <iconset resource="resources.qrc">
-     <normaloff>:/res/icons/robot.png</normaloff>:/res/icons/robot.png</iconset>
+     <normaloff>:/argus/res/app_icons/training.png</normaloff>:/argus/res/app_icons/training.png</iconset>
    </property>
    <property name="text">
     <string>Εκπαίδευση Νευρωνικού Δικτύου...</string>
@@ -1014,10 +912,46 @@
   <action name="actionSavePrefs">
    <property name="icon">
     <iconset resource="resources.qrc">
-     <normaloff>:/res/icons/diskette.png</normaloff>:/res/icons/diskette.png</iconset>
+     <normaloff>:/argus/res/app_icons/diskette.png</normaloff>:/argus/res/app_icons/diskette.png</iconset>
    </property>
    <property name="text">
     <string>Ρυθμίσεις Αποθήκευσης...</string>
+   </property>
+  </action>
+  <action name="actionDataset">
+   <property name="icon">
+    <iconset resource="resources.qrc">
+     <normaloff>:/argus/res/app_icons/dataset.png</normaloff>:/argus/res/app_icons/dataset.png</iconset>
+   </property>
+   <property name="text">
+    <string>Δεδομένα Φωτογραφιών...</string>
+   </property>
+  </action>
+  <action name="actionFaceDetection">
+   <property name="icon">
+    <iconset resource="resources.qrc">
+     <normaloff>:/argus/res/app_icons/detection.png</normaloff>:/argus/res/app_icons/detection.png</iconset>
+   </property>
+   <property name="text">
+    <string>detection</string>
+   </property>
+   <property name="menuRole">
+    <enum>QAction::NoRole</enum>
+   </property>
+  </action>
+  <action name="actionFaceRecognition">
+   <property name="icon">
+    <iconset resource="resources.qrc">
+     <normaloff>:/argus/res/app_icons/recognition.png</normaloff>:/argus/res/app_icons/recognition.png</iconset>
+   </property>
+   <property name="text">
+    <string>recognition</string>
+   </property>
+   <property name="toolTip">
+    <string>Αναγνώριση προσώπων.</string>
+   </property>
+   <property name="menuRole">
+    <enum>QAction::NoRole</enum>
    </property>
   </action>
  </widget>

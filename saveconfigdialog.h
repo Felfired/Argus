@@ -5,11 +5,12 @@
 #include <QPushButton>
 #include <QLineEdit>
 #include <QFileDialog>
+#include <QLabel>
 #include <QSettings>
 
 namespace Ui { class SaveConfigDialog; }
 
-class SaveConfigDialog :public QDialog
+class SaveConfigDialog : public QDialog
 {
 	Q_OBJECT
 
@@ -27,6 +28,7 @@ private:
 	QPushButton* cancelButton;
 	QPushButton* applyButton;
 	QPushButton* catalogFolderSelect;
+	QLabel* catalogImageLabel;
 	QString catalogFolderPath;
 	QLineEdit* catalogFolderDisplay;
 };

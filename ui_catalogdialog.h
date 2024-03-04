@@ -58,7 +58,7 @@ public:
         font.setUnderline(false);
         CatalogDialog->setFont(font);
         QIcon icon;
-        icon.addFile(QString::fromUtf8("res/icons/id.png"), QSize(), QIcon::Normal, QIcon::Off);
+        icon.addFile(QString::fromUtf8("res/app_icons/catalog.png"), QSize(), QIcon::Normal, QIcon::Off);
         CatalogDialog->setWindowIcon(icon);
         line_2 = new QFrame(CatalogDialog);
         line_2->setObjectName("line_2");
@@ -132,9 +132,9 @@ public:
         pictureLabel->setGeometry(QRect(1, 2, 180, 180));
         refreshTableButton = new QToolButton(CatalogDialog);
         refreshTableButton->setObjectName("refreshTableButton");
-        refreshTableButton->setGeometry(QRect(400, 40, 25, 25));
+        refreshTableButton->setGeometry(QRect(400, 40, 30, 30));
         QIcon icon1;
-        icon1.addFile(QString::fromUtf8("res/icons/refresh.png"), QSize(), QIcon::Normal, QIcon::Off);
+        icon1.addFile(QString::fromUtf8("res/app_icons/refresh.png"), QSize(), QIcon::Normal, QIcon::Off);
         refreshTableButton->setIcon(icon1);
         deleteButton = new QPushButton(CatalogDialog);
         deleteButton->setObjectName("deleteButton");

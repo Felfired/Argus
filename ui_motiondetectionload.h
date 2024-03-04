@@ -39,7 +39,7 @@ public:
         MotionDetectionLoad->setWindowModality(Qt::NonModal);
         MotionDetectionLoad->resize(388, 113);
         QIcon icon;
-        icon.addFile(QString::fromUtf8("res/icons/video-camera.png"), QSize(), QIcon::Normal, QIcon::Off);
+        icon.addFile(QString::fromUtf8("res/app_icons/motion_detection.png"), QSize(), QIcon::Normal, QIcon::Off);
         MotionDetectionLoad->setWindowIcon(icon);
         layoutWidget = new QWidget(MotionDetectionLoad);
         layoutWidget->setObjectName("layoutWidget");

@@ -13,10 +13,6 @@
   <property name="windowTitle">
    <string>Προσθήκη Ατόμου</string>
   </property>
-  <property name="windowIcon">
-   <iconset>
-    <normaloff>res/icons/plus.png</normaloff>res/icons/plus.png</iconset>
-  </property>
   <widget class="QGroupBox" name="groupBox">
    <property name="geometry">
     <rect>
@@ -177,7 +173,7 @@
     </property>
     <property name="icon">
      <iconset>
-      <normaloff>res/icons/open.png</normaloff>res/icons/open.png</iconset>
+      <normaloff>res/app_icons/folder.png</normaloff>res/app_icons/folder.png</iconset>
     </property>
    </widget>
    <widget class="QLineEdit" name="profilePathDisplay">

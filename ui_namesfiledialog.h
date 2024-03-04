@@ -48,7 +48,7 @@ public:
             NamesFileDialog->setObjectName("NamesFileDialog");
         NamesFileDialog->resize(572, 356);
         QIcon icon;
-        icon.addFile(QString::fromUtf8("res/icons/object-alignment.png"), QSize(), QIcon::Normal, QIcon::Off);
+        icon.addFile(QString::fromUtf8("res/app_icons/object.png"), QSize(), QIcon::Normal, QIcon::Off);
         NamesFileDialog->setWindowIcon(icon);
         NamesFileDialog->setAutoFillBackground(false);
         scrollArea = new QScrollArea(NamesFileDialog);
@@ -72,7 +72,7 @@ public:
         openButton->setObjectName("openButton");
         openButton->setGeometry(QRect(10, 20, 25, 25));
         QIcon icon1;
-        icon1.addFile(QString::fromUtf8("res/icons/open.png"), QSize(), QIcon::Normal, QIcon::Off);
+        icon1.addFile(QString::fromUtf8("res/app_icons/folder.png"), QSize(), QIcon::Normal, QIcon::Off);
         openButton->setIcon(icon1);
         filepathLineEdit = new QLineEdit(NamesFileDialog);
         filepathLineEdit->setObjectName("filepathLineEdit");

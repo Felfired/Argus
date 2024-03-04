@@ -39,7 +39,6 @@ private slots:
 	void createSuccessDialog(QString id) const;
 	void sortTable(int index);
 	void filterTable(const QString& searchText);
-	void buttonAddDataClicked();
 
 private:
 	Ui::CatalogDialog* ui;

@@ -48,7 +48,7 @@ public:
             ConfigFileDialog->setObjectName("ConfigFileDialog");
         ConfigFileDialog->resize(562, 356);
         QIcon icon;
-        icon.addFile(QString::fromUtf8("res/icons/settings.png"), QSize(), QIcon::Normal, QIcon::Off);
+        icon.addFile(QString::fromUtf8("res/app_icons/cogs.png"), QSize(), QIcon::Normal, QIcon::Off);
         ConfigFileDialog->setWindowIcon(icon);
         ConfigFileDialog->setAutoFillBackground(false);
         scrollArea = new QScrollArea(ConfigFileDialog);
@@ -72,7 +72,7 @@ public:
         openButton->setObjectName("openButton");
         openButton->setGeometry(QRect(10, 20, 25, 25));
         QIcon icon1;
-        icon1.addFile(QString::fromUtf8("res/icons/open.png"), QSize(), QIcon::Normal, QIcon::Off);
+        icon1.addFile(QString::fromUtf8("res/app_icons/folder.png"), QSize(), QIcon::Normal, QIcon::Off);
         openButton->setIcon(icon1);
         filepathLineEdit = new QLineEdit(ConfigFileDialog);
         filepathLineEdit->setObjectName("filepathLineEdit");

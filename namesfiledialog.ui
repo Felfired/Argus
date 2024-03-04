@@ -15,7 +15,7 @@
   </property>
   <property name="windowIcon">
    <iconset>
-    <normaloff>res/icons/object-alignment.png</normaloff>res/icons/object-alignment.png</iconset>
+    <normaloff>res/app_icons/object.png</normaloff>res/app_icons/object.png</iconset>
   </property>
   <property name="autoFillBackground">
    <bool>false</bool>
@@ -86,7 +86,7 @@
    </property>
    <property name="icon">
     <iconset>
-     <normaloff>res/icons/open.png</normaloff>res/icons/open.png</iconset>
+     <normaloff>res/app_icons/folder.png</normaloff>res/app_icons/folder.png</iconset>
    </property>
   </widget>
   <widget class="QLineEdit" name="filepathLineEdit">

@@ -53,7 +53,7 @@
    </property>
    <property name="icon">
     <iconset>
-     <normaloff>res/icons/open.png</normaloff>res/icons/open.png</iconset>
+     <normaloff>res/app_icons/folder.png</normaloff>res/app_icons/folder.png</iconset>
    </property>
   </widget>
   <widget class="QLineEdit" name="filepathLineEdit">
@@ -69,7 +69,7 @@
   <widget class="QPushButton" name="applyButton">
    <property name="geometry">
     <rect>
-     <x>150</x>
+     <x>160</x>
      <y>330</y>
      <width>81</width>
      <height>24</height>

@@ -208,6 +208,7 @@
     <ClCompile Include="catalogdialog.cpp" />
     <ClCompile Include="catalogservice.cpp" />
     <ClCompile Include="configfiledialog.cpp" />
+    <ClCompile Include="datasetdialog.cpp" />
     <ClCompile Include="greeklettervalidator.cpp" />
     <ClCompile Include="latinlettervalidator.cpp" />
     <ClCompile Include="main.cpp" />
@@ -247,6 +248,7 @@
     <QtUic Include="addpersondialog.ui" />
     <QtUic Include="catalogdialog.ui" />
     <QtUic Include="configfiledialog.ui" />
+    <QtUic Include="datasetdialog.ui" />
     <QtUic Include="motiondetectionload.ui" />
     <QtUic Include="namesfiledialog.ui" />
     <QtUic Include="mainwindow.ui" />
@@ -254,34 +256,7 @@
     <QtUic Include="weightsfiledialog.ui" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="res\icons\about.png" />
-    <None Include="res\icons\arrow.png" />
-    <None Include="res\icons\arrowdown.png" />
-    <None Include="res\icons\backwards.png" />
-    <None Include="res\icons\close.png" />
-    <None Include="res\icons\duster.png" />
-    <None Include="res\icons\exit.png" />
-    <None Include="res\icons\film.png" />
-    <None Include="res\icons\forward.png" />
-    <None Include="res\icons\help.png" />
-    <None Include="res\icons\metadata.png" />
-    <None Include="res\icons\move-right.png" />
-    <None Include="res\icons\open.png" />
-    <None Include="res\icons\pause.png" />
-    <None Include="res\icons\placeholder-image.png" />
-    <None Include="res\icons\play.png" />
-    <None Include="res\icons\refresh.png" />
-    <None Include="res\icons\remove.png" />
     <QtRcc Include="resources.qrc" />
-    <None Include="res\icons\runner.png" />
-    <None Include="res\icons\select.png" />
-    <None Include="res\icons\stop.png" />
-    <None Include="res\icons\view.png" />
-    <None Include="res\icons\viewoff.png" />
-    <None Include="res\icons\warden.ico" />
-    <None Include="res\icons\zoom-in.png" />
-    <None Include="res\icons\zoom-out.png" />
-    <None Include="res\icons\zoom-reset.png" />
   </ItemGroup>
   <ItemGroup>
     <QtMoc Include="namesfiledialog.h" />
@@ -292,10 +267,12 @@
     <QtMoc Include="addpersondialog.h" />
     <QtMoc Include="saveconfigdialog.h" />
     <QtMoc Include="catalogservice.h" />
+    <QtMoc Include="datasetdialog.h" />
     <ClInclude Include="greeklettervalidator.h" />
     <ClInclude Include="latinlettervalidator.h" />
     <ClInclude Include="ui_addpersondialog.h" />
     <ClInclude Include="ui_catalogdialog.h" />
+    <ClInclude Include="ui_datasetdialog.h" />
     <ClInclude Include="ui_motiondetectionload.h" />
     <QtMoc Include="motiondetectionthread.h" />
     <QtMoc Include="configfiledialog.h" />

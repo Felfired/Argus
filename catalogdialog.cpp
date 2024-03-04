@@ -117,7 +117,6 @@ void CatalogDialog::onTableItemClicked(int row)
     QString idEntry = catalogTableWidget->item(row, 0)->text();
     CatalogService service = new CatalogService();
     QStringList entryData = service.getEntryData(idEntry);
-    addDataButton->setEnabled(true);
 
     idLabel->setText(entryData.at(2));
     birthLabel->setText(entryData.at(3));
@@ -227,10 +226,10 @@ void CatalogDialog::createSuccessDialog(QString id) const
     QMessageBox successBox;
     successBox.setWindowTitle("Επιτυχία.");
     successBox.setText("Ο φάκελος με αναγνωριστικο " + id + " διαγράφηκε.");
-    QPixmap successIcon("C:/Users/matdi/Documents/Argus/res/icons/shell32_16810_24.png");
+    QPixmap successIcon(":argus/res/dialog_icons/OK_DIALOG.png");
     successBox.setIconPixmap(successIcon);
     successBox.addButton(QMessageBox::Ok);
-    QIcon winIcon = QIcon("C:/Users/matdi/Documents/Argus/res/icons/id.png");
+    QIcon winIcon = QIcon(":argus/res/app_icons/catalog.png");
     successBox.setWindowIcon(winIcon);
     successBox.exec();
 }
@@ -271,9 +270,4 @@ void CatalogDialog::filterTable(const QString& searchText)
         }
         catalogTableWidget->setRowHidden(row, !rowVisible);
     }
-}
-
-void CatalogDialog::buttonAddDataClicked()
-{
-
 }

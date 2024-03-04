@@ -60,6 +60,10 @@ MainWindow::MainWindow(QWidget *parent)
     connect(actionSavePrefs, &QAction::triggered, this, &MainWindow::actionSavePrefsTriggered);
     addAction(actionSavePrefs);
 
+    actionDataset = ui->actionDataset;
+    connect(actionDataset, &QAction::triggered, this, &MainWindow::actionDatasetTriggered);
+    addAction(actionDataset);
+
     buttonPlay = ui->buttonPlay;
     buttonPlay->setToolTip("Αναπαραγωγή.");
     connect(buttonPlay, &QPushButton::clicked, this, &MainWindow::buttonPlayClicked);
@@ -131,13 +135,7 @@ MainWindow::MainWindow(QWidget *parent)
     buttonOpenFolder = ui->buttonOpenFolder;
     connect(buttonOpenFolder, &QToolButton::clicked, this, &MainWindow::buttonOpenFolderClicked);
 
-    buttonImageUp = ui->buttonImageUp;
-    buttonImageUp->setEnabled(false);
-
-    buttonImageDown = ui->buttonImageDown;
-    buttonImageDown->setEnabled(false);
-
-    placeholderImagePath = ":/res/icons/placeholder-image.png";
+    placeholderImagePath = ":argus/res/images/placeholder-image.png";
     QImage getImage(placeholderImagePath);
 
     imagegraphicsView = ui->imagegraphicsView;
@@ -271,8 +269,8 @@ void MainWindow::buttonOpenFolderClicked()
 
 void MainWindow::buttonToggleViewClicked()
 {
-    QString offIconPath = ":/res/icons/viewoff.png";
-    QString onIconPath = ":/res/icons/view.png";
+    QString offIconPath = ":argus/res/app_icons/view_off.png";
+    QString onIconPath = ":argus/res/app_icons/view_on.png";
     QIcon onIcon(onIconPath);
     QIcon offIcon(offIconPath);
 
@@ -280,8 +278,6 @@ void MainWindow::buttonToggleViewClicked()
     {
         buttonToggleView->setIcon(offIcon);
         toggleViewButtonState = false;
-        buttonImageUp->setEnabled(false);
-        buttonImageDown->setEnabled(false);
         output = getLogTime() + " Απενεργοποίηση προεπισκόπησης εικόνας.";
         textLogger->append(output);
         loadImage(placeholderImagePath);
@@ -300,8 +296,6 @@ void MainWindow::buttonToggleViewClicked()
         {
             buttonToggleView->setIcon(onIcon);
             toggleViewButtonState = true;
-            buttonImageUp->setEnabled(true);
-            buttonImageDown->setEnabled(true);
             output = getLogTime() + " Ενεργοποίηση προεπισκόπησης εικόνας.";
             textLogger->append(output);
             loadImage(lastImagePath);
@@ -435,28 +429,15 @@ void MainWindow::actionExtractFramesTriggered()
 
 void MainWindow::actionUnloadTriggered()
 {
-    // Disconnect signals to prevent potential issues.
-    disconnect(videoPlayer, &QMediaPlayer::mediaStatusChanged, nullptr, nullptr);
-    disconnect(videoPlayer, &QMediaPlayer::positionChanged, nullptr, nullptr);
+    videoPlayer->stop();
+    videoPlayer->setSource(QUrl());
+    labelDuration->setText("00:00:00");
+    labelCurrent->setText("00:00:00");
+    videoLoaded = false;
+    emit onVideoLoaded(videoLoaded);
+    QString output = getLogTime() + " Το αρχείο αποφορτώθηκε...";
+    textLogger->append(output);
 
-    if(videoPlayer->mediaStatus() == QMediaPlayer::LoadedMedia ||
-        videoPlayer->mediaStatus() == QMediaPlayer::BufferedMedia)
-    {
-        videoPlayer->stop();
-        labelDuration->setText("00:00:00");
-        labelCurrent->setText("00:00:00");
-        actionMetadata->setEnabled(false);
-        actionDetectMotion->setEnabled(false);
-        actionExtractFrames->setEnabled(false);
-        ui->statusbar->showMessage("Το αρχείο αποφορτώθηκε.");
-        videoLoaded = false;
-        videoPlayer->setSource(nullUrl);
-
-        // Emit the signal indicating the change in the video loaded state.
-        emit onVideoLoaded(false);
-        output = getLogTime() + " Το αρχείο αποφορτώθηκε...";
-        textLogger->append(output);
-    }
 }
 
 void MainWindow::actionNamesTriggered()
@@ -504,6 +485,13 @@ void MainWindow::actionSavePrefsTriggered()
     saveConfigDialog = new SaveConfigDialog();
     saveConfigDialog->show();
     saveConfigDialog->activateWindow();
+}
+
+void MainWindow::actionDatasetTriggered()
+{
+    datasetDialog = new DatasetDialog();
+    datasetDialog->show();
+    datasetDialog->activateWindow();
 }
 
 void MainWindow::saveNamesFile(const QString& filePath)
