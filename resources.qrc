@@ -33,5 +33,15 @@
         <file>res/app_icons/zoom_out.png</file>
         <file>res/app_icons/zoom_reset.png</file>
         <file>res/app_icons/save_folder.png</file>
+        <file>res/app_icons/select_person.png</file>
+        <file>res/app_icons/add_image.png</file>
+        <file>res/app_icons/results_folder.png</file>
+        <file>res/app_icons/ar.png</file>
+        <file>res/app_icons/ocv.png</file>
+        <file>res/app_icons/qt.png</file>
+        <file>res/app_icons/vs.png</file>
+        <file>res/app_icons/about.png</file>
+        <file>res/app_icons/help.png</file>
+        <file>res/app_icons/contact.png</file>
     </qresource>
 </RCC>

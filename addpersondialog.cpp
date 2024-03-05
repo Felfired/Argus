@@ -292,6 +292,8 @@ void AddPersonDialog::createSuccessDialog() const
 {
     QMessageBox successBox;
     successBox.setWindowTitle("Επιτυχία.");
+    QIcon windowIcon(":argus/res/app_icons/plus.png");
+    successBox.setWindowIcon(windowIcon);
     successBox.setText("Η καταχώρηση έγινε με αναγνωριστικο: " + id);
     QPixmap successIcon(":argus/res/dialog_icons/OK_DIALOG.png");
     successBox.setIconPixmap(successIcon);

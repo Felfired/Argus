@@ -13,6 +13,10 @@
   <property name="windowTitle">
    <string>Προσθήκη Ατόμου</string>
   </property>
+  <property name="windowIcon">
+   <iconset>
+    <normaloff>res/app_icons/plus.png</normaloff>res/app_icons/plus.png</iconset>
+  </property>
   <widget class="QGroupBox" name="groupBox">
    <property name="geometry">
     <rect>

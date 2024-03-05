@@ -2,6 +2,7 @@
 #define MOTIONDETECTIONDIALOG_H
 
 #include <QDialog>
+#include <QSettings>
 #include <QSpacerItem>
 #include <QSlider>
 #include <QSpinBox>

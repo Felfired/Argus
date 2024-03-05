@@ -288,7 +288,7 @@ void MainWindow::buttonToggleViewClicked()
 
         if(lastImagePath.isEmpty())
         {
-            QMessageBox::information(this, "No Image Selected", "Please select an image first.");
+            QMessageBox::information(this, "Ενημέρωση", "Για να ανοίξετε την προεπισκόπιση πρέπει να επιλέξετε μια εικόνα.");
             return;
         }
 

@@ -21,6 +21,7 @@ public:
 private slots:
 	void cancelButtonClicked();
 	void selectCatalogFolderClicked();
+	void selectResultsFolderClicked();
 	void applyButtonClicked();
 
 private:
@@ -28,9 +29,13 @@ private:
 	QPushButton* cancelButton;
 	QPushButton* applyButton;
 	QPushButton* catalogFolderSelect;
-	QLabel* catalogImageLabel;
 	QString catalogFolderPath;
 	QLineEdit* catalogFolderDisplay;
+	QPushButton* resultsFolderSelect;
+	QString resultsFolderPath;
+	QLineEdit* resultsFolderDisplay;
+	QString originalCatalogFolderPath;
+	QString originalResultsFolderPath;
 };
 
 #endif // SAVECONFIGDIALOG_H

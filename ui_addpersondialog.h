@@ -63,6 +63,9 @@ public:
         if (AddPersonDialog->objectName().isEmpty())
             AddPersonDialog->setObjectName("AddPersonDialog");
         AddPersonDialog->resize(480, 510);
+        QIcon icon;
+        icon.addFile(QString::fromUtf8("res/app_icons/plus.png"), QSize(), QIcon::Normal, QIcon::Off);
+        AddPersonDialog->setWindowIcon(icon);
         groupBox = new QGroupBox(AddPersonDialog);
         groupBox->setObjectName("groupBox");
         groupBox->setGeometry(QRect(20, 20, 441, 331));
@@ -170,9 +173,9 @@ public:
         addProfileButton = new QToolButton(groupBox_2);
         addProfileButton->setObjectName("addProfileButton");
         addProfileButton->setGeometry(QRect(10, 30, 25, 25));
-        QIcon icon;
-        icon.addFile(QString::fromUtf8("res/app_icons/folder.png"), QSize(), QIcon::Normal, QIcon::Off);
-        addProfileButton->setIcon(icon);
+        QIcon icon1;
+        icon1.addFile(QString::fromUtf8("res/app_icons/folder.png"), QSize(), QIcon::Normal, QIcon::Off);
+        addProfileButton->setIcon(icon1);
         profilePathDisplay = new QLineEdit(groupBox_2);
         profilePathDisplay->setObjectName("profilePathDisplay");
         profilePathDisplay->setGeometry(QRect(50, 30, 381, 25));

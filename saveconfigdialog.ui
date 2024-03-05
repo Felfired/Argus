@@ -9,8 +9,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>411</width>
-    <height>351</height>
+    <width>440</width>
+    <height>407</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -24,8 +24,8 @@
    <property name="geometry">
     <rect>
      <x>10</x>
-     <y>310</y>
-     <width>391</width>
+     <y>360</y>
+     <width>421</width>
      <height>33</height>
     </rect>
    </property>
@@ -70,8 +70,8 @@
     <rect>
      <x>10</x>
      <y>10</y>
-     <width>391</width>
-     <height>291</height>
+     <width>421</width>
+     <height>331</height>
     </rect>
    </property>
    <property name="currentIndex">
@@ -86,7 +86,7 @@
       <rect>
        <x>10</x>
        <y>10</y>
-       <width>361</width>
+       <width>401</width>
        <height>121</height>
       </rect>
      </property>
@@ -102,9 +102,9 @@
      <widget class="QLineEdit" name="catalogFolderDisplay">
       <property name="geometry">
        <rect>
-        <x>160</x>
+        <x>150</x>
         <y>80</y>
-        <width>181</width>
+        <width>231</width>
         <height>22</height>
        </rect>
       </property>
@@ -114,7 +114,7 @@
        <rect>
         <x>20</x>
         <y>80</y>
-        <width>131</width>
+        <width>121</width>
         <height>24</height>
        </rect>
       </property>
@@ -126,7 +126,7 @@
         <normaloff>res/icons/open.png</normaloff>res/icons/open.png</iconset>
       </property>
      </widget>
-     <widget class="QLabel" name="label">
+     <widget class="QLabel" name="catalogDescLabel">
       <property name="geometry">
        <rect>
         <x>70</x>
@@ -167,7 +167,100 @@
        <string/>
       </property>
       <property name="pixmap">
-       <pixmap>res/app_icons/save_folder.png</pixmap>
+       <pixmap resource="resources.qrc">:/argus/res/app_icons/save_folder.png</pixmap>
+      </property>
+      <property name="scaledContents">
+       <bool>true</bool>
+      </property>
+     </widget>
+    </widget>
+    <widget class="QGroupBox" name="groupBox_2">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>150</y>
+       <width>401</width>
+       <height>141</height>
+      </rect>
+     </property>
+     <property name="title">
+      <string>Τοποθεσία Αποθήκευσης Αποτελεσμάτων</string>
+     </property>
+     <property name="flat">
+      <bool>false</bool>
+     </property>
+     <property name="checkable">
+      <bool>false</bool>
+     </property>
+     <widget class="QLineEdit" name="resultsFolderDisplay">
+      <property name="geometry">
+       <rect>
+        <x>150</x>
+        <y>100</y>
+        <width>231</width>
+        <height>22</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="resultsFolderSelect">
+      <property name="geometry">
+       <rect>
+        <x>20</x>
+        <y>100</y>
+        <width>121</width>
+        <height>24</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Επιλογή Φακέλου...</string>
+      </property>
+      <property name="icon">
+       <iconset>
+        <normaloff>res/icons/open.png</normaloff>res/icons/open.png</iconset>
+      </property>
+     </widget>
+     <widget class="QLabel" name="resultsDescLabel">
+      <property name="geometry">
+       <rect>
+        <x>70</x>
+        <y>30</y>
+        <width>271</width>
+        <height>51</height>
+       </rect>
+      </property>
+      <property name="frameShape">
+       <enum>QFrame::NoFrame</enum>
+      </property>
+      <property name="frameShadow">
+       <enum>QFrame::Plain</enum>
+      </property>
+      <property name="text">
+       <string>Εδώ μπορείτε να ορίσετε την τοποθεσία όπου θα αποθηκεύονται τα αποτελέσματα απο την ανίχνευση κίνησης.</string>
+      </property>
+      <property name="wordWrap">
+       <bool>true</bool>
+      </property>
+      <property name="margin">
+       <number>0</number>
+      </property>
+      <property name="indent">
+       <number>-1</number>
+      </property>
+     </widget>
+     <widget class="QLabel" name="resultsImageLabel">
+      <property name="geometry">
+       <rect>
+        <x>20</x>
+        <y>30</y>
+        <width>32</width>
+        <height>32</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+      <property name="pixmap">
+       <pixmap resource="resources.qrc">:/argus/res/app_icons/results_folder.png</pixmap>
       </property>
       <property name="scaledContents">
        <bool>true</bool>
@@ -177,6 +270,8 @@
    </widget>
   </widget>
  </widget>
- <resources/>
+ <resources>
+  <include location="resources.qrc"/>
+ </resources>
  <connections/>
 </ui>

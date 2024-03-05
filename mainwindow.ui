@@ -653,8 +653,8 @@
       <string>Σχετικά</string>
      </property>
      <property name="icon">
-      <iconset>
-       <normaloff>:/res/icons/info.png</normaloff>:/res/icons/info.png</iconset>
+      <iconset resource="resources.qrc">
+       <normaloff>:/argus/res/app_icons/about.png</normaloff>:/argus/res/app_icons/about.png</iconset>
      </property>
      <addaction name="actionQt"/>
      <addaction name="actionOpenCV"/>
@@ -755,8 +755,8 @@
   </action>
   <action name="actionHelp">
    <property name="icon">
-    <iconset>
-     <normaloff>:/res/icons/help.png</normaloff>:/res/icons/help.png</iconset>
+    <iconset resource="resources.qrc">
+     <normaloff>:/argus/res/app_icons/help.png</normaloff>:/argus/res/app_icons/help.png</iconset>
    </property>
    <property name="text">
     <string>Οδηγός...</string>
@@ -848,8 +848,8 @@
   </action>
   <action name="actionQt">
    <property name="icon">
-    <iconset>
-     <normaloff>:/res/icons/qt.png</normaloff>:/res/icons/qt.png</iconset>
+    <iconset resource="resources.qrc">
+     <normaloff>:/argus/res/app_icons/qt.png</normaloff>:/argus/res/app_icons/qt.png</iconset>
    </property>
    <property name="text">
     <string>Σχετικά με το Qt...</string>
@@ -857,8 +857,8 @@
   </action>
   <action name="actionOpenCV">
    <property name="icon">
-    <iconset>
-     <normaloff>:/res/icons/opencv.png</normaloff>:/res/icons/opencv.png</iconset>
+    <iconset resource="resources.qrc">
+     <normaloff>:/argus/res/app_icons/ocv.png</normaloff>:/argus/res/app_icons/ocv.png</iconset>
    </property>
    <property name="text">
     <string>Σχετικά με το OpenCV...</string>
@@ -866,8 +866,8 @@
   </action>
   <action name="actionVS">
    <property name="icon">
-    <iconset>
-     <normaloff>:/res/icons/vs.png</normaloff>:/res/icons/vs.png</iconset>
+    <iconset resource="resources.qrc">
+     <normaloff>:/argus/res/app_icons/vs.png</normaloff>:/argus/res/app_icons/vs.png</iconset>
    </property>
    <property name="text">
     <string>Σχετικά με το Visual Studio 2022...</string>
@@ -875,8 +875,8 @@
   </action>
   <action name="actionArgus">
    <property name="icon">
-    <iconset>
-     <normaloff>:/res/icons/warden.ico</normaloff>:/res/icons/warden.ico</iconset>
+    <iconset resource="resources.qrc">
+     <normaloff>:/argus/res/app_icons/ar.png</normaloff>:/argus/res/app_icons/ar.png</iconset>
    </property>
    <property name="text">
     <string>Σχετικά με το Argus...</string>
@@ -884,8 +884,8 @@
   </action>
   <action name="actionContact">
    <property name="icon">
-    <iconset>
-     <normaloff>:/res/icons/contact-us.png</normaloff>:/res/icons/contact-us.png</iconset>
+    <iconset resource="resources.qrc">
+     <normaloff>:/argus/res/app_icons/contact.png</normaloff>:/argus/res/app_icons/contact.png</iconset>
    </property>
    <property name="text">
     <string>Επικοινωνία</string>
