@@ -108,6 +108,8 @@ MotionDetectionDialog::MotionDetectionDialog(const QString& videoPath, const QSt
 
     setWindowTitle(tr("Παραμετροποίηση Ανίχνευσης Κίνησης"));
     setFixedSize(475, 330);
+    QIcon windowIcon(":/argus/res/app_icons/motion_detection.png");
+    setWindowIcon(windowIcon);
     setWindowFlags(windowFlags() & ~Qt::WindowMaximizeButtonHint);
     connect(closeButton, &QPushButton::clicked, this, &MotionDetectionDialog::reject);
     connect(okButton, &QPushButton::clicked, this, &MotionDetectionDialog::buttonOkClicked);

@@ -13,6 +13,7 @@
 #include <QtGui/QIcon>
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QDialog>
+#include <QtWidgets/QFrame>
 #include <QtWidgets/QHeaderView>
 #include <QtWidgets/QLabel>
 #include <QtWidgets/QPushButton>
@@ -33,18 +34,20 @@ public:
     QLabel *descriptionSelectLabel;
     QLabel *selectPersonImageLabel;
     QTextEdit *searchTextEdit;
+    QFrame *frame_2;
     QToolButton *clearSelectionButton;
     QWidget *tabAddImg;
     QLabel *datasetImageLabel;
-    QTableWidget *tableWidget;
+    QTableWidget *datasetDisplayTableWidget;
     QLabel *datasetDescriptionLabel;
     QPushButton *openButton;
     QLabel *label;
     QLabel *labelID;
+    QFrame *frame;
     QToolButton *deleteButton;
     QToolButton *refreshButton;
+    QToolButton *previewButton;
     QPushButton *cancelButton;
-    QPushButton *saveButton;
 
     void setupUi(QDialog *DatasetDialog)
     {
@@ -79,9 +82,14 @@ public:
         searchTextEdit->setGeometry(QRect(287, 83, 103, 31));
         searchTextEdit->setFrameShape(QFrame::WinPanel);
         searchTextEdit->setFrameShadow(QFrame::Sunken);
-        clearSelectionButton = new QToolButton(tabSelectPerson);
+        frame_2 = new QFrame(tabSelectPerson);
+        frame_2->setObjectName("frame_2");
+        frame_2->setGeometry(QRect(259, 83, 31, 31));
+        frame_2->setFrameShape(QFrame::WinPanel);
+        frame_2->setFrameShadow(QFrame::Sunken);
+        clearSelectionButton = new QToolButton(frame_2);
         clearSelectionButton->setObjectName("clearSelectionButton");
-        clearSelectionButton->setGeometry(QRect(258, 82, 30, 30));
+        clearSelectionButton->setGeometry(QRect(0, 0, 30, 30));
         clearSelectionButton->setCursor(QCursor(Qt::ArrowCursor));
         QIcon icon1;
         icon1.addFile(QString::fromUtf8(":/argus/res/app_icons/clear.png"), QSize(), QIcon::Normal, QIcon::Off);
@@ -94,10 +102,12 @@ public:
         datasetImageLabel->setGeometry(QRect(10, 20, 32, 32));
         datasetImageLabel->setPixmap(QPixmap(QString::fromUtf8(":/argus/res/app_icons/add_image.png")));
         datasetImageLabel->setScaledContents(true);
-        tableWidget = new QTableWidget(tabAddImg);
-        tableWidget->setObjectName("tableWidget");
-        tableWidget->setGeometry(QRect(10, 151, 351, 161));
-        tableWidget->setFrameShape(QFrame::WinPanel);
+        datasetDisplayTableWidget = new QTableWidget(tabAddImg);
+        datasetDisplayTableWidget->setObjectName("datasetDisplayTableWidget");
+        datasetDisplayTableWidget->setGeometry(QRect(10, 150, 351, 161));
+        datasetDisplayTableWidget->viewport()->setProperty("cursor", QVariant(QCursor(Qt::PointingHandCursor)));
+        datasetDisplayTableWidget->setFrameShape(QFrame::WinPanel);
+        datasetDisplayTableWidget->setShowGrid(false);
         datasetDescriptionLabel = new QLabel(tabAddImg);
         datasetDescriptionLabel->setObjectName("datasetDescriptionLabel");
         datasetDescriptionLabel->setGeometry(QRect(50, 10, 341, 61));
@@ -106,9 +116,6 @@ public:
         openButton = new QPushButton(tabAddImg);
         openButton->setObjectName("openButton");
         openButton->setGeometry(QRect(294, 110, 91, 24));
-        QIcon icon2;
-        icon2.addFile(QString::fromUtf8("res/icons/open.png"), QSize(), QIcon::Normal, QIcon::Off);
-        openButton->setIcon(icon2);
         label = new QLabel(tabAddImg);
         label->setObjectName("label");
         label->setGeometry(QRect(20, 110, 161, 16));
@@ -118,26 +125,34 @@ public:
         QFont font;
         font.setBold(true);
         labelID->setFont(font);
-        deleteButton = new QToolButton(tabAddImg);
+        frame = new QFrame(tabAddImg);
+        frame->setObjectName("frame");
+        frame->setGeometry(QRect(360, 150, 31, 91));
+        frame->setFrameShape(QFrame::WinPanel);
+        frame->setFrameShadow(QFrame::Raised);
+        deleteButton = new QToolButton(frame);
         deleteButton->setObjectName("deleteButton");
-        deleteButton->setGeometry(QRect(360, 150, 30, 30));
-        QIcon icon3;
-        icon3.addFile(QString::fromUtf8(":/argus/res/app_icons/x.png"), QSize(), QIcon::Normal, QIcon::Off);
-        deleteButton->setIcon(icon3);
+        deleteButton->setGeometry(QRect(0, 0, 30, 30));
+        QIcon icon2;
+        icon2.addFile(QString::fromUtf8(":/argus/res/app_icons/x.png"), QSize(), QIcon::Normal, QIcon::Off);
+        deleteButton->setIcon(icon2);
         deleteButton->setAutoRaise(false);
-        refreshButton = new QToolButton(tabAddImg);
+        refreshButton = new QToolButton(frame);
         refreshButton->setObjectName("refreshButton");
-        refreshButton->setGeometry(QRect(360, 180, 30, 30));
+        refreshButton->setGeometry(QRect(0, 30, 30, 30));
+        QIcon icon3;
+        icon3.addFile(QString::fromUtf8(":/argus/res/app_icons/refresh.png"), QSize(), QIcon::Normal, QIcon::Off);
+        refreshButton->setIcon(icon3);
+        previewButton = new QToolButton(frame);
+        previewButton->setObjectName("previewButton");
+        previewButton->setGeometry(QRect(0, 60, 30, 30));
         QIcon icon4;
-        icon4.addFile(QString::fromUtf8(":/argus/res/app_icons/refresh.png"), QSize(), QIcon::Normal, QIcon::Off);
-        refreshButton->setIcon(icon4);
+        icon4.addFile(QString::fromUtf8(":/argus/res/app_icons/view_on.png"), QSize(), QIcon::Normal, QIcon::Off);
+        previewButton->setIcon(icon4);
         tabWidget->addTab(tabAddImg, QString());
         cancelButton = new QPushButton(DatasetDialog);
         cancelButton->setObjectName("cancelButton");
         cancelButton->setGeometry(QRect(340, 370, 75, 24));
-        saveButton = new QPushButton(DatasetDialog);
-        saveButton->setObjectName("saveButton");
-        saveButton->setGeometry(QRect(260, 370, 75, 24));
 
         retranslateUi(DatasetDialog);
 
@@ -161,15 +176,24 @@ public:
         tabWidget->setTabText(tabWidget->indexOf(tabSelectPerson), QCoreApplication::translate("DatasetDialog", "\316\225\317\200\316\271\316\273\316\277\316\263\316\256 \316\221\317\204\317\214\316\274\316\277\317\205", nullptr));
         datasetImageLabel->setText(QString());
         datasetDescriptionLabel->setText(QCoreApplication::translate("DatasetDialog", "\316\225\316\264\317\216 \316\274\317\200\316\277\317\201\316\265\316\257\317\204\316\265 \316\275\316\261 \317\200\317\201\316\277\317\203\316\270\316\255\317\203\316\265\317\204\316\265 \317\204\316\271\317\202 \316\265\316\271\316\272\317\214\316\275\316\265\317\202 \316\274\316\265 \317\203\317\204\316\277\316\271\317\207\316\265\316\257\316\261 \317\200\317\201\316\277\317\203\317\216\317\200\316\277\317\205 \317\200\316\277\317\205 \316\270\316\261 \317\207\317\201\316\267\317\203\316\271\316\274\316\277\317\200\316\277\316\271\316\256\317\203\316\265\316\271 \316\277 \316\261\316\273\316\263\317\214\317\201\316\271\316\270\316\274\316\277\317\202 \317\204\316\277\317\205 \316\275\316\265\317\205\317\201\317\211\316\275\316\271\316\272\316\277\317\215 \316\264\316\271\316\272\317\204\317\215\316\277\317\205. \316\244\316\277 \316\261\317\200\316\261\316\271\317\204\316\277\317\215\316\274\316\265\316\275\316\277 \316\274\316\255\316\263\316\265\316\270\316\277\317\202 \317\206\317\211\317\204\316\277\316"
-                        "\263\317\201\316\261\317\206\316\257\316\261\317\202 \316\265\316\271\316\275\316\261\316\271 512x512.", nullptr));
-        openButton->setText(QCoreApplication::translate("DatasetDialog", " \316\206\316\275\316\277\316\271\316\263\316\274\316\261...", nullptr));
+                        "\263\317\201\316\261\317\206\316\257\316\261\317\202 \316\265\316\271\316\275\316\261\316\271 \316\261\317\200\316\277 64x64 \316\255\317\211\317\202 512x512 \316\274\316\265 \316\262\316\256\316\274\316\261 64.", nullptr));
+        openButton->setText(QCoreApplication::translate("DatasetDialog", "\316\240\317\201\316\277\317\203\316\270\316\256\316\272\316\267...", nullptr));
         label->setText(QCoreApplication::translate("DatasetDialog", "\316\225\317\200\316\271\316\273\316\265\316\263\316\274\316\255\316\275\316\277 \316\261\316\275\316\261\316\263\316\275\317\211\317\201\316\271\317\203\317\204\316\271\316\272\317\214: ", nullptr));
         labelID->setText(QString());
+#if QT_CONFIG(tooltip)
+        deleteButton->setToolTip(QCoreApplication::translate("DatasetDialog", "\316\224\316\271\316\261\316\263\317\201\316\261\317\206\316\256 \317\206\317\211\317\204\316\277\316\263\317\201\316\261\317\206\316\257\316\261\317\202.", nullptr));
+#endif // QT_CONFIG(tooltip)
         deleteButton->setText(QCoreApplication::translate("DatasetDialog", "...", nullptr));
+#if QT_CONFIG(tooltip)
+        refreshButton->setToolTip(QCoreApplication::translate("DatasetDialog", "\316\221\316\275\316\261\316\275\316\255\317\211\317\203\316\267 \316\273\316\257\317\203\317\204\316\261\317\202 \317\206\317\211\317\204\316\277\316\263\317\201\316\261\317\206\316\271\317\216\316\275.", nullptr));
+#endif // QT_CONFIG(tooltip)
         refreshButton->setText(QCoreApplication::translate("DatasetDialog", "...", nullptr));
+#if QT_CONFIG(tooltip)
+        previewButton->setToolTip(QCoreApplication::translate("DatasetDialog", "\316\240\317\201\316\277\316\262\316\277\316\273\316\256 \316\265\317\200\316\271\316\273\316\265\316\263\316\274\316\255\316\275\316\267\317\202 \317\206\317\211\317\204\316\277\316\263\317\201\316\261\317\206\316\257\316\261\317\202.", nullptr));
+#endif // QT_CONFIG(tooltip)
+        previewButton->setText(QCoreApplication::translate("DatasetDialog", "...", nullptr));
         tabWidget->setTabText(tabWidget->indexOf(tabAddImg), QCoreApplication::translate("DatasetDialog", "\316\240\317\201\316\277\317\203\316\270\316\256\316\272\316\267", nullptr));
-        cancelButton->setText(QCoreApplication::translate("DatasetDialog", "\316\221\316\272\317\215\317\201\317\211\317\203\316\267", nullptr));
-        saveButton->setText(QCoreApplication::translate("DatasetDialog", "\316\221\317\200\316\277\316\270\316\256\316\272\316\265\317\205\317\203\316\267", nullptr));
+        cancelButton->setText(QCoreApplication::translate("DatasetDialog", "\316\232\316\273\316\265\316\257\317\203\316\271\316\274\316\277", nullptr));
     } // retranslateUi
 
 };

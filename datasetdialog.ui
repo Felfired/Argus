@@ -106,28 +106,44 @@
       <string>Αναζήτηση...</string>
      </property>
     </widget>
-    <widget class="QToolButton" name="clearSelectionButton">
+    <widget class="QFrame" name="frame_2">
      <property name="geometry">
       <rect>
-       <x>258</x>
-       <y>82</y>
-       <width>30</width>
-       <height>30</height>
+       <x>259</x>
+       <y>83</y>
+       <width>31</width>
+       <height>31</height>
       </rect>
      </property>
-     <property name="cursor">
-      <cursorShape>ArrowCursor</cursorShape>
+     <property name="frameShape">
+      <enum>QFrame::WinPanel</enum>
      </property>
-     <property name="toolTip">
-      <string>Καθαρισμός επιλογής.</string>
+     <property name="frameShadow">
+      <enum>QFrame::Sunken</enum>
      </property>
-     <property name="text">
-      <string>...</string>
-     </property>
-     <property name="icon">
-      <iconset resource="resources.qrc">
-       <normaloff>:/argus/res/app_icons/clear.png</normaloff>:/argus/res/app_icons/clear.png</iconset>
-     </property>
+     <widget class="QToolButton" name="clearSelectionButton">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>0</y>
+        <width>30</width>
+        <height>30</height>
+       </rect>
+      </property>
+      <property name="cursor">
+       <cursorShape>ArrowCursor</cursorShape>
+      </property>
+      <property name="toolTip">
+       <string>Καθαρισμός επιλογής.</string>
+      </property>
+      <property name="text">
+       <string>...</string>
+      </property>
+      <property name="icon">
+       <iconset resource="resources.qrc">
+        <normaloff>:/argus/res/app_icons/clear.png</normaloff>:/argus/res/app_icons/clear.png</iconset>
+      </property>
+     </widget>
     </widget>
    </widget>
    <widget class="QWidget" name="tabAddImg">
@@ -153,17 +169,23 @@
       <bool>true</bool>
      </property>
     </widget>
-    <widget class="QTableWidget" name="tableWidget">
+    <widget class="QTableWidget" name="datasetDisplayTableWidget">
      <property name="geometry">
       <rect>
        <x>10</x>
-       <y>151</y>
+       <y>150</y>
        <width>351</width>
        <height>161</height>
       </rect>
      </property>
+     <property name="cursor" stdset="0">
+      <cursorShape>PointingHandCursor</cursorShape>
+     </property>
      <property name="frameShape">
       <enum>QFrame::WinPanel</enum>
+     </property>
+     <property name="showGrid">
+      <bool>false</bool>
      </property>
     </widget>
     <widget class="QLabel" name="datasetDescriptionLabel">
@@ -176,7 +198,7 @@
       </rect>
      </property>
      <property name="text">
-      <string>Εδώ μπορείτε να προσθέσετε τις εικόνες με στοιχεία προσώπου που θα χρησιμοποιήσει ο αλγόριθμος του νευρωνικού δικτύου. Το απαιτούμενο μέγεθος φωτογραφίας ειναι 512x512.</string>
+      <string>Εδώ μπορείτε να προσθέσετε τις εικόνες με στοιχεία προσώπου που θα χρησιμοποιήσει ο αλγόριθμος του νευρωνικού δικτύου. Το απαιτούμενο μέγεθος φωτογραφίας ειναι απο 64x64 έως 512x512 με βήμα 64.</string>
      </property>
      <property name="scaledContents">
       <bool>false</bool>
@@ -195,11 +217,7 @@
       </rect>
      </property>
      <property name="text">
-      <string> Άνοιγμα...</string>
-     </property>
-     <property name="icon">
-      <iconset>
-       <normaloff>res/icons/open.png</normaloff>res/icons/open.png</iconset>
+      <string>Προσθήκη...</string>
      </property>
     </widget>
     <widget class="QLabel" name="label">
@@ -233,42 +251,84 @@
       <string/>
      </property>
     </widget>
-    <widget class="QToolButton" name="deleteButton">
+    <widget class="QFrame" name="frame">
      <property name="geometry">
       <rect>
        <x>360</x>
        <y>150</y>
-       <width>30</width>
-       <height>30</height>
+       <width>31</width>
+       <height>91</height>
       </rect>
      </property>
-     <property name="text">
-      <string>...</string>
+     <property name="frameShape">
+      <enum>QFrame::WinPanel</enum>
      </property>
-     <property name="icon">
-      <iconset resource="resources.qrc">
-       <normaloff>:/argus/res/app_icons/x.png</normaloff>:/argus/res/app_icons/x.png</iconset>
+     <property name="frameShadow">
+      <enum>QFrame::Raised</enum>
      </property>
-     <property name="autoRaise">
-      <bool>false</bool>
-     </property>
-    </widget>
-    <widget class="QToolButton" name="refreshButton">
-     <property name="geometry">
-      <rect>
-       <x>360</x>
-       <y>180</y>
-       <width>30</width>
-       <height>30</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string>...</string>
-     </property>
-     <property name="icon">
-      <iconset resource="resources.qrc">
-       <normaloff>:/argus/res/app_icons/refresh.png</normaloff>:/argus/res/app_icons/refresh.png</iconset>
-     </property>
+     <widget class="QToolButton" name="deleteButton">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>0</y>
+        <width>30</width>
+        <height>30</height>
+       </rect>
+      </property>
+      <property name="toolTip">
+       <string>Διαγραφή φωτογραφίας.</string>
+      </property>
+      <property name="text">
+       <string>...</string>
+      </property>
+      <property name="icon">
+       <iconset resource="resources.qrc">
+        <normaloff>:/argus/res/app_icons/x.png</normaloff>:/argus/res/app_icons/x.png</iconset>
+      </property>
+      <property name="autoRaise">
+       <bool>false</bool>
+      </property>
+     </widget>
+     <widget class="QToolButton" name="refreshButton">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>30</y>
+        <width>30</width>
+        <height>30</height>
+       </rect>
+      </property>
+      <property name="toolTip">
+       <string>Ανανέωση λίστας φωτογραφιών.</string>
+      </property>
+      <property name="text">
+       <string>...</string>
+      </property>
+      <property name="icon">
+       <iconset resource="resources.qrc">
+        <normaloff>:/argus/res/app_icons/refresh.png</normaloff>:/argus/res/app_icons/refresh.png</iconset>
+      </property>
+     </widget>
+     <widget class="QToolButton" name="previewButton">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>60</y>
+        <width>30</width>
+        <height>30</height>
+       </rect>
+      </property>
+      <property name="toolTip">
+       <string>Προβολή επιλεγμένης φωτογραφίας.</string>
+      </property>
+      <property name="text">
+       <string>...</string>
+      </property>
+      <property name="icon">
+       <iconset resource="resources.qrc">
+        <normaloff>:/argus/res/app_icons/view_on.png</normaloff>:/argus/res/app_icons/view_on.png</iconset>
+      </property>
+     </widget>
     </widget>
    </widget>
   </widget>
@@ -282,20 +342,7 @@
     </rect>
    </property>
    <property name="text">
-    <string>Ακύρωση</string>
-   </property>
-  </widget>
-  <widget class="QPushButton" name="saveButton">
-   <property name="geometry">
-    <rect>
-     <x>260</x>
-     <y>370</y>
-     <width>75</width>
-     <height>24</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>Αποθήκευση</string>
+    <string>Κλείσιμο</string>
    </property>
   </widget>
  </widget>

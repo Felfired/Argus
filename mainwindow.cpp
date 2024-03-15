@@ -52,6 +52,12 @@ MainWindow::MainWindow(QWidget *parent)
     connect(this, &MainWindow::onVideoLoaded, actionDetectMotion, &QAction::setEnabled);
     addAction(actionDetectMotion);
 
+    actionFaceDetection = ui->actionFaceDetection;
+    actionFaceDetection->setEnabled(false);
+    connect(actionFaceDetection, &QAction::triggered, this, &MainWindow::actionFaceDetectionTriggered);
+    connect(this, &MainWindow::onVideoLoaded, actionFaceDetection, &QAction::setEnabled);
+    addAction(actionFaceDetection);
+
     actionCatalog = ui->actionCatalog;
     connect(actionCatalog, &QAction::triggered, this, &MainWindow::actionCatalogTriggered);
     addAction(actionCatalog);
@@ -63,6 +69,10 @@ MainWindow::MainWindow(QWidget *parent)
     actionDataset = ui->actionDataset;
     connect(actionDataset, &QAction::triggered, this, &MainWindow::actionDatasetTriggered);
     addAction(actionDataset);
+
+    actionCaffeConfig = ui->actionCaffeConfig;
+    connect(actionCaffeConfig, &QAction::triggered, this, &MainWindow::actionCaffeConfigTriggered);
+    addAction(actionCaffeConfig);
 
     buttonPlay = ui->buttonPlay;
     buttonPlay->setToolTip("Αναπαραγωγή.");
@@ -494,6 +504,20 @@ void MainWindow::actionDatasetTriggered()
     datasetDialog->activateWindow();
 }
 
+void MainWindow::actionFaceDetectionTriggered()
+{
+    faceDetectionDialog = new FaceDetectionDialog(loadedVideoPath, this);
+    faceDetectionDialog->show();
+    faceDetectionDialog->activateWindow();
+}
+
+void MainWindow::actionCaffeConfigTriggered()
+{
+    caffeConfigDialog = new CaffeConfigDialog();
+    caffeConfigDialog->show();
+    caffeConfigDialog->activateWindow();
+}
+
 void MainWindow::saveNamesFile(const QString& filePath)
 {
     namesFilePath = filePath;
@@ -536,6 +560,7 @@ bool MainWindow::validateDNNFiles()
 void MainWindow::onVideoLoaded(bool videoLoaded)
 {
     actionDetectMotion->setEnabled(videoLoaded);
+    actionFaceDetection->setEnabled(videoLoaded);
     actionMetadata->setEnabled(videoLoaded);
     buttonDecRate->setEnabled(videoLoaded);
     buttonIncRate->setEnabled(videoLoaded);

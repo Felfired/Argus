@@ -4,6 +4,7 @@
 #include <QDialog>
 #include <QTableWidget>
 #include <QTabWidget>
+#include <QFileDialog>
 #include <QCheckBox>
 #include <QTextEdit>
 #include <vector>
@@ -20,16 +21,32 @@ public:
 	~DatasetDialog();
 
 private slots:
-	bool isFolderEmpty();
-	void onTableItemClicked(int row);
-	void clearSelection();
+	void onCatalogTableItemClicked(int row);
+	void onDatasetTableItemClicked(int row);
+	void clearCatalogSelection();
 	void filterTable(const QString& searchText);
+	void fillCatalogTable();
+	void fillDatasetTable(QString id);
 	void onSearchTextChanged();
+	void onCancelButtonClicked();
+	void onOpenButtonClicked();
+	void onRefreshButtonClicked();
+	void onDeleteButtonClicked();
+	void setupCatalogTable();
+	void setupDatasetTable();
+	void createDatasetWarningDialog(QStringList invalidFiles) const;
+	QStringList checkPictureSizeConstraints(QStringList fileList);
 
 private:
 	Ui::DatasetDialog* ui;
 	QTableWidget* catalogDisplayTableWidget;
+	QTableWidget* datasetDisplayTableWidget;
+	QPushButton* cancelButton;
+	QPushButton* openButton;
 	QToolButton* clearSelectionButton;
+	QToolButton* previewButton;
+	QToolButton* deleteButton;
+	QToolButton* refreshButton;
 	QTabWidget* tabWidget;
 	QString catalogFolderPath;
 	QString selectedID;

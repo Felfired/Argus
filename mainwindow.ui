@@ -685,6 +685,8 @@
      <addaction name="actionNames"/>
      <addaction name="actionWeights"/>
      <addaction name="actionConfig"/>
+     <addaction name="separator"/>
+     <addaction name="actionCaffeConfig"/>
     </widget>
     <addaction name="menuDNN"/>
     <addaction name="actionSavePrefs"/>
@@ -933,7 +935,10 @@
      <normaloff>:/argus/res/app_icons/detection.png</normaloff>:/argus/res/app_icons/detection.png</iconset>
    </property>
    <property name="text">
-    <string>detection</string>
+    <string/>
+   </property>
+   <property name="toolTip">
+    <string>Εντοπισμός προσώπων.</string>
    </property>
    <property name="menuRole">
     <enum>QAction::NoRole</enum>
@@ -945,13 +950,25 @@
      <normaloff>:/argus/res/app_icons/recognition.png</normaloff>:/argus/res/app_icons/recognition.png</iconset>
    </property>
    <property name="text">
-    <string>recognition</string>
+    <string/>
+   </property>
+   <property name="iconText">
+    <string/>
    </property>
    <property name="toolTip">
     <string>Αναγνώριση προσώπων.</string>
    </property>
    <property name="menuRole">
     <enum>QAction::NoRole</enum>
+   </property>
+  </action>
+  <action name="actionCaffeConfig">
+   <property name="icon">
+    <iconset resource="resources.qrc">
+     <normaloff>:/argus/res/app_icons/caffe_settings.png</normaloff>:/argus/res/app_icons/caffe_settings.png</iconset>
+   </property>
+   <property name="text">
+    <string>Ρυθμίσεις Μοντέλου Εντοπισμού Προσώπων...</string>
    </property>
   </action>
  </widget>

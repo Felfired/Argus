@@ -95,6 +95,15 @@
     <ClCompile Include="datasetdialog.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="caffeconfigdialog.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="facedetectiondialog.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="facedetection.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <QtMoc Include="mainwindow.h">
@@ -136,6 +145,12 @@
     <QtMoc Include="datasetdialog.h">
       <Filter>Header Files</Filter>
     </QtMoc>
+    <QtMoc Include="caffeconfigdialog.h">
+      <Filter>Header Files</Filter>
+    </QtMoc>
+    <QtMoc Include="facedetectiondialog.h">
+      <Filter>Header Files</Filter>
+    </QtMoc>
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="debug\moc_predefs.h.cbt">
@@ -171,6 +186,12 @@
       <Filter>Form Files</Filter>
     </QtUic>
     <QtUic Include="datasetdialog.ui">
+      <Filter>Form Files</Filter>
+    </QtUic>
+    <QtUic Include="caffeconfigdialog.ui">
+      <Filter>Form Files</Filter>
+    </QtUic>
+    <QtUic Include="facedetectiondialog.ui">
       <Filter>Form Files</Filter>
     </QtUic>
   </ItemGroup>
@@ -211,6 +232,15 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="ui_datasetdialog.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ui_facedetectiondialog.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ui_caffeconfigdialog.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="facedetection.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

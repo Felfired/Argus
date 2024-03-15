@@ -58,6 +58,7 @@ public:
     QAction *actionDataset;
     QAction *actionFaceDetection;
     QAction *actionFaceRecognition;
+    QAction *actionCaffeConfig;
     QWidget *centralwidget;
     QWidget *gridLayoutWidget;
     QGridLayout *gridVideoControl;
@@ -231,6 +232,11 @@ public:
         icon21.addFile(QString::fromUtf8(":/argus/res/app_icons/recognition.png"), QSize(), QIcon::Normal, QIcon::Off);
         actionFaceRecognition->setIcon(icon21);
         actionFaceRecognition->setMenuRole(QAction::NoRole);
+        actionCaffeConfig = new QAction(MainWindow);
+        actionCaffeConfig->setObjectName("actionCaffeConfig");
+        QIcon icon22;
+        icon22.addFile(QString::fromUtf8(":/argus/res/app_icons/caffe_settings.png"), QSize(), QIcon::Normal, QIcon::Off);
+        actionCaffeConfig->setIcon(icon22);
         centralwidget = new QWidget(MainWindow);
         centralwidget->setObjectName("centralwidget");
         centralwidget->setStyleSheet(QString::fromUtf8(""));
@@ -307,9 +313,9 @@ public:
         buttonPause->setObjectName("buttonPause");
         buttonPause->setMaximumSize(QSize(30, 30));
         buttonPause->setStyleSheet(QString::fromUtf8(""));
-        QIcon icon22;
-        icon22.addFile(QString::fromUtf8(":/argus/res/app_icons/pause.png"), QSize(), QIcon::Normal, QIcon::Off);
-        buttonPause->setIcon(icon22);
+        QIcon icon23;
+        icon23.addFile(QString::fromUtf8(":/argus/res/app_icons/pause.png"), QSize(), QIcon::Normal, QIcon::Off);
+        buttonPause->setIcon(icon23);
         buttonPause->setIconSize(QSize(16, 16));
 
         videoButtons->addWidget(buttonPause);
@@ -317,18 +323,18 @@ public:
         buttonDecRate = new QPushButton(horizontalLayoutWidget_2);
         buttonDecRate->setObjectName("buttonDecRate");
         buttonDecRate->setMaximumSize(QSize(30, 30));
-        QIcon icon23;
-        icon23.addFile(QString::fromUtf8(":/argus/res/app_icons/decrease_speed.png"), QSize(), QIcon::Normal, QIcon::Off);
-        buttonDecRate->setIcon(icon23);
+        QIcon icon24;
+        icon24.addFile(QString::fromUtf8(":/argus/res/app_icons/decrease_speed.png"), QSize(), QIcon::Normal, QIcon::Off);
+        buttonDecRate->setIcon(icon24);
 
         videoButtons->addWidget(buttonDecRate);
 
         buttonPlay = new QPushButton(horizontalLayoutWidget_2);
         buttonPlay->setObjectName("buttonPlay");
         buttonPlay->setMaximumSize(QSize(30, 30));
-        QIcon icon24;
-        icon24.addFile(QString::fromUtf8(":/argus/res/app_icons/play.png"), QSize(), QIcon::Normal, QIcon::Off);
-        buttonPlay->setIcon(icon24);
+        QIcon icon25;
+        icon25.addFile(QString::fromUtf8(":/argus/res/app_icons/play.png"), QSize(), QIcon::Normal, QIcon::Off);
+        buttonPlay->setIcon(icon25);
         buttonPlay->setIconSize(QSize(16, 16));
 
         videoButtons->addWidget(buttonPlay);
@@ -336,18 +342,18 @@ public:
         buttonIncRate = new QPushButton(horizontalLayoutWidget_2);
         buttonIncRate->setObjectName("buttonIncRate");
         buttonIncRate->setMaximumSize(QSize(30, 30));
-        QIcon icon25;
-        icon25.addFile(QString::fromUtf8(":/argus/res/app_icons/increase_speed.png"), QSize(), QIcon::Normal, QIcon::Off);
-        buttonIncRate->setIcon(icon25);
+        QIcon icon26;
+        icon26.addFile(QString::fromUtf8(":/argus/res/app_icons/increase_speed.png"), QSize(), QIcon::Normal, QIcon::Off);
+        buttonIncRate->setIcon(icon26);
 
         videoButtons->addWidget(buttonIncRate);
 
         buttonStop = new QPushButton(horizontalLayoutWidget_2);
         buttonStop->setObjectName("buttonStop");
         buttonStop->setMaximumSize(QSize(30, 30));
-        QIcon icon26;
-        icon26.addFile(QString::fromUtf8(":/argus/res/app_icons/stop.png"), QSize(), QIcon::Normal, QIcon::Off);
-        buttonStop->setIcon(icon26);
+        QIcon icon27;
+        icon27.addFile(QString::fromUtf8(":/argus/res/app_icons/stop.png"), QSize(), QIcon::Normal, QIcon::Off);
+        buttonStop->setIcon(icon27);
 
         videoButtons->addWidget(buttonStop);
 
@@ -418,22 +424,22 @@ public:
         buttonDeleteImage->setObjectName("buttonDeleteImage");
         buttonDeleteImage->setGeometry(QRect(0, 30, 30, 30));
         buttonDeleteImage->setMaximumSize(QSize(30, 30));
-        QIcon icon27;
-        icon27.addFile(QString::fromUtf8(":/argus/res/app_icons/x.png"), QSize(), QIcon::Normal, QIcon::Off);
-        buttonDeleteImage->setIcon(icon27);
+        QIcon icon28;
+        icon28.addFile(QString::fromUtf8(":/argus/res/app_icons/x.png"), QSize(), QIcon::Normal, QIcon::Off);
+        buttonDeleteImage->setIcon(icon28);
         buttonToggleView = new QPushButton(filecontrolFrame);
         buttonToggleView->setObjectName("buttonToggleView");
         buttonToggleView->setGeometry(QRect(0, 60, 30, 30));
         buttonToggleView->setMaximumSize(QSize(30, 30));
-        QIcon icon28;
-        icon28.addFile(QString::fromUtf8(":/argus/res/app_icons/view_off.png"), QSize(), QIcon::Normal, QIcon::Off);
-        buttonToggleView->setIcon(icon28);
+        QIcon icon29;
+        icon29.addFile(QString::fromUtf8(":/argus/res/app_icons/view_off.png"), QSize(), QIcon::Normal, QIcon::Off);
+        buttonToggleView->setIcon(icon29);
         toolButton = new QToolButton(filecontrolFrame);
         toolButton->setObjectName("toolButton");
         toolButton->setGeometry(QRect(0, 90, 30, 30));
-        QIcon icon29;
-        icon29.addFile(QString::fromUtf8(":/argus/res/app_icons/refresh.png"), QSize(), QIcon::Normal, QIcon::Off);
-        toolButton->setIcon(icon29);
+        QIcon icon30;
+        icon30.addFile(QString::fromUtf8(":/argus/res/app_icons/refresh.png"), QSize(), QIcon::Normal, QIcon::Off);
+        toolButton->setIcon(icon30);
         tabWidget = new QTabWidget(centralwidget);
         tabWidget->setObjectName("tabWidget");
         tabWidget->setGeometry(QRect(810, 20, 711, 481));
@@ -461,24 +467,24 @@ public:
         buttonZoomIn = new QToolButton(frame);
         buttonZoomIn->setObjectName("buttonZoomIn");
         buttonZoomIn->setGeometry(QRect(60, 0, 30, 30));
-        QIcon icon30;
-        icon30.addFile(QString::fromUtf8(":/argus/res/app_icons/zoom_in.png"), QSize(), QIcon::Normal, QIcon::Off);
-        buttonZoomIn->setIcon(icon30);
+        QIcon icon31;
+        icon31.addFile(QString::fromUtf8(":/argus/res/app_icons/zoom_in.png"), QSize(), QIcon::Normal, QIcon::Off);
+        buttonZoomIn->setIcon(icon31);
         buttonZoomOut = new QToolButton(frame);
         buttonZoomOut->setObjectName("buttonZoomOut");
         buttonZoomOut->setGeometry(QRect(90, 0, 30, 30));
-        QIcon icon31;
-        icon31.addFile(QString::fromUtf8(":/argus/res/app_icons/zoom_out.png"), QSize(), QIcon::Normal, QIcon::Off);
-        buttonZoomOut->setIcon(icon31);
+        QIcon icon32;
+        icon32.addFile(QString::fromUtf8(":/argus/res/app_icons/zoom_out.png"), QSize(), QIcon::Normal, QIcon::Off);
+        buttonZoomOut->setIcon(icon32);
         buttonZoomReset = new QToolButton(frame);
         buttonZoomReset->setObjectName("buttonZoomReset");
         buttonZoomReset->setGeometry(QRect(120, 0, 30, 30));
-        QIcon icon32;
-        icon32.addFile(QString::fromUtf8(":/argus/res/app_icons/zoom_reset.png"), QSize(), QIcon::Normal, QIcon::Off);
-        buttonZoomReset->setIcon(icon32);
         QIcon icon33;
-        icon33.addFile(QString::fromUtf8(":/res/icons/select.png"), QSize(), QIcon::Normal, QIcon::Off);
-        tabWidget->addTab(tab, icon33, QString());
+        icon33.addFile(QString::fromUtf8(":/argus/res/app_icons/zoom_reset.png"), QSize(), QIcon::Normal, QIcon::Off);
+        buttonZoomReset->setIcon(icon33);
+        QIcon icon34;
+        icon34.addFile(QString::fromUtf8(":/res/icons/select.png"), QSize(), QIcon::Normal, QIcon::Off);
+        tabWidget->addTab(tab, icon34, QString());
         line_3 = new QFrame(centralwidget);
         line_3->setObjectName("line_3");
         line_3->setGeometry(QRect(810, 490, 710, 16));
@@ -502,17 +508,17 @@ public:
         menuHelp->setToolTipsVisible(true);
         menuAbout = new QMenu(menuHelp);
         menuAbout->setObjectName("menuAbout");
-        QIcon icon34;
-        icon34.addFile(QString::fromUtf8(":/argus/res/app_icons/about.png"), QSize(), QIcon::Normal, QIcon::Off);
-        menuAbout->setIcon(icon34);
+        QIcon icon35;
+        icon35.addFile(QString::fromUtf8(":/argus/res/app_icons/about.png"), QSize(), QIcon::Normal, QIcon::Off);
+        menuAbout->setIcon(icon35);
         menuSettings = new QMenu(menubar);
         menuSettings->setObjectName("menuSettings");
         menuDNN = new QMenu(menuSettings);
         menuDNN->setObjectName("menuDNN");
         menuDNN->setEnabled(true);
-        QIcon icon35;
-        icon35.addFile(QString::fromUtf8(":/argus/res/app_icons/neural.png"), QSize(), QIcon::Normal, QIcon::Off);
-        menuDNN->setIcon(icon35);
+        QIcon icon36;
+        icon36.addFile(QString::fromUtf8(":/argus/res/app_icons/neural.png"), QSize(), QIcon::Normal, QIcon::Off);
+        menuDNN->setIcon(icon36);
         menuTools = new QMenu(menubar);
         menuTools->setObjectName("menuTools");
         MainWindow->setMenuBar(menubar);
@@ -544,6 +550,8 @@ public:
         menuDNN->addAction(actionNames);
         menuDNN->addAction(actionWeights);
         menuDNN->addAction(actionConfig);
+        menuDNN->addSeparator();
+        menuDNN->addAction(actionCaffeConfig);
         menuTools->addAction(actionCatalog);
         menuTools->addAction(actionTrain);
         menuTools->addAction(actionDataset);
@@ -607,11 +615,16 @@ public:
         actionTrain->setText(QCoreApplication::translate("MainWindow", "\316\225\316\272\317\200\316\261\316\257\316\264\316\265\317\205\317\203\316\267 \316\235\316\265\317\205\317\201\317\211\316\275\316\271\316\272\316\277\317\215 \316\224\316\271\316\272\317\204\317\215\316\277\317\205...", nullptr));
         actionSavePrefs->setText(QCoreApplication::translate("MainWindow", "\316\241\317\205\316\270\316\274\316\257\317\203\316\265\316\271\317\202 \316\221\317\200\316\277\316\270\316\256\316\272\316\265\317\205\317\203\316\267\317\202...", nullptr));
         actionDataset->setText(QCoreApplication::translate("MainWindow", "\316\224\316\265\316\264\316\277\316\274\316\255\316\275\316\261 \316\246\317\211\317\204\316\277\316\263\317\201\316\261\317\206\316\271\317\216\316\275...", nullptr));
-        actionFaceDetection->setText(QCoreApplication::translate("MainWindow", "detection", nullptr));
-        actionFaceRecognition->setText(QCoreApplication::translate("MainWindow", "recognition", nullptr));
+        actionFaceDetection->setText(QString());
+#if QT_CONFIG(tooltip)
+        actionFaceDetection->setToolTip(QCoreApplication::translate("MainWindow", "\316\225\316\275\317\204\316\277\317\200\316\271\317\203\316\274\317\214\317\202 \317\200\317\201\316\277\317\203\317\216\317\200\317\211\316\275.", nullptr));
+#endif // QT_CONFIG(tooltip)
+        actionFaceRecognition->setText(QString());
+        actionFaceRecognition->setIconText(QString());
 #if QT_CONFIG(tooltip)
         actionFaceRecognition->setToolTip(QCoreApplication::translate("MainWindow", "\316\221\316\275\316\261\316\263\316\275\317\216\317\201\316\271\317\203\316\267 \317\200\317\201\316\277\317\203\317\216\317\200\317\211\316\275.", nullptr));
 #endif // QT_CONFIG(tooltip)
+        actionCaffeConfig->setText(QCoreApplication::translate("MainWindow", "\316\241\317\205\316\270\316\274\316\257\317\203\316\265\316\271\317\202 \316\234\316\277\316\275\317\204\316\255\316\273\316\277\317\205 \316\225\316\275\317\204\316\277\317\200\316\271\317\203\316\274\316\277\317\215 \316\240\317\201\316\277\317\203\317\216\317\200\317\211\316\275...", nullptr));
         labelDuration->setText(QCoreApplication::translate("MainWindow", "00:00:00", nullptr));
         labelCurrent->setText(QCoreApplication::translate("MainWindow", "00:00:00", nullptr));
         labelSep->setText(QCoreApplication::translate("MainWindow", "/", nullptr));

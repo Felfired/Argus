@@ -6,7 +6,7 @@ CatalogService::CatalogService(QObject* parent)
     QSettings settings("config.ini", QSettings::IniFormat);
     catalogFolderPath = settings.value("Save_Preferences/Catalog_Path").toString();
 
-    if (isFolderEmpty())
+    if (isCatalogFolderEmpty())
     {
         CatalogService::setupFolder();
     }
@@ -42,10 +42,18 @@ void CatalogService::setupFolder()
     }
 }
 
-bool CatalogService::isFolderEmpty()
+bool CatalogService::isCatalogFolderEmpty()
 {
     QDir directory(catalogFolderPath);
     QStringList entries = directory.entryList(QDir::NoDotAndDotDot | QDir::AllEntries);
+    return entries.isEmpty();
+}
+
+bool CatalogService::isDatasetFolderEmpty(QString id) const
+{
+    QString path = catalogFolderPath + "/" + id + "/dataset";
+    QDir folder(path);
+    QStringList entries = folder.entryList(QDir::NoDotAndDotDot | QDir::AllEntries);
     return entries.isEmpty();
 }
 
@@ -275,4 +283,48 @@ void CatalogService::sortCatalog(bool deletionFlag, QString id) const
     }
 
     catalogFile.close();
+}
+
+std::vector<QStringList> CatalogService::getDataset(QString id) const
+{
+    QStringList fileInfo;
+    std::vector<QStringList> fileInfoList;
+    QString path = catalogFolderPath + "/" + id + "/dataset";
+    QDir directory(path);
+
+    if (directory.exists()) 
+    {
+        QStringList fileNames = directory.entryList(QDir::Files | QDir::NoDotAndDotDot);
+        for (const QString& fileName : fileNames) 
+        {
+            QFileInfo file(path + "/" + fileName);
+            QImage image(path + "/" + fileName);
+            QStringList fileInfo;
+            fileInfo << fileName
+                << QString::number(file.size()) + " byte(s)"
+                << QString::number(image.width()) + "x" + QString::number(image.height());
+            fileInfoList.push_back(fileInfo);
+        }
+    }
+
+    return fileInfoList;
+}
+
+void CatalogService::addPicturesToDataset(QStringList fileList, QString id)
+{
+    QStringList fileInfo;
+    QString path = catalogFolderPath + "/" + id + "/dataset";
+    QDir directory(path);
+
+    for (const QString& filePath : fileList) 
+    {
+        QFileInfo fileInfo(filePath);
+        QString destinationFilePath = path + "/" + fileInfo.fileName();
+        QFile::copy(filePath, destinationFilePath);
+    }
+}
+
+void CatalogService::deletePicturesFromDataset(QString fileName, QString id)
+{
+
 }

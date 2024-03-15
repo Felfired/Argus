@@ -34,6 +34,8 @@
 #include "saveconfigdialog.h"
 #include "datasetdialog.h"
 #include "motiondetection.h"
+#include "caffeconfigdialog.h"
+#include "facedetectiondialog.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -76,6 +78,8 @@ private slots:
     void actionCatalogTriggered();
     void actionSavePrefsTriggered();
     void actionDatasetTriggered();
+    void actionFaceDetectionTriggered();
+    void actionCaffeConfigTriggered();
     void buttonOpenFolderClicked();
     void buttonToggleViewClicked();
     void buttonZoomInClicked();
@@ -114,6 +118,8 @@ private:
     QAction* actionCatalog;
     QAction* actionSavePrefs;
     QAction* actionDataset;
+    QAction* actionFaceDetection;
+    QAction* actionCaffeConfig;
     QPushButton *buttonPlay;
     QPushButton *buttonPause;
     QPushButton *buttonStop;
@@ -142,14 +148,16 @@ private:
     QString configFilePath;
     QPixmap lastImage;
     QUrl nullUrl;
-    MotionDetectionDialog *motiondetectionDialog;
-    ExtractFramesDialog *extractframesDialog;
-    NamesFileDialog *namesfileDialog;
-    WeightsFileDialog *weightsfileDialog;
-    ConfigFileDialog *configfileDialog;
-    CatalogDialog *catalogDialog;
-    SaveConfigDialog *saveConfigDialog;
+    MotionDetectionDialog* motiondetectionDialog;
+    ExtractFramesDialog* extractframesDialog;
+    NamesFileDialog* namesfileDialog;
+    WeightsFileDialog* weightsfileDialog;
+    ConfigFileDialog* configfileDialog;
+    CatalogDialog* catalogDialog;
+    SaveConfigDialog* saveConfigDialog;
     DatasetDialog* datasetDialog;
+    CaffeConfigDialog* caffeConfigDialog;
+    FaceDetectionDialog* faceDetectionDialog;
     bool videoLoaded;
     bool toggleViewButtonState;
     int zoomCap;

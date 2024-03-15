@@ -14,7 +14,6 @@
         <file>res/app_icons/motion_detection.png</file>
         <file>res/app_icons/pause.png</file>
         <file>res/app_icons/play.png</file>
-        <file>res/app_icons/recognition.png</file>
         <file>res/app_icons/remove.png</file>
         <file>res/app_icons/stop.png</file>
         <file>res/app_icons/view_off.png</file>
@@ -43,5 +42,10 @@
         <file>res/app_icons/about.png</file>
         <file>res/app_icons/help.png</file>
         <file>res/app_icons/contact.png</file>
+        <file>res/app_icons/view_image.png</file>
+        <file>res/app_icons/recognition.png</file>
+        <file>res/app_icons/caffe_settings.png</file>
+        <file>res/app_icons/caffe_dialog.png</file>
+        <file>res/app_icons/caffe_dialog_config.png</file>
     </qresource>
 </RCC>
