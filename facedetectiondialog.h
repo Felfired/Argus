@@ -6,6 +6,7 @@
 #include <QLineEdit>
 #include <QFileDialog>
 #include <QCheckBox>
+#include <QSpinBox>
 #include <QSettings>
 
 namespace Ui { class FaceDetectionDialog; }
@@ -34,11 +35,18 @@ private:
 	QPushButton* selectFolderButton;
 	QCheckBox* saveToVideoCheckBox;
 	QCheckBox* saveToImageCheckBox;
+	QCheckBox* saveToTxtCheckBox;
 	QLineEdit* saveFolderDisplay;
+	QDoubleSpinBox* scaleFactorSpinBox;
+	QDoubleSpinBox* confidenceThresholdSpinBox;
 	QString saveFolderPath;
+	QString loadedVideoPath;
 	bool saveToVideoFlag;
 	bool saveToImageFlag;
+	bool saveToTxtFlag;
 	bool enableButtonFlag;
+	double scaleFactor;
+	double confidenceThreshold;
 };
 
 #endif // SAVECONFIGDIALOG_H

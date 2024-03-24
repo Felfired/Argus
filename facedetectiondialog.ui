@@ -66,9 +66,9 @@
    <property name="geometry">
     <rect>
      <x>10</x>
-     <y>10</y>
+     <y>120</y>
      <width>461</width>
-     <height>121</height>
+     <height>151</height>
     </rect>
    </property>
    <property name="title">
@@ -79,7 +79,7 @@
      <rect>
       <x>10</x>
       <y>30</y>
-      <width>431</width>
+      <width>441</width>
       <height>20</height>
      </rect>
     </property>
@@ -92,7 +92,7 @@
      <rect>
       <x>10</x>
       <y>60</y>
-      <width>431</width>
+      <width>441</width>
       <height>20</height>
      </rect>
     </property>
@@ -104,7 +104,7 @@
     <property name="geometry">
      <rect>
       <x>10</x>
-      <y>90</y>
+      <y>120</y>
       <width>111</width>
       <height>24</height>
      </rect>
@@ -117,9 +117,81 @@
     <property name="geometry">
      <rect>
       <x>130</x>
-      <y>90</y>
+      <y>120</y>
       <width>321</width>
       <height>21</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QCheckBox" name="saveToTxtCheckBox">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>90</y>
+      <width>441</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Αποθήκευση στιγμιότυπων όπου εντοπίστηκαν πρόσωπα σε αρχείο κειμένου.</string>
+    </property>
+   </widget>
+  </widget>
+  <widget class="QGroupBox" name="groupBox_2">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>10</y>
+     <width>461</width>
+     <height>91</height>
+    </rect>
+   </property>
+   <property name="title">
+    <string>Παράμετροι</string>
+   </property>
+   <widget class="QLabel" name="label">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>30</y>
+      <width>191</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Συντελεστής Κλίμακας (0.1 - 2.0):</string>
+    </property>
+   </widget>
+   <widget class="QDoubleSpinBox" name="scaleFactorSpinBox">
+    <property name="geometry">
+     <rect>
+      <x>195</x>
+      <y>26</y>
+      <width>51</width>
+      <height>22</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_2">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>60</y>
+      <width>141</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Ευαισθησία (0.01 - 0.99):</string>
+    </property>
+   </widget>
+   <widget class="QDoubleSpinBox" name="confidenceThresholdSpinBox">
+    <property name="geometry">
+     <rect>
+      <x>195</x>
+      <y>56</y>
+      <width>51</width>
+      <height>22</height>
      </rect>
     </property>
    </widget>

@@ -104,6 +104,9 @@
     <ClCompile Include="facedetection.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="facedetectionthread.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <QtMoc Include="mainwindow.h">
@@ -149,6 +152,12 @@
       <Filter>Header Files</Filter>
     </QtMoc>
     <QtMoc Include="facedetectiondialog.h">
+      <Filter>Header Files</Filter>
+    </QtMoc>
+    <QtMoc Include="facedetection.h">
+      <Filter>Header Files</Filter>
+    </QtMoc>
+    <QtMoc Include="facedetectionthread.h">
       <Filter>Header Files</Filter>
     </QtMoc>
   </ItemGroup>
@@ -238,9 +247,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="ui_caffeconfigdialog.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="facedetection.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

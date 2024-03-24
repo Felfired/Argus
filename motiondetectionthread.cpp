@@ -5,11 +5,11 @@ MotionDetectionThread::MotionDetectionThread(const QString& videoPath, const QSt
     const QString& weightsFilePath, const QString& configFilePath,
     const QString& outputVideoPath, bool imgsaveFlag, bool timestampFlag, bool fbfFlag, 
     double sensitivity, int frameskipNum, QObject* parent)
-    : QThread(parent), m_videoPath(videoPath), m_namesFilePath(namesFilePath),
-    m_weightsFilePath(weightsFilePath), m_configFilePath(configFilePath),
-    m_outputVideoPath(outputVideoPath), m_imgsaveFlag(imgsaveFlag), 
-    m_timestampFlag(timestampFlag), m_fbfFlag(fbfFlag), m_sensitivity(sensitivity),
-    m_frameskipNum(frameskipNum)
+    : QThread(parent), videoPath(videoPath), namesFilePath(namesFilePath),
+    weightsFilePath(weightsFilePath), configFilePath(configFilePath),
+    outputVideoPath(outputVideoPath), imgsaveFlag(imgsaveFlag), 
+    timestampFlag(timestampFlag), fbfFlag(fbfFlag), sensitivity(sensitivity),
+    frameskipNum(frameskipNum)
 {
     // Constructor does not contain anything.
 }
@@ -77,7 +77,7 @@ void MotionDetectionThread::detectObjects(cv::Mat& frame, std::vector<int>& clas
         cv::putText(frame, text, cv::Point(boxes[i].x, boxes[i].y - 5), cv::FONT_HERSHEY_SIMPLEX, 1,
             cv::Scalar(0, 255, 0), 2);
         // If timestamp flag is enabled write the detected classes to a vector of strings.
-        if (m_timestampFlag == true)
+        if (timestampFlag == true)
         {
             detectedClasses.push_back(classes[classIds[i]].c_str());
         }
@@ -259,8 +259,8 @@ void MotionDetectionThread::threadQuit()
 
 void MotionDetectionThread::run()
 {
-   returnCode = MotionDetectionThread::detectMotionDNN(m_videoPath, m_namesFilePath, m_weightsFilePath,
-        m_configFilePath, m_outputVideoPath, m_imgsaveFlag, m_timestampFlag, m_fbfFlag, m_sensitivity, m_frameskipNum);
+   returnCode = MotionDetectionThread::detectMotionDNN(videoPath, namesFilePath, weightsFilePath,
+        configFilePath, outputVideoPath, imgsaveFlag, timestampFlag, fbfFlag, sensitivity, frameskipNum);
    if (returnCode == 0)
    {
        emit threadQuitRequested();

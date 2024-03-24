@@ -56,23 +56,22 @@ private slots:
         int frameskipNum);
 
 private:
-    QString m_videoPath;
-    QString m_namesFilePath;
-    QString m_weightsFilePath;
-    QString m_configFilePath;
-    QString m_outputVideoPath;
-    bool m_imgsaveFlag;
-    bool m_timestampFlag;
-    bool m_fbfFlag;
-    double m_sensitivity;
-    int m_frameskipNum;
+    QString videoPath;
+    QString namesFilePath;
+    QString weightsFilePath;
+    QString configFilePath;
+    QString outputVideoPath;
+    bool imgsaveFlag;
+    bool timestampFlag;
+    bool fbfFlag;
+    double sensitivity;
+    int frameskipNum;
     cv::dnn::Net DNN;
     cv::dnn::DetectionModel detectionModel;
     std::vector<std::string> classes;
     std::vector<std::string> detectedClasses;
     std::vector<cv::Mat> framesWithObjects;
     std::vector<double> timestampVector;
-
     int returnCode;
 };
 
