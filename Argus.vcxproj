@@ -213,6 +213,8 @@
     <ClCompile Include="facedetection.cpp" />
     <ClCompile Include="facedetectiondialog.cpp" />
     <ClCompile Include="facedetectionthread.cpp" />
+    <ClCompile Include="recognitionconfigdialog.cpp" />
+    <ClCompile Include="facerecognitiondialog.cpp" />
     <ClCompile Include="greeklettervalidator.cpp" />
     <ClCompile Include="latinlettervalidator.cpp" />
     <ClCompile Include="main.cpp" />
@@ -254,7 +256,9 @@
     <QtUic Include="catalogdialog.ui" />
     <QtUic Include="configfiledialog.ui" />
     <QtUic Include="datasetdialog.ui" />
+    <QtUic Include="recognitionconfigdialog.ui" />
     <QtUic Include="facedetectiondialog.ui" />
+    <QtUic Include="facerecognitiondialog.ui" />
     <QtUic Include="motiondetectionload.ui" />
     <QtUic Include="namesfiledialog.ui" />
     <QtUic Include="mainwindow.ui" />
@@ -278,6 +282,8 @@
     <QtMoc Include="facedetectiondialog.h" />
     <QtMoc Include="facedetection.h" />
     <QtMoc Include="facedetectionthread.h" />
+    <QtMoc Include="facerecognitiondialog.h" />
+    <QtMoc Include="recognitionconfigdialog.h" />
     <ClInclude Include="greeklettervalidator.h" />
     <ClInclude Include="latinlettervalidator.h" />
     <ClInclude Include="ui_addpersondialog.h" />
@@ -285,6 +291,8 @@
     <ClInclude Include="ui_catalogdialog.h" />
     <ClInclude Include="ui_datasetdialog.h" />
     <ClInclude Include="ui_facedetectiondialog.h" />
+    <ClInclude Include="ui_facerecognitionconfigdialog.h" />
+    <ClInclude Include="ui_facerecognitiondialog.h" />
     <ClInclude Include="ui_motiondetectionload.h" />
     <QtMoc Include="motiondetectionthread.h" />
     <QtMoc Include="configfiledialog.h" />

@@ -2,11 +2,17 @@
 #include "facedetection.h"
 
 FaceDetectionThread::FaceDetectionThread(const QString& videoPath, bool saveToVideoFlag,
-	bool saveToImageFlag, bool saveToTxtFlag, double scaleFactor, double confidenceThreshold, QObject* parent) : QThread(parent),
+	bool saveToImageFlag, bool saveToTxtFlag, double scaleFactor, double confidenceThreshold, 
+	double yConfidenceThreshold, double nmsThreshold, int detectionCount, const QString& selectedModel, QObject* parent) : QThread(parent),
 	videoPath(videoPath), saveToVideoFlag(saveToVideoFlag), saveToImageFlag(saveToImageFlag),
-	saveToTxtFlag(saveToTxtFlag), scaleFactor(scaleFactor), confidenceThreshold(confidenceThreshold)
+	saveToTxtFlag(saveToTxtFlag), scaleFactor(scaleFactor), confidenceThreshold(confidenceThreshold),
+	yConfidenceThreshold(yConfidenceThreshold), nmsThreshold(nmsThreshold), detectionCount(detectionCount),
+	selectedModel(selectedModel)
 {
 	// Constructor does not need implementation currently.
+	QSettings settings("config.ini", QSettings::IniFormat);
+	QString saveLocation = settings.value("Save_Preferences/Results_Path").toString();
+	saveLocationString = saveLocation.toStdString();
 }
 
 FaceDetectionThread::~FaceDetectionThread()
@@ -19,7 +25,8 @@ void FaceDetectionThread::run()
 	returnCode = FaceDetectionThread::detectFacesDNN(videoPath,
 		saveToVideoFlag,
 		saveToImageFlag,
-		saveToTxtFlag);
+		saveToTxtFlag,
+		selectedModel);
 
 	if (returnCode == 0)
 	{
@@ -34,22 +41,42 @@ void FaceDetectionThread::threadQuit()
 	quit();
 }
 
-int FaceDetectionThread::detectFacesDNN(QString videoPath, bool saveToVideoFlag, bool saveToImageFlag, bool saveToTxtFlag)
+int FaceDetectionThread::detectFacesDNN(QString videoPath, bool saveToVideoFlag, bool saveToImageFlag, bool saveToTxtFlag, QString selectedModel)
 {
 	emit resetProgress();
 	emit currentStatus("Προετοιμασία αλγορίθμου...");
-	FaceDetectionThread::getDNNFiles();
-	int returnCodeDNN = FaceDetectionThread::initializeDNN();
-	if (returnCodeDNN == 0)
+	int returnCodeDNN;
+	if (selectedModel == "caffe")
 	{
-		FaceDetectionThread::getVideoDimensions();
-		FaceDetectionThread::detectFaces(videoPath, saveToVideoFlag, saveToImageFlag, saveToTxtFlag);
-		return 0;
+		FaceDetectionThread::getDNNFiles();
+		returnCodeDNN = FaceDetectionThread::initializeDNNCaffe();
+		if (returnCodeDNN == 0)
+		{
+			FaceDetectionThread::getVideoDimensions();
+			FaceDetectionThread::detectFacesCaffe(videoPath, saveToVideoFlag, saveToImageFlag, saveToTxtFlag);
+			return 0;
+		}
+		else if (returnCodeDNN == 1)
+		{
+			QMessageBox::critical(nullptr, tr("Σφάλμα"), tr("Άποτυχία φόρτωσης του νευρωνικού δικτύου."));
+			return 1;
+		}
 	}
-	else if (returnCodeDNN == 1)
+	else if (selectedModel == "yunet")
 	{
-		QMessageBox::critical(nullptr, tr("Σφάλμα"), tr("Άποτυχία φόρτωσης του νευρωνικού δικτύου."));
-		return 1;
+		FaceDetectionThread::getDNNFiles();
+		FaceDetectionThread::getVideoDimensions();
+		returnCodeDNN = FaceDetectionThread::initializeDNNYunet();
+		if (returnCodeDNN == 0)
+		{
+			FaceDetectionThread::detectFacesYunet();
+			return 0;
+		}
+		else if (returnCodeDNN == 1)
+		{
+			QMessageBox::critical(nullptr, tr("Σφάλμα"), tr("Άποτυχία φόρτωσης του νευρωνικού δικτύου."));
+			return 1;
+		}
 	}
 	return 0;
 }
@@ -58,20 +85,36 @@ void FaceDetectionThread::getDNNFiles()
 {
 	QString placeholderString;
 	QSettings settings("config.ini", QSettings::IniFormat);
-	placeholderString = settings.value("Caffe_Preferences/Config_Path").toString();
-	caffePrototxtPath = placeholderString.toStdString();
-	placeholderString = settings.value("Caffe_Preferences/Model_Path").toString();
-	caffeModelPath = placeholderString.toStdString();
+	if (selectedModel == "caffe")
+	{
+		placeholderString = settings.value("Caffe_Preferences/Config_Path").toString();
+		caffePrototxtPath = placeholderString.toStdString();
+		placeholderString = settings.value("Caffe_Preferences/Model_Path").toString();
+		caffeModelPath = placeholderString.toStdString();
+	}
+	else if (selectedModel == "yunet")
+	{
+		placeholderString = settings.value("Yunet_Preferences/Model_Path").toString();
+		yunetModelPath = placeholderString.toStdString();
+	}
 	return;
 }
 
-int FaceDetectionThread::initializeDNN()
+int FaceDetectionThread::initializeDNNCaffe()
 {
 	DNN = cv::dnn::readNetFromCaffe(caffePrototxtPath, caffeModelPath);
 	if (DNN.empty())
 	{
 		return 1;
 	}
+	return 0;
+}
+
+int FaceDetectionThread::initializeDNNYunet()
+{
+	qDebug() << "initializing yunet";
+	cv::Size inputSize(videoWidth, videoHeight);
+	yunetDNN = cv::FaceDetectorYN::create(yunetModelPath, "", inputSize, yConfidenceThreshold, nmsThreshold, detectionCount, cv::dnn::Backend::DNN_BACKEND_OPENCV, cv::dnn::DNN_TARGET_CPU);
 	return 0;
 }
 
@@ -90,7 +133,7 @@ void FaceDetectionThread::getVideoDimensions()
 	return;
 }
 
-std::vector<cv::Rect> FaceDetectionThread::detectFaceRectangles(const cv::Mat& frame)
+std::vector<cv::Rect> FaceDetectionThread::detectFaceRectanglesCaffe(const cv::Mat& frame)
 {
 	meanValues = { 104., 177.0, 123.0 };
 	// Transforming the input image into a data blob. 
@@ -134,15 +177,95 @@ std::vector<cv::Rect> FaceDetectionThread::detectFaceRectangles(const cv::Mat& f
 	return faces;
 }
 
-void FaceDetectionThread::detectFaces(QString videoPath, bool saveToVideoFlag, bool saveToImageFlag, bool saveToTxtFlag)
+cv::Mat FaceDetectionThread::detectFaceRectanglesYunet(const cv::Mat frame)
+{
+	cv::Mat res;
+	yunetDNN->detect(frame, res);
+	return res;
+}
+
+cv::Mat FaceDetectionThread::visualizeDetectionsYunet(const cv::Mat& frame, const cv::Mat& frameWithFaces, int frameNumber)
+{
+	static cv::Scalar boxColor{ 0, 255, 0 };
+	static cv::Scalar textColor{ 0, 255, 0 };
+	auto outputImage = frame.clone();
+	int frameCounter = 0;
+
+	for (int i = 0; i < frameWithFaces.rows; ++i)
+	{
+		// Draw bounding boxes.
+		int x1 = static_cast<int>(frameWithFaces.at<float>(i, 0));
+		int y1 = static_cast<int>(frameWithFaces.at<float>(i, 1));
+		int w = static_cast<int>(frameWithFaces.at<float>(i, 2));
+		int h = static_cast<int>(frameWithFaces.at<float>(i, 3));
+		cv::rectangle(outputImage, cv::Rect(x1, y1, w, h), boxColor, 2);
+
+		// Confidence as text.
+		float conf = frameWithFaces.at<float>(i, 14);
+		cv::putText(outputImage, cv::format("%.4f", conf), cv::Point(x1, y1 + 12), cv::FONT_HERSHEY_DUPLEX, 0.5, textColor);
+
+		if (saveToImageFlag == true && frameCounter % 3 == 0)
+		{
+			FaceDetectionThread::extractImagesYunet(cv::Rect(x1, y1, w, h), frame, frameNumber, i);
+		}
+		frameCounter++;
+	}
+	return outputImage;
+}
+
+void FaceDetectionThread::detectFacesYunet()
 {
 	emit currentStatus("Εντοπισμός προσώπων...");
 	int processedFrames = 0;
 	std::string videoPathString = videoPath.toStdString();
 	cv::VideoCapture videoCapture(videoPathString);
 	int totalFrames = videoCapture.get(cv::CAP_PROP_FRAME_COUNT);
+	int framesPerSecond = videoCapture.get(cv::CAP_PROP_FPS);
+	std::vector<cv::Mat> framesWithFaces;
+	std::vector<double> timestampVector;
+
+	if (!videoCapture.isOpened())
+	{
+		QMessageBox::critical(nullptr, tr("Σφάλμα"), tr("Άποτυχία φόρτωσης του βίντεο."));
+		return;
+	}
+	cv::Mat frame;
+	while (true)
+	{
+		videoCapture >> frame;
+		processedFrames++;
+		if (frame.empty())
+		{
+			break;
+		}
+		cv::Mat frameWithFaces = FaceDetectionThread::detectFaceRectanglesYunet(frame);
+		frameWithFaces = FaceDetectionThread::visualizeDetectionsYunet(frame, frameWithFaces, processedFrames);
+		framesWithFaces.push_back(frameWithFaces);
+
+		int progress = static_cast<int>((processedFrames / static_cast<double>(totalFrames)) * 100);
+		emit loadingProgress(progress);
+	}
+	videoCapture.release();
+	if (saveToVideoFlag == true)
+	{
+		emit resetProgress();
+		FaceDetectionThread::saveToVideo(framesWithFaces);
+	}
+}
+
+void FaceDetectionThread::detectFacesCaffe(QString videoPath, bool saveToVideoFlag, bool saveToImageFlag, bool saveToTxtFlag)
+{
+	emit currentStatus("Εντοπισμός προσώπων...");
+
+	int processedFrames = 0;
+	std::string videoPathString = videoPath.toStdString();
+	cv::VideoCapture videoCapture(videoPathString);
+	int totalFrames = videoCapture.get(cv::CAP_PROP_FRAME_COUNT);
+	int framesPerSecond = videoCapture.get(cv::CAP_PROP_FPS);
 	std::vector<cv::Mat> framesWithFaces;
 	std::vector<std::vector<cv::Rect>> detectedRectangles;
+	std::vector<double> timestampVector;
+
 	if (!videoCapture.isOpened())
 	{
 		QMessageBox::critical(nullptr, tr("Σφάλμα"), tr("Άποτυχία φόρτωσης του βίντεο."));
@@ -158,7 +281,7 @@ void FaceDetectionThread::detectFaces(QString videoPath, bool saveToVideoFlag, b
 			break;
 		}
 
-		auto rectangles = detectFaceRectangles(frame);
+		auto rectangles = detectFaceRectanglesCaffe(frame);
 		cv::Scalar color(0, 105, 205);
 		int frameThickness = 4;
 		for (const auto& r : rectangles)
@@ -172,6 +295,8 @@ void FaceDetectionThread::detectFaces(QString videoPath, bool saveToVideoFlag, b
 			if (saveToImageFlag == true)
 			{
 				detectedRectangles.push_back(rectangles);
+				double currentTime = processedFrames / framesPerSecond;
+				timestampVector.push_back(currentTime);
 			}
 		}
 		int progress = static_cast<int>((processedFrames / static_cast<double>(totalFrames)) * 100);
@@ -186,7 +311,10 @@ void FaceDetectionThread::detectFaces(QString videoPath, bool saveToVideoFlag, b
 	if (saveToImageFlag == true)
 	{
 		emit resetProgress();
-		FaceDetectionThread::saveToImage(framesWithFaces, detectedRectangles);
+		if (selectedModel == "caffe")
+		{
+			FaceDetectionThread::saveToImage(framesWithFaces, detectedRectangles, timestampVector);
+		}
 	}
 	return;
 }
@@ -217,15 +345,16 @@ void FaceDetectionThread::saveToVideo(std::vector<cv::Mat> framesWithFaces)
 	return;
 }
 
-void FaceDetectionThread::saveToImage(std::vector<cv::Mat> framesWithFaces, std::vector<std::vector<cv::Rect>> detectedRectangles)
+void FaceDetectionThread::saveToImage(std::vector<cv::Mat> framesWithFaces, std::vector<std::vector<cv::Rect>> detectedRectangles, std::vector<double> timestampVector)
 {
 	emit currentStatus("Αποκοπή προσώπων απο το βίντεο...");
 	std::vector<cv::Mat> croppedFaces;
-	for (size_t i = 0; i < framesWithFaces.size(); ++i)
+	std::vector<std::pair<int, int>> dictionary;
+	for (size_t i = 0; i < framesWithFaces.size(); i+=3)
 	{
 		const cv::Mat& frame = framesWithFaces[i];
 		const std::vector<cv::Rect>& rectangles = detectedRectangles[i];
-
+		int counter = 0;
 		// Iterate through the rectangles stored within the frame
 		for (const auto& rect : rectangles) 
 		{
@@ -237,6 +366,55 @@ void FaceDetectionThread::saveToImage(std::vector<cv::Mat> framesWithFaces, std:
 
 			// Store the cropped face in the vector
 			croppedFaces.push_back(croppedFace);
+			dictionary.push_back(std::make_pair(i + 1, counter + 1));
+			++counter;
 		}
 	}
+	FaceDetectionThread::createImageFiles(croppedFaces, timestampVector, dictionary);
+}
+
+void FaceDetectionThread::createImageFiles(std::vector<cv::Mat> croppedFaces, std::vector<double> timestampVector, std::vector<std::pair<int, int>> dictionary)
+{
+	QSettings settings("config.ini", QSettings::IniFormat);
+	QString saveLocation = settings.value("Save_Preferences/Results_Path").toString();
+	std::string saveLocationString = saveLocation.toStdString();
+	for (size_t i = 0; i < croppedFaces.size(); ++i)
+	{
+		// Get the frame number and rectangle number from the dictionary
+		int frameNumber = dictionary[i].first;
+		int rectangleNumber = dictionary[i].second;
+
+		// Generate the filename based on frame number, rectangle number, and timestamp
+		std::string filename = saveLocationString + "/" + std::to_string(frameNumber) + "_" + std::to_string(rectangleNumber) + "_" + std::to_string(timestampVector[frameNumber - 1]) + ".jpg";
+
+		// Save the cropped face as a JPEG file
+		cv::imwrite(filename, croppedFaces[i]);
+	}
+}
+
+void FaceDetectionThread::extractImagesYunet(cv::Rect roi, const cv::Mat& frame, int frameNumber, int roiNumber)
+{
+	cv::Rect expandedROI = FaceDetectionThread::expandROI(roi, 0.2);
+	cv::Mat faceROI = frame(expandedROI);
+	std::string filename = saveLocationString + "/face_" + std::to_string(frameNumber) + "_" + std::to_string(frameNumber) + ".jpg";
+	cv::imwrite(filename, faceROI);
+}
+
+cv::Rect FaceDetectionThread::expandROI(const cv::Rect& roi, float expansionFactor)
+{
+	// Calculate expansion amounts.
+	int expandX = static_cast<int>(roi.width * expansionFactor);
+	int expandY = static_cast<int>(roi.height * expansionFactor);
+
+	// Calculate expanded ROI coordinates.
+	int newX = std::max(0, roi.x - expandX);
+	int newY = std::max(0, roi.y - expandY);
+	int newWidth = roi.width + 2 * expandX;
+	int newHeight = roi.height + 2 * expandY;
+
+	// Ensure the expanded ROI stays within the bounds of maxWidth and maxHeight.
+	newWidth = std::min(newWidth, videoWidth - newX);
+	newHeight = std::min(newHeight, videoHeight - newY);
+
+	return cv::Rect(newX, newY, newWidth, newHeight);
 }

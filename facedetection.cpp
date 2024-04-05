@@ -21,10 +21,13 @@ void FaceDetection::initializeLoadingDialog()
 }
 
 void FaceDetection::start(FaceDetectionDialog* initDialog, QString videoPath,
-	bool saveToVideoFlag, bool saveToImageFlag, bool saveToTxtFlag, double scaleFactor, double confidenceThreshold)
+	bool saveToVideoFlag, bool saveToImageFlag, bool saveToTxtFlag, double scaleFactor, 
+    double confidenceThreshold, double yConfidenceThreshold, double nmsThreshold, int detectionCount,
+    QString selectedModel)
 {
     FaceDetectionThread* thread = new FaceDetectionThread(videoPath,
-        saveToVideoFlag, saveToImageFlag, saveToTxtFlag, scaleFactor, confidenceThreshold);
+        saveToVideoFlag, saveToImageFlag, saveToTxtFlag, scaleFactor, confidenceThreshold, yConfidenceThreshold,
+        nmsThreshold, detectionCount, selectedModel);
     FaceDetection::initializeLoadingDialog();
     connect(thread, &FaceDetectionThread::started, initDialog, &FaceDetectionDialog::disableButtons);
     connect(loadDialog, &MotionDetectionLoad::cancelClicked, thread, &FaceDetectionThread::threadQuit);

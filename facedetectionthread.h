@@ -20,6 +20,10 @@ public:
 		bool saveToTxtFlag,
 		double scaleFactor,
 		double ConfidenceThreshold,
+		double yConfidenceThreshold,
+		double nmsThreshold,
+		int detectionCount,
+		const QString& selectedModel,
 		QObject* parent = nullptr);
 	~FaceDetectionThread();
 	void threadQuit();
@@ -37,20 +41,31 @@ private slots:
 	int detectFacesDNN(QString videoPath,
 		bool saveToVideoFlag,
 		bool saveToImageFlag,
-		bool saveToTxtFlag);
+		bool saveToTxtFlag,
+		QString selectedModel);
 	void getDNNFiles();
 	void getVideoDimensions();
-	int initializeDNN();
-	std::vector<cv::Rect> detectFaceRectangles(const cv::Mat& frame);
+	int initializeDNNCaffe();
+	int initializeDNNYunet();
+	std::vector<cv::Rect> detectFaceRectanglesCaffe(const cv::Mat& frame);
 	void saveToVideo(std::vector<cv::Mat> framesWithFaces);
-	void saveToImage(std::vector<cv::Mat> framesWithFaces, std::vector<std::vector<cv::Rect>> detectedRectangles);
-	void detectFaces(QString videoPath, bool saveToVideoFlag, bool saveToImageFlag, bool saveToTxtFlag);
+	void saveToImage(std::vector<cv::Mat> framesWithFaces, std::vector<std::vector<cv::Rect>> detectedRectangles, std::vector<double> timestampVector);
+	void detectFacesCaffe(QString videoPath, bool saveToVideoFlag, bool saveToImageFlag, bool saveToTxtFlag);
+	void createImageFiles(std::vector<cv::Mat> croppedFaces, std::vector<double> timestampVector, std::vector<std::pair<int, int>> dictionary);
+	cv::Mat detectFaceRectanglesYunet(const cv::Mat frame);
+	void detectFacesYunet();
+	cv::Mat visualizeDetectionsYunet(const cv::Mat& frame, const cv::Mat& frameWithFaces, int frameNumber);
+	void extractImagesYunet(cv::Rect roi, const cv::Mat& frame, int frameNumber, int roiNumber);
+	cv::Rect expandROI(const cv::Rect& roi, float expansionFactor);
 
 private:
 	const QString videoPath;
 	std::string caffePrototxtPath;
 	std::string caffeModelPath;
+	std::string yunetModelPath;
+	std::string saveLocationString;
 	cv::dnn::Net DNN;
+	cv::Ptr<cv::FaceDetectorYN> yunetDNN;
 	int videoWidth;
 	int videoHeight;
 	double scaleFactor;
@@ -59,6 +74,10 @@ private:
 	const bool saveToVideoFlag;
 	const bool saveToImageFlag;
 	const bool saveToTxtFlag;
+	double yConfidenceThreshold;
+	double nmsThreshold;
+	int detectionCount;
+	const QString selectedModel;
 	int returnCode;
 };
 

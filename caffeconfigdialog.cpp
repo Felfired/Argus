@@ -18,6 +18,11 @@ CaffeConfigDialog::CaffeConfigDialog(QWidget* parent)
     configFPLineEdit = ui->configFPLineEdit;
     configFPLineEdit->setReadOnly(true);
 
+    openYunetFileButton = ui->openYunetFileButton;
+    connect(openYunetFileButton, &QPushButton::clicked, this, &CaffeConfigDialog::openYunetFileClicked);
+    yunetFPLineEdit = ui->yunetFPLineEdit;
+    yunetFPLineEdit->setReadOnly(true);
+
     saveButton = ui->saveButton;
     saveButton->setEnabled(false);
     connect(saveButton, &QPushButton::clicked, this, &CaffeConfigDialog::saveButtonClicked);
@@ -37,6 +42,12 @@ CaffeConfigDialog::CaffeConfigDialog(QWidget* parent)
         originalConfigFilePath = settings.value("Caffe_Preferences/Config_Path").toString();
         configFilePath = originalConfigFilePath;
         configFPLineEdit->setText(configFilePath);
+    }
+    if (settings.contains("YuNet_Preferences/Model_Path"))
+    {
+        originalYunetFilePath = settings.value("YuNet_Preferences/Model_Path").toString();
+        yunetFilePath = originalYunetFilePath;
+        yunetFPLineEdit->setText(yunetFilePath);
     }
 }
 
@@ -72,11 +83,23 @@ void CaffeConfigDialog::openConfigFileClicked()
     }
 }
 
+void CaffeConfigDialog::openYunetFileClicked()
+{
+    yunetFilePath = QFileDialog::getOpenFileName(this, tr("Επιλογή Αρχείου..."), "", tr("Αρχεία Μοντέλου (*.onnx)"));
+    yunetFPLineEdit->setText(yunetFilePath);
+
+    if (yunetFilePath != originalYunetFilePath)
+    {
+        saveButton->setEnabled(true);
+    }
+}
+
 void CaffeConfigDialog::saveButtonClicked()
 {
     QSettings settings("config.ini", QSettings::IniFormat);
     settings.setValue("Caffe_Preferences/Model_Path", modelFilePath);
     settings.setValue("Caffe_Preferences/Config_Path", configFilePath);
+    settings.setValue("YuNet_Preferences/Model_Path", yunetFilePath);
     settings.sync();
     close();
 }

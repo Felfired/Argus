@@ -107,6 +107,12 @@
     <ClCompile Include="facedetectionthread.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="facerecognitiondialog.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="recognitionconfigdialog.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <QtMoc Include="mainwindow.h">
@@ -160,6 +166,12 @@
     <QtMoc Include="facedetectionthread.h">
       <Filter>Header Files</Filter>
     </QtMoc>
+    <QtMoc Include="facerecognitiondialog.h">
+      <Filter>Header Files</Filter>
+    </QtMoc>
+    <QtMoc Include="recognitionconfigdialog.h">
+      <Filter>Header Files</Filter>
+    </QtMoc>
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="debug\moc_predefs.h.cbt">
@@ -201,6 +213,12 @@
       <Filter>Form Files</Filter>
     </QtUic>
     <QtUic Include="facedetectiondialog.ui">
+      <Filter>Form Files</Filter>
+    </QtUic>
+    <QtUic Include="facerecognitiondialog.ui">
+      <Filter>Form Files</Filter>
+    </QtUic>
+    <QtUic Include="recognitionconfigdialog.ui">
       <Filter>Form Files</Filter>
     </QtUic>
   </ItemGroup>
@@ -247,6 +265,12 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="ui_caffeconfigdialog.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ui_facerecognitiondialog.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ui_facerecognitionconfigdialog.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

@@ -36,6 +36,10 @@
 #include "motiondetection.h"
 #include "caffeconfigdialog.h"
 #include "facedetectiondialog.h"
+#include "facerecognitiondialog.h"
+#include "recognitionconfigdialog.h"
+#include <opencv2/core/cuda.hpp>
+#include <opencv2/core/core.hpp>
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -79,6 +83,8 @@ private slots:
     void actionSavePrefsTriggered();
     void actionDatasetTriggered();
     void actionFaceDetectionTriggered();
+    void actionFaceRecognitionTriggered();
+    void actionRecognitionConfigTriggered();
     void actionCaffeConfigTriggered();
     void buttonOpenFolderClicked();
     void buttonToggleViewClicked();
@@ -119,7 +125,9 @@ private:
     QAction* actionSavePrefs;
     QAction* actionDataset;
     QAction* actionFaceDetection;
+    QAction* actionFaceRecognition;
     QAction* actionCaffeConfig;
+    QAction* actionRecognitionConfig;
     QPushButton *buttonPlay;
     QPushButton *buttonPause;
     QPushButton *buttonStop;
@@ -150,14 +158,16 @@ private:
     QUrl nullUrl;
     MotionDetectionDialog* motiondetectionDialog;
     ExtractFramesDialog* extractframesDialog;
-    NamesFileDialog* namesfileDialog;
     WeightsFileDialog* weightsfileDialog;
     ConfigFileDialog* configfileDialog;
+    NamesFileDialog* namesfileDialog;
     CatalogDialog* catalogDialog;
-    SaveConfigDialog* saveConfigDialog;
     DatasetDialog* datasetDialog;
+    SaveConfigDialog* saveConfigDialog;
     CaffeConfigDialog* caffeConfigDialog;
     FaceDetectionDialog* faceDetectionDialog;
+    FaceRecognitionDialog* faceRecognitionDialog;
+    RecognitionConfigDialog* recognitionConfigDialog;
     bool videoLoaded;
     bool toggleViewButtonState;
     int zoomCap;

@@ -2,6 +2,7 @@
 #define FACEDETECTIONDIALOG_H
 
 #include <QDialog>
+#include <QTabWidget>
 #include <QPushButton>
 #include <QLineEdit>
 #include <QFileDialog>
@@ -27,26 +28,42 @@ private slots:
 	void startButtonClicked();
 	void selectFolderButtonClicked();
 	void updateStartButtonState();
+	void frameskipHelpButtonClicked();
+	void changeFrameskipCheckboxState();
 
 private:
 	Ui::FaceDetectionDialog* ui;
+	QPushButton* frameskipHelpButton;
 	QPushButton* closeButton;
 	QPushButton* startButton;
 	QPushButton* selectFolderButton;
 	QCheckBox* saveToVideoCheckBox;
 	QCheckBox* saveToImageCheckBox;
 	QCheckBox* saveToTxtCheckBox;
+	QCheckBox* applyToImageCheckBox;
+	QCheckBox* applyToVideoCheckBox;
 	QLineEdit* saveFolderDisplay;
+	QTabWidget* modelSelectionTabWidget;
 	QDoubleSpinBox* scaleFactorSpinBox;
 	QDoubleSpinBox* confidenceThresholdSpinBox;
+	QDoubleSpinBox* nmsThresholdSpinBox;
+	QDoubleSpinBox* yConfidenceThresholdSpinBox;
+	QSpinBox* detectionCountSpinBox;
+	QSpinBox* frameskipSpinBox;
 	QString saveFolderPath;
 	QString loadedVideoPath;
+	QString selectedModel;
 	bool saveToVideoFlag;
 	bool saveToImageFlag;
 	bool saveToTxtFlag;
 	bool enableButtonFlag;
 	double scaleFactor;
 	double confidenceThreshold;
+	double yConfidenceThreshold;
+	double nmsThreshold;
+	int detectionCount;
+	int frameskipSelection;
+	int frameskipValue;
 };
 
 #endif // SAVECONFIGDIALOG_H

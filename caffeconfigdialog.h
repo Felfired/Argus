@@ -22,6 +22,7 @@ private slots:
 	void cancelButtonClicked();
 	void openModelFileClicked();
 	void openConfigFileClicked();
+	void openYunetFileClicked();
 	void saveButtonClicked();
 
 private:
@@ -30,12 +31,16 @@ private:
 	QPushButton* openConfigFileButton;
 	QPushButton* closeButton;
 	QPushButton* saveButton;
+	QPushButton* openYunetFileButton;
 	QLineEdit* modelFPLineEdit;
 	QLineEdit* configFPLineEdit;
+	QLineEdit* yunetFPLineEdit;
 	QString modelFilePath;
 	QString configFilePath;
+	QString yunetFilePath;
 	QString originalModelFilePath;
 	QString originalConfigFilePath;
+	QString originalYunetFilePath;
 };
 
 #endif // CAFFECONFIGDIALOG_H

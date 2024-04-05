@@ -58,6 +58,11 @@ MainWindow::MainWindow(QWidget *parent)
     connect(this, &MainWindow::onVideoLoaded, actionFaceDetection, &QAction::setEnabled);
     addAction(actionFaceDetection);
 
+    actionFaceRecognition = ui->actionFaceRecognition;
+    actionFaceRecognition->setEnabled(true);
+    connect(actionFaceRecognition, &QAction::triggered, this, &MainWindow::actionFaceRecognitionTriggered);
+    addAction(actionFaceRecognition);
+
     actionCatalog = ui->actionCatalog;
     connect(actionCatalog, &QAction::triggered, this, &MainWindow::actionCatalogTriggered);
     addAction(actionCatalog);
@@ -73,6 +78,10 @@ MainWindow::MainWindow(QWidget *parent)
     actionCaffeConfig = ui->actionCaffeConfig;
     connect(actionCaffeConfig, &QAction::triggered, this, &MainWindow::actionCaffeConfigTriggered);
     addAction(actionCaffeConfig);
+
+    actionRecognitionConfig = ui->actionRecognitionConfig;
+    connect(actionRecognitionConfig, &QAction::triggered, this, &MainWindow::actionRecognitionConfigTriggered);
+    addAction(actionRecognitionConfig);
 
     buttonPlay = ui->buttonPlay;
     buttonPlay->setToolTip("Αναπαραγωγή.");
@@ -133,6 +142,8 @@ MainWindow::MainWindow(QWidget *parent)
     textLogger->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOn);
 
     output = getLogTime() + " Argus v0.02, all rights reserved.";
+    textLogger->append(output);
+    output = getLogTime() + " OpenCV Version: " + CV_VERSION;
     textLogger->append(output);
 
     galleryListView = ui->galleryListView;
@@ -511,11 +522,34 @@ void MainWindow::actionFaceDetectionTriggered()
     faceDetectionDialog->activateWindow();
 }
 
+void MainWindow::actionFaceRecognitionTriggered()
+{
+    QSettings settings("config.ini", QSettings::IniFormat);
+    if (settings.contains("Recognition_Preferences/SFace_Path"))
+    {
+        faceRecognitionDialog = new FaceRecognitionDialog(this);
+        faceRecognitionDialog->show();
+        faceRecognitionDialog->activateWindow();
+    }
+    else
+    {
+        QMessageBox::critical(this, tr("Σφάλμα"), tr("Το αρχείο για τον μοντέλο αναγνώρισης προσώπων δεν έχει οριστεί. "
+            "Ανατρέξτε στην καρτέλα \"Ρυθμίσεις Μοντέλου Αναγνώρισης Προσώπων\" για να το ορίσετε."));
+    }
+}
+
 void MainWindow::actionCaffeConfigTriggered()
 {
     caffeConfigDialog = new CaffeConfigDialog();
     caffeConfigDialog->show();
     caffeConfigDialog->activateWindow();
+}
+
+void MainWindow::actionRecognitionConfigTriggered()
+{
+    recognitionConfigDialog = new RecognitionConfigDialog();
+    recognitionConfigDialog->show();
+    recognitionConfigDialog->activateWindow();
 }
 
 void MainWindow::saveNamesFile(const QString& filePath)
@@ -561,6 +595,7 @@ void MainWindow::onVideoLoaded(bool videoLoaded)
 {
     actionDetectMotion->setEnabled(videoLoaded);
     actionFaceDetection->setEnabled(videoLoaded);
+    actionFaceRecognition->setEnabled(videoLoaded);
     actionMetadata->setEnabled(videoLoaded);
     buttonDecRate->setEnabled(videoLoaded);
     buttonIncRate->setEnabled(videoLoaded);

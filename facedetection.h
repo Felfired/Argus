@@ -19,7 +19,11 @@ public:
 		bool saveToImageFlag,
 		bool saveToTxtFlag,
 		double scaleFactor,
-		double confidenceThreshold);
+		double confidenceThreshold,
+		double yConfidenceThreshold,
+		double nmsThreshold,
+		int detectionCount,
+		QString selectedModel);
 	void initializeLoadingDialog();
 
 private:
