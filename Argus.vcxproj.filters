@@ -113,6 +113,15 @@
     <ClCompile Include="recognitionconfigdialog.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="facerecognition.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="imagedisplaydialog.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="facerecognitionthread.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <QtMoc Include="mainwindow.h">
@@ -170,6 +179,15 @@
       <Filter>Header Files</Filter>
     </QtMoc>
     <QtMoc Include="recognitionconfigdialog.h">
+      <Filter>Header Files</Filter>
+    </QtMoc>
+    <QtMoc Include="facerecognition.h">
+      <Filter>Header Files</Filter>
+    </QtMoc>
+    <QtMoc Include="imagedisplaydialog.h">
+      <Filter>Header Files</Filter>
+    </QtMoc>
+    <QtMoc Include="facerecognitionthread.h">
       <Filter>Header Files</Filter>
     </QtMoc>
   </ItemGroup>

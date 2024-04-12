@@ -47,5 +47,6 @@
         <file>res/app_icons/caffe_settings.png</file>
         <file>res/app_icons/caffe_dialog.png</file>
         <file>res/app_icons/caffe_dialog_config.png</file>
+        <file>res/app_icons/write.png</file>
     </qresource>
 </RCC>

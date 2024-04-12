@@ -3,12 +3,15 @@
 
 #include <QDialog>
 #include <QTableWidget>
+#include <QModelIndexList>
 #include <QTabWidget>
 #include <QFileDialog>
+#include <QLineEdit>
 #include <QCheckBox>
 #include <QTextEdit>
 #include <vector>
 #include "catalogservice.h"
+#include "imagedisplaydialog.h"
 
 namespace Ui { class DatasetDialog; }
 
@@ -32,9 +35,14 @@ private slots:
 	void onOpenButtonClicked();
 	void onRefreshButtonClicked();
 	void onDeleteButtonClicked();
+	void onPreviewButtonClicked();
+	void onSaveToTextButtonClicked();
+	void disableDatasetButtons();
 	void setupCatalogTable();
 	void setupDatasetTable();
 	void createDatasetWarningDialog(QStringList invalidFiles) const;
+	void createSuccessDialog(QString message) const;
+	void createImageDialog(QString imagePath) const; 
 	QStringList checkPictureSizeConstraints(QStringList fileList);
 
 private:
@@ -43,11 +51,13 @@ private:
 	QTableWidget* datasetDisplayTableWidget;
 	QPushButton* cancelButton;
 	QPushButton* openButton;
+	QPushButton* saveToTextButton;
 	QToolButton* clearSelectionButton;
 	QToolButton* previewButton;
 	QToolButton* deleteButton;
 	QToolButton* refreshButton;
 	QTabWidget* tabWidget;
+	QLineEdit* displayPathLineEdit;
 	QString catalogFolderPath;
 	QString selectedID;
 	QWidget* addImgWidget;

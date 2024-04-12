@@ -9,7 +9,6 @@ FaceDetectionThread::FaceDetectionThread(const QString& videoPath, bool saveToVi
 	yConfidenceThreshold(yConfidenceThreshold), nmsThreshold(nmsThreshold), detectionCount(detectionCount),
 	selectedModel(selectedModel)
 {
-	// Constructor does not need implementation currently.
 	QSettings settings("config.ini", QSettings::IniFormat);
 	QString saveLocation = settings.value("Save_Preferences/Results_Path").toString();
 	saveLocationString = saveLocation.toStdString();

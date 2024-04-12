@@ -2,6 +2,8 @@
 #define CATALOGSERVICE_H
 
 #include <QObject>
+#include <QDir>
+#include <QTextStream>
 #include <QSettings>
 #include <QStringList>
 #include <QMessageBox>
@@ -29,7 +31,8 @@ public:
 	bool isCatalogFolderEmpty();
 	bool isDatasetFolderEmpty(QString id) const;
 	void addPicturesToDataset(QStringList fileList, QString id);
-	void deletePicturesFromDataset(QString fileName, QString id);
+	int deletePicturesFromDataset(QString fileName);
+	int createDatasetIndex();
 
 signals:
 	void folderSetupFailed(const QString& errorMessage);
@@ -37,9 +40,11 @@ signals:
 private slots:
 	void setupFolder();
 	void sortCatalog(bool deletionFlag, QString id) const;
+	void createIndexRecursive(const QDir& currentDirectory, QTextStream& outputStream, const QString& parentFolderPath);
 	
 private:
 	QString catalogFolderPath;
+	QString indexPath;
 };
 
 #endif // CATALOGSERVICE_H

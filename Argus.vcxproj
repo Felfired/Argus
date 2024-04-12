@@ -213,6 +213,9 @@
     <ClCompile Include="facedetection.cpp" />
     <ClCompile Include="facedetectiondialog.cpp" />
     <ClCompile Include="facedetectionthread.cpp" />
+    <ClCompile Include="facerecognition.cpp" />
+    <ClCompile Include="facerecognitionthread.cpp" />
+    <ClCompile Include="imagedisplaydialog.cpp" />
     <ClCompile Include="recognitionconfigdialog.cpp" />
     <ClCompile Include="facerecognitiondialog.cpp" />
     <ClCompile Include="greeklettervalidator.cpp" />
@@ -284,7 +287,10 @@
     <QtMoc Include="facedetectionthread.h" />
     <QtMoc Include="facerecognitiondialog.h" />
     <QtMoc Include="recognitionconfigdialog.h" />
+    <QtMoc Include="facerecognition.h" />
+    <QtMoc Include="facerecognitionthread.h" />
     <ClInclude Include="greeklettervalidator.h" />
+    <QtMoc Include="imagedisplaydialog.h" />
     <ClInclude Include="latinlettervalidator.h" />
     <ClInclude Include="ui_addpersondialog.h" />
     <ClInclude Include="ui_caffeconfigdialog.h" />

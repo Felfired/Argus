@@ -41,6 +41,10 @@ DatasetDialog::DatasetDialog(QWidget* parent)
 
     previewButton = ui->previewButton;
     previewButton->setEnabled(false);
+    connect(previewButton, &QToolButton::clicked, this, &DatasetDialog::onPreviewButtonClicked);
+
+    saveToTextButton = ui->saveToTextButton;
+    connect(saveToTextButton, &QPushButton::clicked, this, &DatasetDialog::onSaveToTextButtonClicked);
 
     catalogDisplayTableWidget = ui->catalogDisplayTableWidget;
     DatasetDialog::setupCatalogTable();
@@ -48,6 +52,10 @@ DatasetDialog::DatasetDialog(QWidget* parent)
 
     datasetDisplayTableWidget = ui->datasetDisplayTableWidget;
     DatasetDialog::setupDatasetTable();
+
+    displayPathLineEdit = ui->displayPathLineEdit;
+    displayPathLineEdit->setReadOnly(true);
+    displayPathLineEdit->setText(catalogFolderPath);
 }
 
 DatasetDialog::~DatasetDialog()
@@ -116,7 +124,24 @@ void DatasetDialog::onCancelButtonClicked()
 
 void DatasetDialog::onDeleteButtonClicked()
 {
+    QModelIndexList selectedIndexes = datasetDisplayTableWidget->selectionModel()->selectedIndexes();
+    int row = selectedIndexes.first().row();
+    QTableWidgetItem* selectedItem = datasetDisplayTableWidget->item(row, 0);
+    QString imageName = selectedItem->text();
+    QString imagePath = catalogFolderPath + "/" + selectedID + "/dataset/" + imageName;
+    CatalogService service = new CatalogService();
+    service.deletePicturesFromDataset(imagePath);
+    DatasetDialog::onRefreshButtonClicked();
+}
 
+void DatasetDialog::onPreviewButtonClicked()
+{
+    QModelIndexList selectedIndexes = datasetDisplayTableWidget->selectionModel()->selectedIndexes();
+    int row = selectedIndexes.first().row();
+    QTableWidgetItem* selectedItem = datasetDisplayTableWidget->item(row, 0);
+    QString imageName = selectedItem->text();
+    QString imagePath = catalogFolderPath + "/" + selectedID + "/dataset/" + imageName;
+    DatasetDialog::createImageDialog(imagePath);
 }
 
 void DatasetDialog::onOpenButtonClicked()
@@ -183,6 +208,8 @@ void DatasetDialog::fillCatalogTable()
 void DatasetDialog::fillDatasetTable(QString id)
 {
     CatalogService service = new CatalogService();
+    datasetDisplayTableWidget->clearContents();
+    datasetDisplayTableWidget->setRowCount(0);
     if (service.isDatasetFolderEmpty(id))
     {
         // Table stays empty. Buttons will not be enabled.
@@ -223,6 +250,7 @@ void DatasetDialog::setupCatalogTable()
     catalogDisplayTableWidget->setSelectionBehavior(QAbstractItemView::SelectRows);
     catalogDisplayTableWidget->setSortingEnabled(false);
     connect(catalogDisplayTableWidget, &QTableWidget::cellClicked, this, &DatasetDialog::onCatalogTableItemClicked);
+    connect(catalogDisplayTableWidget, &QTableWidget::cellClicked, this, &DatasetDialog::disableDatasetButtons);
 }
 
 void DatasetDialog::setupDatasetTable()
@@ -263,6 +291,13 @@ QStringList DatasetDialog::checkPictureSizeConstraints(QStringList fileList)
     return validFiles;
 }
 
+void DatasetDialog::disableDatasetButtons()
+{
+    deleteButton->setEnabled(false);
+    refreshButton->setEnabled(false);
+    previewButton->setEnabled(false);
+}
+
 void DatasetDialog::createDatasetWarningDialog(QStringList invalidFiles) const
 {
     QMessageBox warningBox;
@@ -280,4 +315,39 @@ void DatasetDialog::createDatasetWarningDialog(QStringList invalidFiles) const
     warningBox.setIcon(QMessageBox::Warning);
     warningBox.addButton(QMessageBox::Ok);
     warningBox.exec();
+}
+
+void DatasetDialog::onSaveToTextButtonClicked()
+{
+    CatalogService service = new CatalogService();
+    int returnCode = service.createDatasetIndex();
+    if (returnCode == 0)
+    {
+        QString message = "Το αρχείο καταγραφής δημιουργήθηκε με επιτυχία.";
+        DatasetDialog::createSuccessDialog(message);
+    }
+}
+
+void DatasetDialog::createSuccessDialog(QString message) const
+{
+    QMessageBox successBox;
+    successBox.setWindowTitle("Επιτυχία.");
+    successBox.setText(message);
+    QPixmap successIcon(":argus/res/dialog_icons/OK_DIALOG.png");
+    successBox.setIconPixmap(successIcon);
+    successBox.addButton(QMessageBox::Ok);
+    QIcon winIcon = QIcon(":argus/res/app_icons/write.png");
+    successBox.setWindowIcon(winIcon);
+    successBox.exec();
+}
+
+void DatasetDialog::createImageDialog(QString imagePath) const
+{
+    QPixmap image(imagePath);
+    ImageDisplayDialog imageDialog;
+    imageDialog.setImage(image);
+    imageDialog.setWindowTitle("Προεπισκόπιση Εικόνας");
+    QIcon winIcon = QIcon(":argus/res/app_icons/view_on.png");
+    imageDialog.setWindowIcon(winIcon);
+    imageDialog.exec();
 }

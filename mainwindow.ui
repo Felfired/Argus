@@ -912,6 +912,9 @@
    <property name="text">
     <string>Εκπαίδευση Νευρωνικού Δικτύου...</string>
    </property>
+   <property name="visible">
+    <bool>false</bool>
+   </property>
   </action>
   <action name="actionSavePrefs">
    <property name="icon">

@@ -200,6 +200,19 @@ void MainWindow::loadConfiguration()
     {
         configFilePath = settings.value("DNN_Configuration/Config_File").toString();
     }
+    if (settings.contains("Save_Preferences/Catalog_Path"))
+    {
+        QString catalogFilePath = settings.value("Save_Preferences/Catalog_Path").toString();
+        QFileInfo fileInfo(catalogFilePath + "/index.txt");
+        if (!fileInfo.exists())
+        {
+            // If the file doesn't exist, delete the setting.
+            settings.remove("Recognition_Preferences/Index_Path");
+        }
+    }
+    
+    
+    
 }
 
 void MainWindow::actionOpenTriggered()

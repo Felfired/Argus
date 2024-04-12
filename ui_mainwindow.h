@@ -211,6 +211,7 @@ public:
         QIcon icon17;
         icon17.addFile(QString::fromUtf8(":/argus/res/app_icons/training.png"), QSize(), QIcon::Normal, QIcon::Off);
         actionTrain->setIcon(icon17);
+        actionTrain->setVisible(false);
         actionSavePrefs = new QAction(MainWindow);
         actionSavePrefs->setObjectName("actionSavePrefs");
         QIcon icon18;

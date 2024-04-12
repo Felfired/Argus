@@ -16,6 +16,7 @@
 #include <QtWidgets/QFrame>
 #include <QtWidgets/QHeaderView>
 #include <QtWidgets/QLabel>
+#include <QtWidgets/QLineEdit>
 #include <QtWidgets/QPushButton>
 #include <QtWidgets/QTabWidget>
 #include <QtWidgets/QTableWidget>
@@ -47,6 +48,13 @@ public:
     QToolButton *deleteButton;
     QToolButton *refreshButton;
     QToolButton *previewButton;
+    QWidget *tabSaveToText;
+    QLabel *datasetDescriptionLabel_2;
+    QLabel *datasetImageLabel_2;
+    QLineEdit *displayPathLineEdit;
+    QPushButton *saveToTextButton;
+    QLabel *label_2;
+    QFrame *line;
     QPushButton *cancelButton;
 
     void setupUi(QDialog *DatasetDialog)
@@ -150,6 +158,33 @@ public:
         icon4.addFile(QString::fromUtf8(":/argus/res/app_icons/view_on.png"), QSize(), QIcon::Normal, QIcon::Off);
         previewButton->setIcon(icon4);
         tabWidget->addTab(tabAddImg, QString());
+        tabSaveToText = new QWidget();
+        tabSaveToText->setObjectName("tabSaveToText");
+        datasetDescriptionLabel_2 = new QLabel(tabSaveToText);
+        datasetDescriptionLabel_2->setObjectName("datasetDescriptionLabel_2");
+        datasetDescriptionLabel_2->setGeometry(QRect(50, 10, 341, 61));
+        datasetDescriptionLabel_2->setScaledContents(false);
+        datasetDescriptionLabel_2->setWordWrap(true);
+        datasetImageLabel_2 = new QLabel(tabSaveToText);
+        datasetImageLabel_2->setObjectName("datasetImageLabel_2");
+        datasetImageLabel_2->setGeometry(QRect(10, 20, 32, 32));
+        datasetImageLabel_2->setPixmap(QPixmap(QString::fromUtf8(":/argus/res/app_icons/write.png")));
+        datasetImageLabel_2->setScaledContents(true);
+        displayPathLineEdit = new QLineEdit(tabSaveToText);
+        displayPathLineEdit->setObjectName("displayPathLineEdit");
+        displayPathLineEdit->setGeometry(QRect(10, 110, 381, 21));
+        saveToTextButton = new QPushButton(tabSaveToText);
+        saveToTextButton->setObjectName("saveToTextButton");
+        saveToTextButton->setGeometry(QRect(316, 140, 75, 24));
+        label_2 = new QLabel(tabSaveToText);
+        label_2->setObjectName("label_2");
+        label_2->setGeometry(QRect(10, 90, 131, 16));
+        line = new QFrame(tabSaveToText);
+        line->setObjectName("line");
+        line->setGeometry(QRect(140, 90, 251, 20));
+        line->setFrameShape(QFrame::HLine);
+        line->setFrameShadow(QFrame::Sunken);
+        tabWidget->addTab(tabSaveToText, QString());
         cancelButton = new QPushButton(DatasetDialog);
         cancelButton->setObjectName("cancelButton");
         cancelButton->setGeometry(QRect(340, 370, 75, 24));
@@ -193,6 +228,12 @@ public:
 #endif // QT_CONFIG(tooltip)
         previewButton->setText(QCoreApplication::translate("DatasetDialog", "...", nullptr));
         tabWidget->setTabText(tabWidget->indexOf(tabAddImg), QCoreApplication::translate("DatasetDialog", "\316\240\317\201\316\277\317\203\316\270\316\256\316\272\316\267", nullptr));
+        datasetDescriptionLabel_2->setText(QCoreApplication::translate("DatasetDialog", "\316\221\317\206\316\277\317\215 \316\277\316\273\316\277\316\272\316\273\316\267\317\201\317\216\317\203\316\265\317\204\316\265 \317\204\316\267\316\275 \316\265\316\271\317\203\316\261\316\263\317\211\316\263\316\256 \316\265\316\271\316\272\317\214\316\275\317\211\316\275 \316\274\317\200\316\277\317\201\316\265\316\257\317\204\316\265 \316\275\316\261 \316\264\316\267\316\274\316\271\316\277\317\205\317\201\316\263\316\256\317\203\316\265\317\204\316\265 \316\255\316\275\316\261 \316\261\317\201\317\207\316\265\316\257\316\277 \316\272\316\261\317\204\316\261\316\263\317\201\316\261\317\206\316\256\317\202 \317\214\316\273\317\211\316\275 \317\204\317\211\316\275 \316\265\316\271\316\272\317\214\316\275\317\211\316\275 \317\200\316\277\317\205 \316\270\316\261 \317\207\317\201\316\267\317\203\316\271\316\274\316\277\317\200\316\277\316\271\316\267\316\270\316\277\317\215\316\275 \316\261\317\200\316\277 \317\204\316\277\316\275 \316\261\316\273\316\263\317\214\317\201\316\271\316\270\316\274\316\277 \316\261"
+                        "\316\275\316\261\316\263\316\275\317\216\317\201\316\271\317\203\316\267\317\202.", nullptr));
+        datasetImageLabel_2->setText(QString());
+        saveToTextButton->setText(QCoreApplication::translate("DatasetDialog", "\316\232\316\261\317\204\316\261\316\263\317\201\316\261\317\206\316\256", nullptr));
+        label_2->setText(QCoreApplication::translate("DatasetDialog", "\316\244\316\277\317\200\316\277\316\270\316\265\317\203\316\257\316\261 \316\232\316\261\317\204\316\261\316\273\317\214\316\263\316\277\317\205:", nullptr));
+        tabWidget->setTabText(tabWidget->indexOf(tabSaveToText), QCoreApplication::translate("DatasetDialog", "\316\232\316\261\317\204\316\261\316\263\317\201\316\261\317\206\316\256", nullptr));
         cancelButton->setText(QCoreApplication::translate("DatasetDialog", "\316\232\316\273\316\265\316\257\317\203\316\271\316\274\316\277", nullptr));
     } // retranslateUi
 

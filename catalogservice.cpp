@@ -319,12 +319,82 @@ void CatalogService::addPicturesToDataset(QStringList fileList, QString id)
     for (const QString& filePath : fileList) 
     {
         QFileInfo fileInfo(filePath);
-        QString destinationFilePath = path + "/" + fileInfo.fileName();
+        QString originalFileName = fileInfo.fileName();
+        QString nspFileName = originalFileName.remove(' ');
+        QString destinationFilePath = path + "/" + nspFileName;
         QFile::copy(filePath, destinationFilePath);
     }
 }
 
-void CatalogService::deletePicturesFromDataset(QString fileName, QString id)
+int CatalogService::deletePicturesFromDataset(QString fileName)
 {
+    if (QFile::remove(fileName))
+    {
+        return 0;
+    }
+    else
+    {
+        return 1;
+    }
+}
 
+int CatalogService::createDatasetIndex()
+{
+    QString indexPath = catalogFolderPath + "/index.txt";
+    QFile indexFile(indexPath);
+    if (indexFile.exists())
+    {
+        // If the file exists, remove it to rewrite
+        if (!indexFile.remove())
+        {
+            qDebug() << "Error: Unable to remove existing index file.";
+            return 1;
+        }
+    }
+
+    if (!indexFile.open(QIODevice::WriteOnly | QIODevice::Text))
+    {
+        qDebug() << "Error: Unable to open index file for writing.";
+        return 1;
+    }
+
+    QTextStream outStream(&indexFile);
+    QDir rootDir(catalogFolderPath);
+    if (!rootDir.exists())
+    {
+        qDebug() << "Error: Root directory does not exist.";
+        indexFile.close();
+        return 1;
+    }
+
+    createIndexRecursive(catalogFolderPath, outStream, catalogFolderPath);
+    indexFile.close();
+    QSettings settings("config.ini", QSettings::IniFormat);
+    settings.setValue("Recognition_Preferences/Index_Path",indexPath);
+    settings.sync();
+    return 0;
+}
+
+void CatalogService::createIndexRecursive(const QDir& currentDirectory, QTextStream& outputStream, const QString& parentFolderPath)
+{
+    QStringList dirList = currentDirectory.entryList(QDir::Dirs | QDir::NoDotAndDotDot);
+    for (const QString& dirName : dirList)
+    {
+        QDir nextDir = currentDirectory;
+        nextDir.cd(dirName);
+        if (dirName == "dataset")
+        {
+            QStringList datasetFiles = nextDir.entryList(QDir::Files);
+            QString finalFolderName = parentFolderPath.section('/', -1);
+            for (const QString& datasetFile : datasetFiles)
+            {
+                outputStream << nextDir.filePath(datasetFile) << " "  << finalFolderName << "\n";
+            }
+        }
+        else
+        {
+            QString nextParentFolderPath = parentFolderPath + "/" + dirName;
+            createIndexRecursive(nextDir, outputStream, nextParentFolderPath);
+        }
+    }
 }
