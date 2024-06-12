@@ -19,6 +19,7 @@ class FaceRecognitionThread : public QThread
 public:
 	FaceRecognitionThread(const QString& folderPath,
 						  const QString& distanceCalculationMode,
+					      bool saveToTxtFlag,
 						  QObject* parent = nullptr);
 	~FaceRecognitionThread();
 	void threadQuit();
@@ -39,16 +40,19 @@ private slots:
 	cv::Mat imageInference(cv::Mat inputImage);
 	int matchImages(cv::Mat unknownFeatures, cv::Mat referenceFeatures);
 	void recognitionScan();
+	void writeToTxt(std::vector<std::string> detectedId);
 	QStringList getImagePathsFromDirectory();
 	std::vector<std::vector<std::string>> createIndexVector();
 
 private:
 	const QString distanceCalculationMode;
 	const QString folderPath;
+	bool saveToTxtFlag;
 	QString indexPath;
 	QString modelPath;
 	int returnCode;
 	std::vector<std::string> duplicateRecognitions;
+	std::vector<std::string> detectedId;
 	cv::Ptr<cv::FaceRecognizerSF> sfaceDNN;
 	double thresholdCosine;
 	double thresholdEuclidean;

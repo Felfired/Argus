@@ -44,7 +44,6 @@ public:
     QPushButton *selectFolderButton;
     QLineEdit *folderDisplayLineEdit;
     QCheckBox *saveToTextCheckBox;
-    QCheckBox *deleteDuplicateCheckBox;
     QProgressBar *progressBar;
     QDialogButtonBox *buttonBox;
     QToolButton *stopButton;
@@ -53,7 +52,7 @@ public:
     {
         if (FaceRecognitionDialog->objectName().isEmpty())
             FaceRecognitionDialog->setObjectName("FaceRecognitionDialog");
-        FaceRecognitionDialog->resize(743, 391);
+        FaceRecognitionDialog->resize(857, 418);
         QIcon icon;
         icon.addFile(QString::fromUtf8(":/argus/res/app_icons/recognition.png"), QSize(), QIcon::Normal, QIcon::Off);
         FaceRecognitionDialog->setWindowIcon(icon);
@@ -74,7 +73,7 @@ public:
         tabWidget->addTab(tab, QString());
         resultsTableWidget = new QTableWidget(FaceRecognitionDialog);
         resultsTableWidget->setObjectName("resultsTableWidget");
-        resultsTableWidget->setGeometry(QRect(480, 40, 241, 301));
+        resultsTableWidget->setGeometry(QRect(480, 40, 361, 331));
         label = new QLabel(FaceRecognitionDialog);
         label->setObjectName("label");
         label->setGeometry(QRect(480, 10, 231, 20));
@@ -84,7 +83,7 @@ public:
         label->setFont(font);
         groupBox_2 = new QGroupBox(FaceRecognitionDialog);
         groupBox_2->setObjectName("groupBox_2");
-        groupBox_2->setGeometry(QRect(10, 170, 461, 171));
+        groupBox_2->setGeometry(QRect(10, 170, 461, 201));
         selectFolderButton = new QPushButton(groupBox_2);
         selectFolderButton->setObjectName("selectFolderButton");
         selectFolderButton->setGeometry(QRect(10, 30, 111, 24));
@@ -94,20 +93,17 @@ public:
         saveToTextCheckBox = new QCheckBox(groupBox_2);
         saveToTextCheckBox->setObjectName("saveToTextCheckBox");
         saveToTextCheckBox->setGeometry(QRect(13, 70, 271, 20));
-        deleteDuplicateCheckBox = new QCheckBox(groupBox_2);
-        deleteDuplicateCheckBox->setObjectName("deleteDuplicateCheckBox");
-        deleteDuplicateCheckBox->setGeometry(QRect(13, 100, 411, 20));
         progressBar = new QProgressBar(FaceRecognitionDialog);
         progressBar->setObjectName("progressBar");
-        progressBar->setGeometry(QRect(40, 350, 431, 21));
+        progressBar->setGeometry(QRect(40, 383, 431, 21));
         progressBar->setValue(24);
         buttonBox = new QDialogButtonBox(FaceRecognitionDialog);
         buttonBox->setObjectName("buttonBox");
-        buttonBox->setGeometry(QRect(565, 350, 156, 24));
+        buttonBox->setGeometry(QRect(685, 380, 156, 24));
         buttonBox->setStandardButtons(QDialogButtonBox::Cancel|QDialogButtonBox::Ok);
         stopButton = new QToolButton(FaceRecognitionDialog);
         stopButton->setObjectName("stopButton");
-        stopButton->setGeometry(QRect(9, 347, 25, 25));
+        stopButton->setGeometry(QRect(10, 380, 25, 25));
         QIcon icon1;
         icon1.addFile(QString::fromUtf8(":/argus/res/app_icons/x.png"), QSize(), QIcon::Normal, QIcon::Off);
         stopButton->setIcon(icon1);
@@ -130,7 +126,6 @@ public:
         groupBox_2->setTitle(QCoreApplication::translate("FaceRecognitionDialog", "\316\223\316\265\316\275\316\271\316\272\316\255\317\202 \316\241\317\205\316\270\316\274\316\257\317\203\316\265\316\271\317\202", nullptr));
         selectFolderButton->setText(QCoreApplication::translate("FaceRecognitionDialog", "\316\225\317\200\316\271\316\273\316\277\316\263\316\256 \316\246\316\261\316\272\316\255\316\273\316\277\317\205", nullptr));
         saveToTextCheckBox->setText(QCoreApplication::translate("FaceRecognitionDialog", "\316\225\316\276\316\261\316\263\317\211\316\263\316\256 \316\261\317\200\316\277\317\204\316\265\316\273\316\265\317\203\316\274\316\254\317\204\317\211\316\275 \317\203\316\265 \316\261\317\201\317\207\316\265\316\257\316\277 \316\272\316\265\316\271\316\274\316\255\316\275\316\277\317\205.", nullptr));
-        deleteDuplicateCheckBox->setText(QCoreApplication::translate("FaceRecognitionDialog", "\316\224\316\271\316\261\316\263\317\201\316\261\317\206\316\256 \316\264\316\271\317\200\316\273\317\214\317\204\317\205\317\200\317\211\316\275 \316\265\316\271\316\272\317\214\316\275\317\211\316\275 \317\203\316\265 \317\200\316\265\317\201\316\257\317\200\317\204\317\211\317\203\316\267 \316\265\317\200\316\271\317\204\317\205\317\207\316\277\317\215\317\202 \316\261\316\275\316\261\316\263\316\275\317\216\317\201\316\271\317\203\316\267\317\202.", nullptr));
         stopButton->setText(QCoreApplication::translate("FaceRecognitionDialog", "...", nullptr));
     } // retranslateUi
 

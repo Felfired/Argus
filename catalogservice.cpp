@@ -111,25 +111,6 @@ int CatalogService::addPerson(QString name, QString surname, QString id, QDate d
         }
     }
 
-    // Write the information to the ID.txt file.
-    QString fileName = folderName + "/" + id + ".txt";
-    QFile personFile(fileName);
-    if (!personFile.open(QIODevice::WriteOnly | QIODevice::Text))
-    {
-        return 1;
-    }
-    QTextStream personStream(&personFile);
-    personStream << name << "\n";
-    personStream << surname << "\n";
-    personStream << id << "\n";
-    personStream << dob.toString("yyyy-MM-dd") << "\n";
-    personStream << latinName << "\n";
-    personStream << latinSurname << "\n";
-    personStream << "No\n";
-    personStream << "0\n";
-    personStream << profilePicturePath;
-    personFile.close();
-
     // Create empty folder named "dataset" in the person folder.
     QString datasetFolder = folderName + "/dataset";
     QDir datasetDir(datasetFolder);
@@ -148,6 +129,25 @@ int CatalogService::addPerson(QString name, QString surname, QString id, QDate d
     {
         qDebug() << "Failed to copy profile picture to:" << destinationPath;
     }
+
+    // Write the information to the ID.txt file.
+    QString fileName = folderName + "/" + id + ".txt";
+    QFile personFile(fileName);
+    if (!personFile.open(QIODevice::WriteOnly | QIODevice::Text))
+    {
+        return 1;
+    }
+    QTextStream personStream(&personFile);
+    personStream << name << "\n";
+    personStream << surname << "\n";
+    personStream << id << "\n";
+    personStream << dob.toString("yyyy-MM-dd") << "\n";
+    personStream << latinName << "\n";
+    personStream << latinSurname << "\n";
+    personStream << "No\n";
+    personStream << "0\n";
+    personStream << destinationPath;
+    personFile.close();
 
     CatalogService::sortCatalog(false, "0");
     return 0;

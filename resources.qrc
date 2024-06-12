@@ -48,5 +48,7 @@
         <file>res/app_icons/caffe_dialog.png</file>
         <file>res/app_icons/caffe_dialog_config.png</file>
         <file>res/app_icons/write.png</file>
+        <file>res/images/argus-logo.png</file>
+        <file>res/images/opencv-logo.png</file>
     </qresource>
 </RCC>

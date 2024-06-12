@@ -40,7 +40,6 @@ public:
     QLabel *birthLabel;
     QLabel *idLabel;
     QLabel *label_5;
-    QLabel *label_6;
     QLabel *trainedStatusLabel;
     QLabel *datasetLabel;
     QTableWidget *catalogTableWidget;
@@ -102,9 +101,6 @@ public:
         label_5 = new QLabel(groupBox);
         label_5->setObjectName("label_5");
         label_5->setGeometry(QRect(10, 90, 131, 16));
-        label_6 = new QLabel(groupBox);
-        label_6->setObjectName("label_6");
-        label_6->setGeometry(QRect(10, 120, 151, 16));
         trainedStatusLabel = new QLabel(groupBox);
         trainedStatusLabel->setObjectName("trainedStatusLabel");
         trainedStatusLabel->setGeometry(QRect(170, 120, 111, 16));
@@ -158,7 +154,6 @@ public:
         birthLabel->setText(QString());
         idLabel->setText(QString());
         label_5->setText(QCoreApplication::translate("CatalogDialog", "\316\243\317\215\316\275\316\277\316\273\316\277 \316\246\317\211\317\204\316\277\316\263\317\201\316\261\317\206\316\271\317\216\316\275:", nullptr));
-        label_6->setText(QCoreApplication::translate("CatalogDialog", "\316\232\316\261\317\204\316\254\317\203\317\204\316\261\317\203\316\267 \316\225\316\272\317\200\316\261\316\257\316\264\316\265\317\205\317\203\316\267\317\202:", nullptr));
         trainedStatusLabel->setText(QString());
         datasetLabel->setText(QString());
         pictureLabel->setText(QString());

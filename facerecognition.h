@@ -13,7 +13,8 @@ public:
 	~FaceRecognition();
 	void start(FaceRecognitionDialog* initDialog,
 		QString folderPath,
-		QString distanceCalculationMode);
+		QString distanceCalculationMode,
+		bool saveToTxtFlag);
 
 private:
 };

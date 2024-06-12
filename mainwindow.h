@@ -38,6 +38,9 @@
 #include "facedetectiondialog.h"
 #include "facerecognitiondialog.h"
 #include "recognitionconfigdialog.h"
+#include "aboutargusdialog.h"
+#include "aboutopencvdialog.h"
+#include "contacthelpdialog.h"
 #include <opencv2/core/cuda.hpp>
 #include <opencv2/core/core.hpp>
 
@@ -86,6 +89,9 @@ private slots:
     void actionFaceRecognitionTriggered();
     void actionRecognitionConfigTriggered();
     void actionCaffeConfigTriggered();
+    void actionAboutArgusTriggered();
+    void actionOpenCVTriggered();
+    void actionContactTriggered();
     void buttonOpenFolderClicked();
     void buttonToggleViewClicked();
     void buttonZoomInClicked();
@@ -98,6 +104,7 @@ private slots:
     void saveConfigFile(const QString& filePath);
     void loadConfiguration();
     bool validateDNNFiles();
+    void resultsFolderManagement(QString toolSelection);
 
 private:
     Ui::MainWindow* ui;
@@ -128,6 +135,9 @@ private:
     QAction* actionFaceRecognition;
     QAction* actionCaffeConfig;
     QAction* actionRecognitionConfig;
+    QAction* actionAboutArgus;
+    QAction* actionOpenCV;
+    QAction* actionContact;
     QPushButton *buttonPlay;
     QPushButton *buttonPause;
     QPushButton *buttonStop;
@@ -168,6 +178,9 @@ private:
     FaceDetectionDialog* faceDetectionDialog;
     FaceRecognitionDialog* faceRecognitionDialog;
     RecognitionConfigDialog* recognitionConfigDialog;
+    AboutArgusDialog* aboutArgusDialog;
+    AboutOpencvDialog* aboutOpencvDialog;
+    ContactHelpDialog* contactHelpDialog;
     bool videoLoaded;
     bool toggleViewButtonState;
     int zoomCap;

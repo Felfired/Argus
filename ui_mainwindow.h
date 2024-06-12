@@ -50,7 +50,7 @@ public:
     QAction *actionQt;
     QAction *actionOpenCV;
     QAction *actionVS;
-    QAction *actionArgus;
+    QAction *actionAboutArgus;
     QAction *actionContact;
     QAction *actionCatalog;
     QAction *actionTrain;
@@ -140,6 +140,7 @@ public:
         QIcon icon3;
         icon3.addFile(QString::fromUtf8(":/argus/res/app_icons/help.png"), QSize(), QIcon::Normal, QIcon::Off);
         actionHelp->setIcon(icon3);
+        actionHelp->setVisible(false);
         actionMetadata = new QAction(MainWindow);
         actionMetadata->setObjectName("actionMetadata");
         QIcon icon4;
@@ -181,6 +182,7 @@ public:
         QIcon icon11;
         icon11.addFile(QString::fromUtf8(":/argus/res/app_icons/qt.png"), QSize(), QIcon::Normal, QIcon::Off);
         actionQt->setIcon(icon11);
+        actionQt->setVisible(false);
         actionOpenCV = new QAction(MainWindow);
         actionOpenCV->setObjectName("actionOpenCV");
         QIcon icon12;
@@ -191,11 +193,12 @@ public:
         QIcon icon13;
         icon13.addFile(QString::fromUtf8(":/argus/res/app_icons/vs.png"), QSize(), QIcon::Normal, QIcon::Off);
         actionVS->setIcon(icon13);
-        actionArgus = new QAction(MainWindow);
-        actionArgus->setObjectName("actionArgus");
+        actionVS->setVisible(false);
+        actionAboutArgus = new QAction(MainWindow);
+        actionAboutArgus->setObjectName("actionAboutArgus");
         QIcon icon14;
         icon14.addFile(QString::fromUtf8(":/argus/res/app_icons/ar.png"), QSize(), QIcon::Normal, QIcon::Off);
-        actionArgus->setIcon(icon14);
+        actionAboutArgus->setIcon(icon14);
         actionContact = new QAction(MainWindow);
         actionContact->setObjectName("actionContact");
         QIcon icon15;
@@ -551,7 +554,7 @@ public:
         menuAbout->addAction(actionOpenCV);
         menuAbout->addAction(actionVS);
         menuAbout->addSeparator();
-        menuAbout->addAction(actionArgus);
+        menuAbout->addAction(actionAboutArgus);
         menuSettings->addAction(menuDNN->menuAction());
         menuSettings->addAction(actionSavePrefs);
         menuDNN->addAction(actionNames);
@@ -618,7 +621,7 @@ public:
         actionQt->setText(QCoreApplication::translate("MainWindow", "\316\243\317\207\316\265\317\204\316\271\316\272\316\254 \316\274\316\265 \317\204\316\277 Qt...", nullptr));
         actionOpenCV->setText(QCoreApplication::translate("MainWindow", "\316\243\317\207\316\265\317\204\316\271\316\272\316\254 \316\274\316\265 \317\204\316\277 OpenCV...", nullptr));
         actionVS->setText(QCoreApplication::translate("MainWindow", "\316\243\317\207\316\265\317\204\316\271\316\272\316\254 \316\274\316\265 \317\204\316\277 Visual Studio 2022...", nullptr));
-        actionArgus->setText(QCoreApplication::translate("MainWindow", "\316\243\317\207\316\265\317\204\316\271\316\272\316\254 \316\274\316\265 \317\204\316\277 Argus...", nullptr));
+        actionAboutArgus->setText(QCoreApplication::translate("MainWindow", "\316\243\317\207\316\265\317\204\316\271\316\272\316\254 \316\274\316\265 \317\204\316\277 Argus...", nullptr));
         actionContact->setText(QCoreApplication::translate("MainWindow", "\316\225\317\200\316\271\316\272\316\277\316\271\316\275\317\211\316\275\316\257\316\261", nullptr));
         actionCatalog->setText(QCoreApplication::translate("MainWindow", "\316\232\316\261\317\204\316\254\316\273\316\277\316\263\316\277\317\202 \316\221\317\204\317\214\316\274\317\211\316\275...", nullptr));
         actionTrain->setText(QCoreApplication::translate("MainWindow", "\316\225\316\272\317\200\316\261\316\257\316\264\316\265\317\205\317\203\316\267 \316\235\316\265\317\205\317\201\317\211\316\275\316\271\316\272\316\277\317\215 \316\224\316\271\316\272\317\204\317\215\316\277\317\205...", nullptr));

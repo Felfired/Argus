@@ -39,7 +39,6 @@ private:
 	QPushButton* selectFolderButton;
 	QCheckBox* saveToVideoCheckBox;
 	QCheckBox* saveToImageCheckBox;
-	QCheckBox* saveToTxtCheckBox;
 	QCheckBox* applyToImageCheckBox;
 	QCheckBox* applyToVideoCheckBox;
 	QLineEdit* saveFolderDisplay;

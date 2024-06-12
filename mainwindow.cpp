@@ -10,7 +10,7 @@ MainWindow::MainWindow(QWidget *parent)
     videoLoaded = false;
     zoomCap = 0;
     
-    MainWindow::loadConfiguration();
+    MainWindow::loadConfiguration();    
 
     actionOpen = ui->actionOpen;
     connect(actionOpen, &QAction::triggered, this, &MainWindow::actionOpenTriggered);
@@ -82,6 +82,18 @@ MainWindow::MainWindow(QWidget *parent)
     actionRecognitionConfig = ui->actionRecognitionConfig;
     connect(actionRecognitionConfig, &QAction::triggered, this, &MainWindow::actionRecognitionConfigTriggered);
     addAction(actionRecognitionConfig);
+
+    actionAboutArgus = ui->actionAboutArgus;
+    connect(actionAboutArgus, &QAction::triggered, this, &MainWindow::actionAboutArgusTriggered);
+    addAction(actionAboutArgus);
+
+    actionOpenCV = ui->actionOpenCV;
+    connect(actionOpenCV, &QAction::triggered, this, &MainWindow::actionOpenCVTriggered);
+    addAction(actionOpenCV);
+
+    actionContact = ui->actionContact;
+    connect(actionContact, &QAction::triggered, this, &MainWindow::actionContactTriggered);
+    addAction(actionContact);
 
     buttonPlay = ui->buttonPlay;
     buttonPlay->setToolTip("Αναπαραγωγή.");
@@ -177,7 +189,6 @@ MainWindow::MainWindow(QWidget *parent)
 
     buttonZoomReset = ui->buttonZoomReset;
     connect(buttonZoomReset, &QToolButton::clicked, this, &MainWindow::buttonZoomResetClicked);
-
 }
 
 MainWindow::~MainWindow()
@@ -210,45 +221,57 @@ void MainWindow::loadConfiguration()
             settings.remove("Recognition_Preferences/Index_Path");
         }
     }
-    
-    
-    
+    if (settings.contains("Save_Preferences/Results_Path"))
+    {
+        MainWindow::resultsFolderManagement("remove");
+    }
 }
 
 void MainWindow::actionOpenTriggered()
 {
-    loadedVideoPath = QFileDialog::getOpenFileName(this, "Άνοιγμα ενός αρχείου βίντεο.", "", "Video File (*.avi, *.mpg, *.mp4)");
-    buttonStopClicked();
-    videoPlayer->setSource(QUrl::fromLocalFile(loadedVideoPath));
-    output = getLogTime() + " Φόρτωση αρχείου...";
-    textLogger->append(output);
-
-    //Catch the LoadedMedia status so we know the video is ready to be played.
-    connect(videoPlayer, &QMediaPlayer::mediaStatusChanged, [&](QMediaPlayer::MediaStatus status)
+    QSettings settings("config.ini", QSettings::IniFormat);
+    if (settings.contains("Save_Preferences/Results_Path"))
     {
-        if (status == QMediaPlayer::LoadedMedia && !videoLoaded)
+        loadedVideoPath = QFileDialog::getOpenFileName(this, "Άνοιγμα ενός αρχείου βίντεο.", "", "Video File (*.avi, *.mpg, *.mp4)");
+        if (!loadedVideoPath.isEmpty())
         {
-            videoPlayer->setPlaybackRate(playbackRate);
-            actionMetadata->setDisabled(0);
-            setVideoDuration();
-            output = getLogTime() + " Έτοιμο.";
+            MainWindow::resultsFolderManagement("add");
+            buttonStopClicked();
+            videoPlayer->setSource(QUrl::fromLocalFile(loadedVideoPath));
+            output = getLogTime() + " Φόρτωση αρχείου...";
             textLogger->append(output);
-            videoLoaded = true;
-            //Emit the signal indicating the change in the video loaded state.
-            emit onVideoLoaded(true);
         }
-
-        else if (status == QMediaPlayer::InvalidMedia)
+        //Catch the LoadedMedia status so we know the video is ready to be played.
+        connect(videoPlayer, &QMediaPlayer::mediaStatusChanged, [&](QMediaPlayer::MediaStatus status)
         {
-            ui->statusbar->showMessage(" Παρουσιάστηκε σφάλμα φόρτωσης του αρχείου.");
-        }
-    });
+            if (status == QMediaPlayer::LoadedMedia && !videoLoaded)
+                {
+                    videoPlayer->setPlaybackRate(playbackRate);
+                    actionMetadata->setDisabled(0);
+                    setVideoDuration();
+                    output = getLogTime() + " Έτοιμο.";
+                    textLogger->append(output);
+                    videoLoaded = true;
+                    //Emit the signal indicating the change in the video loaded state.
+                    emit onVideoLoaded(true);
+                }
 
-    //Catch the PositionChanged event to update the timer accordingly.
-    connect(videoPlayer, &QMediaPlayer::positionChanged, [&](qint64 currentDuration)
+                else if (status == QMediaPlayer::InvalidMedia)
+                {
+                    ui->statusbar->showMessage(" Παρουσιάστηκε σφάλμα φόρτωσης του αρχείου.");
+                }
+         });
+        //Catch the PositionChanged event to update the timer accordingly.
+        connect(videoPlayer, &QMediaPlayer::positionChanged, [&](qint64 currentDuration)
+        {
+                updateVideoDuration(currentDuration);
+        });
+    }
+    else
     {
-        updateVideoDuration(currentDuration);
-    });
+        QMessageBox::critical(this, tr("Σφάλμα"), tr("Ο φάκελος αποθήκευσης αποτελεσμάτων δεν έχει οριστεί. "
+            "Ανατρέξτε στην καρτέλα \"Ρυθμίσεις Αποθήκευσης\" για να ορίσετε την τοποθεσία αποθήκευσης."));
+    }
 }
 
 void MainWindow::buttonPlayClicked()
@@ -463,6 +486,7 @@ void MainWindow::actionExtractFramesTriggered()
 
 void MainWindow::actionUnloadTriggered()
 {
+    MainWindow::resultsFolderManagement("remove");
     videoPlayer->stop();
     videoPlayer->setSource(QUrl());
     labelDuration->setText("00:00:00");
@@ -565,6 +589,27 @@ void MainWindow::actionRecognitionConfigTriggered()
     recognitionConfigDialog->activateWindow();
 }
 
+void MainWindow::actionAboutArgusTriggered()
+{
+    aboutArgusDialog = new AboutArgusDialog();
+    aboutArgusDialog->show();
+    aboutArgusDialog->activateWindow();
+}
+
+void MainWindow::actionOpenCVTriggered()
+{
+    aboutOpencvDialog = new AboutOpencvDialog();
+    aboutOpencvDialog->show();
+    aboutOpencvDialog->activateWindow();
+}
+
+void MainWindow::actionContactTriggered()
+{
+    contactHelpDialog = new ContactHelpDialog();
+    contactHelpDialog->show();
+    contactHelpDialog->activateWindow();
+}
+
 void MainWindow::saveNamesFile(const QString& filePath)
 {
     namesFilePath = filePath;
@@ -608,7 +653,6 @@ void MainWindow::onVideoLoaded(bool videoLoaded)
 {
     actionDetectMotion->setEnabled(videoLoaded);
     actionFaceDetection->setEnabled(videoLoaded);
-    actionFaceRecognition->setEnabled(videoLoaded);
     actionMetadata->setEnabled(videoLoaded);
     buttonDecRate->setEnabled(videoLoaded);
     buttonIncRate->setEnabled(videoLoaded);
@@ -727,6 +771,144 @@ void MainWindow::resizeEvent(QResizeEvent* event)
     QMainWindow::resizeEvent(event);
     QRectF bounds = imagegraphicsScene->itemsBoundingRect();
     imagegraphicsView->fitInView(bounds, Qt::KeepAspectRatio);
+}
+
+void MainWindow::resultsFolderManagement(QString toolSelection)
+{
+    QSettings settings("config.ini", QSettings::IniFormat);
+    QString resultsPath = settings.value("Save_Preferences/Results_Path").toString();
+    if (toolSelection == "add")
+    {
+        if (settings.contains("Save_Preferences/Results_Path"))
+        {
+            QFileInfo videoFileInfo(loadedVideoPath);
+            QString videoName = videoFileInfo.fileName();
+
+            QString videoFolderPath = resultsPath + "/" + videoName;
+
+            // Check if the folder exists
+            QDir videoDir(videoFolderPath);
+            if (!videoDir.exists())
+            {
+                // If the folder doesn't exist, create it
+                if (!videoDir.mkpath(videoFolderPath))
+                {
+                    qDebug() << "Failed to create folder:" << videoFolderPath;
+                }
+                else
+                {
+                    // Folder is created successfully. Add current video folder to configuration.
+                    settings.setValue("Save_Preferences/Current_Path", videoFolderPath);
+                    settings.sync();
+                }
+            }
+            else
+            {
+                // Handle folder existing already. User can choose to overwrite or create new.
+                // Folder already exists. Ask the user what to do.
+                QMessageBox msgBox;
+                msgBox.setText("Ο φάκελος για το συγκεκριμένο βίντεο υπάρχει ήδη.");
+                msgBox.setInformativeText("Θέλετε να διαγράψετε τα περιεχόμενα του παλιού η να δημιουργήσετε έναν καινούργιο;");
+                msgBox.setStandardButtons(QMessageBox::Yes | QMessageBox::No);
+                msgBox.setDefaultButton(QMessageBox::Yes);
+                msgBox.setButtonText(QMessageBox::Yes, "Διαγραφή");
+                msgBox.setButtonText(QMessageBox::No, "Δημιουργία");
+                int ret = msgBox.exec();
+
+                if (ret == QMessageBox::Yes)
+                {
+                    // User chose to overwrite the existing folder.
+                    if (!videoDir.removeRecursively())
+                    {
+                        qDebug() << "Failed to remove existing folder:" << videoFolderPath;
+                        // Handle the error accordingly.
+                        return;
+                    }
+                }
+                else if (ret == QMessageBox::No)
+                {
+                    // User chose to create a new folder with a different name.
+                    int folderNumber = 1;
+                    QString newFolderPath;
+                    do
+                    {
+                        newFolderPath = resultsPath + "/" + videoName + "-" + QString::number(folderNumber);
+                        folderNumber++;
+                    } while (QDir(newFolderPath).exists());
+
+                    videoFolderPath = newFolderPath;
+
+                    // Create the folder
+                    if (!videoDir.mkpath(videoFolderPath))
+                    {
+                        qDebug() << "Failed to create folder:" << videoFolderPath;
+                    }
+                    else
+                    {
+                        // Folder is created successfully. Add current video folder to configuration.
+                        settings.setValue("Save_Preferences/Current_Path", videoFolderPath);
+                        settings.sync();
+                    }
+                }
+            }
+        }
+    }
+
+    else if (toolSelection == "remove")
+    {
+        // Check if the current path exists as a setting.
+        if (settings.contains("Save_Preferences/Current_Path"))
+        {
+            settings.remove("Recognition_Preferences/Current_Path");
+            settings.sync();
+            
+            // Check for empty folders and remove them.
+            QDirIterator it(resultsPath, QDir::NoDotAndDotDot | QDir::Dirs | QDir::NoSymLinks, QDirIterator::Subdirectories);
+            while (it.hasNext())
+            {
+                QString folderPath = it.next();
+                QDir folderDir(folderPath);
+                if (folderDir.entryInfoList(QDir::NoDotAndDotDot | QDir::Files).isEmpty() &&
+                    folderDir.entryInfoList(QDir::NoDotAndDotDot | QDir::Dirs | QDir::NoSymLinks).isEmpty())
+                {
+                    // The folder is empty, remove it.
+                    if (!folderDir.rmdir(folderPath))
+                    {
+                        qDebug() << "Failed to remove empty folder:" << folderPath;
+                        // Handle the error accordingly.
+                    }
+                    else
+                    {
+                        qDebug() << "Empty folder removed:" << folderPath;
+                    }
+                }
+            }
+        }
+        else
+        {
+            // If current path doesn't exist also delete.
+            QDirIterator it(resultsPath, QDir::NoDotAndDotDot | QDir::Dirs | QDir::NoSymLinks, QDirIterator::Subdirectories);
+            while (it.hasNext())
+            {
+                QString folderPath = it.next();
+                QDir folderDir(folderPath);
+                if (folderDir.entryInfoList(QDir::NoDotAndDotDot | QDir::Files).isEmpty() &&
+                    folderDir.entryInfoList(QDir::NoDotAndDotDot | QDir::Dirs | QDir::NoSymLinks).isEmpty())
+                {
+                    // The folder is empty, remove it.
+                    if (!folderDir.rmdir(folderPath))
+                    {
+                        qDebug() << "Failed to remove empty folder:" << folderPath;
+                        // Handle the error accordingly.
+                    }
+                    else
+                    {
+                        qDebug() << "Empty folder removed:" << folderPath;
+                    }
+                }
+            }
+        }
+    }
 }
 
 

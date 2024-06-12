@@ -122,11 +122,11 @@ void CatalogDialog::onTableItemClicked(int row)
     birthLabel->setText(entryData.at(3));
     if (entryData.at(6) == "No")
     {
-        trainedStatusLabel->setText("Δεν έχει εκπαιδευτεί.");
+        trainedStatusLabel->setText("");
     }
     else if (entryData.at(6) == "Yes")
     {
-        trainedStatusLabel->setText("Έχει εκπαιδευτεί.");
+        trainedStatusLabel->setText("");
     }
     datasetLabel->setText(entryData.at(7));
     QPixmap image(entryData.at(8));

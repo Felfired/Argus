@@ -40,7 +40,6 @@ public:
     QCheckBox *saveToImageCheckBox;
     QPushButton *selectFolderButton;
     QLineEdit *saveFolderDisplay;
-    QCheckBox *saveToTxtCheckBox;
     QTabWidget *modelSelectionTabWidget;
     QWidget *caffeTab;
     QGroupBox *groupBox_2;
@@ -110,9 +109,6 @@ public:
         saveFolderDisplay = new QLineEdit(groupBox);
         saveFolderDisplay->setObjectName("saveFolderDisplay");
         saveFolderDisplay->setGeometry(QRect(130, 120, 321, 21));
-        saveToTxtCheckBox = new QCheckBox(groupBox);
-        saveToTxtCheckBox->setObjectName("saveToTxtCheckBox");
-        saveToTxtCheckBox->setGeometry(QRect(10, 90, 441, 20));
         modelSelectionTabWidget = new QTabWidget(FaceDetectionDialog);
         modelSelectionTabWidget->setObjectName("modelSelectionTabWidget");
         modelSelectionTabWidget->setGeometry(QRect(10, 10, 461, 181));
@@ -202,7 +198,6 @@ public:
         saveToVideoCheckBox->setText(QCoreApplication::translate("FaceDetectionDialog", "\316\221\317\200\316\277\316\270\316\256\316\272\316\265\317\205\317\203\316\267 \317\203\317\204\316\271\316\263\316\274\316\271\317\214\317\204\317\205\317\200\317\211\316\275 \317\214\317\200\316\277\317\205 \316\265\316\275\317\204\316\277\317\200\316\257\317\203\317\204\316\267\316\272\316\261\316\275 \317\200\317\201\317\214\317\203\317\211\317\200\316\261 \317\203\316\265 \316\262\316\257\316\275\317\204\316\265\316\277.", nullptr));
         saveToImageCheckBox->setText(QCoreApplication::translate("FaceDetectionDialog", "\316\225\316\276\316\261\316\263\317\211\316\263\316\256 \316\265\316\271\316\272\317\214\316\275\317\211\316\275 \316\261\317\200\316\277 \317\204\316\261 \317\200\317\201\317\214\317\203\317\211\317\200\316\261 \317\200\316\277\317\205 \316\265\316\275\317\204\316\277\317\200\316\257\317\203\317\204\316\267\316\272\316\261\316\275.", nullptr));
         selectFolderButton->setText(QCoreApplication::translate("FaceDetectionDialog", "\316\225\317\200\316\271\316\273\316\277\316\263\316\256 \316\246\316\261\316\272\316\255\316\273\316\277\317\205...", nullptr));
-        saveToTxtCheckBox->setText(QCoreApplication::translate("FaceDetectionDialog", "\316\221\317\200\316\277\316\270\316\256\316\272\316\265\317\205\317\203\316\267 \317\203\317\204\316\271\316\263\316\274\316\271\317\214\317\204\317\205\317\200\317\211\316\275 \317\214\317\200\316\277\317\205 \316\265\316\275\317\204\316\277\317\200\316\257\317\203\317\204\316\267\316\272\316\261\316\275 \317\200\317\201\317\214\317\203\317\211\317\200\316\261 \317\203\316\265 \316\261\317\201\317\207\316\265\316\257\316\277 \316\272\316\265\316\271\316\274\316\255\316\275\316\277\317\205.", nullptr));
         groupBox_2->setTitle(QCoreApplication::translate("FaceDetectionDialog", "\316\240\316\261\317\201\316\254\316\274\316\265\317\204\317\201\316\277\316\271", nullptr));
         label->setText(QCoreApplication::translate("FaceDetectionDialog", "\316\243\317\205\316\275\317\204\316\265\316\273\316\265\317\203\317\204\316\256\317\202 \316\232\316\273\316\257\316\274\316\261\316\272\316\261\317\202 (0.1 - 2.0):", nullptr));
         label_2->setText(QCoreApplication::translate("FaceDetectionDialog", "\316\225\317\205\316\261\316\271\317\203\316\270\316\267\317\203\316\257\316\261 (0.01 - 0.99):", nullptr));

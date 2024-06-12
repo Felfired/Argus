@@ -69,11 +69,9 @@ FaceDetectionDialog::FaceDetectionDialog(const QString& videoPath, QWidget* pare
     connect(saveToVideoCheckBox, &QCheckBox::stateChanged, this, &FaceDetectionDialog::updateStartButtonState);
     saveToImageCheckBox = ui->saveToImageCheckBox;
     connect(saveToImageCheckBox, &QCheckBox::stateChanged, this, &FaceDetectionDialog::updateStartButtonState);
-    saveToTxtCheckBox = ui->saveToTxtCheckBox;
-    connect(saveToTxtCheckBox, &QCheckBox::stateChanged, this, &FaceDetectionDialog::updateStartButtonState);
 
     QSettings settings("config.ini", QSettings::IniFormat);
-    saveFolderPath = settings.value("Save_Preferences/Results_Path").toString();
+    saveFolderPath = settings.value("Save_Preferences/Current_Path").toString();
     saveFolderDisplay = ui->saveFolderDisplay;
     saveFolderDisplay->setText(saveFolderPath);
     saveFolderDisplay->setReadOnly(true);
@@ -95,7 +93,7 @@ void FaceDetectionDialog::startButtonClicked()
 {
     FaceDetectionDialog::setParams();
     FaceDetection init = new FaceDetection();
-    init.start(this, loadedVideoPath, saveToVideoFlag, saveToImageFlag, saveToTxtFlag, 
+    init.start(this, loadedVideoPath, saveToVideoFlag, saveToImageFlag, 
         scaleFactor, confidenceThreshold, yConfidenceThreshold, nmsThreshold, detectionCount, selectedModel);
 }
 
@@ -112,7 +110,6 @@ void FaceDetectionDialog::setParams()
 {
     saveToVideoFlag = saveToVideoCheckBox->isChecked();
     saveToImageFlag = saveToImageCheckBox->isChecked();
-    saveToTxtFlag = saveToTxtCheckBox->isChecked();
 
     frameskipValue = frameskipSpinBox->value();
 
@@ -121,19 +118,19 @@ void FaceDetectionDialog::setParams()
 
     if (applyToImageFlag == false && applyToVideoFlag == false)
     {
-        frameskipSelection == 0;
+        frameskipSelection = 0;
     }
     else if (applyToImageFlag == true && applyToVideoFlag == false)
     {
-        frameskipSelection == 1;
+        frameskipSelection = 1;
     }
     else if (applyToImageFlag == false && applyToVideoFlag == true)
     {
-        frameskipSelection == 2;
+        frameskipSelection = 2;
     }
     else if (applyToImageFlag == true && applyToVideoFlag == true)
     {
-        frameskipSelection == 3;
+        frameskipSelection = 3;
     }
 
     if (modelSelectionTabWidget->currentIndex() == 0)
@@ -170,11 +167,11 @@ void FaceDetectionDialog::disableButtons()
 
 void FaceDetectionDialog::updateStartButtonState()
 {
-    if (saveToVideoCheckBox->isChecked() || saveToImageCheckBox->isChecked() || saveToTxtCheckBox->isChecked())
+    if (saveToVideoCheckBox->isChecked() || saveToImageCheckBox->isChecked())
     {
         enableButtonFlag = true;
     }
-    else if (!saveToVideoCheckBox->isChecked() && !saveToImageCheckBox->isChecked() && !saveToTxtCheckBox->isChecked())
+    else if (!saveToVideoCheckBox->isChecked() && !saveToImageCheckBox->isChecked())
     {
         enableButtonFlag = false;
     }

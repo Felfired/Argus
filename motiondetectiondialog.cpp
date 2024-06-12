@@ -89,7 +89,7 @@ MotionDetectionDialog::MotionDetectionDialog(const QString& videoPath, const QSt
     mainLayout->addWidget(savesettingsGroupBox);
 
     QSettings settings("config.ini", QSettings::IniFormat);
-    folderPath = settings.value("Save_Preferences/Results_Path").toString();
+    folderPath = settings.value("Save_Preferences/Current_Path").toString();
     folderpathLineEdit->setText(folderPath);
 
     spacerItem = new QSpacerItem(350, 20);

@@ -1,12 +1,15 @@
 ﻿#include "facerecognitionthread.h"
 #include "facerecognition.h"
+#include "catalogservice.h"
 
 FaceRecognitionThread::FaceRecognitionThread(const QString& folderPath,
 											 const QString& distanceCalculationMode,
+											 bool saveToTxtFlag,
 											 QObject* parent)
 											 : QThread(parent),
 											 folderPath(folderPath),
-											 distanceCalculationMode(distanceCalculationMode)
+											 distanceCalculationMode(distanceCalculationMode),
+											 saveToTxtFlag(saveToTxtFlag)
 
 {
 	QSettings settings("config.ini", QSettings::IniFormat);
@@ -102,6 +105,7 @@ int FaceRecognitionThread::matchImages(cv::Mat unknownFeatures, cv::Mat referenc
 			return 1;
 		}
 	}
+	return 1;
 }
 
 void FaceRecognitionThread::recognitionScan()
@@ -144,14 +148,18 @@ void FaceRecognitionThread::recognitionScan()
 					{
 						emit postRecognitionID(id);
 						emit postRecognitionPath(path);
-						qDebug() << "detected";
 						duplicateRecognitions.push_back(path);
+						detectedId.push_back(id);
 					}
 				}
 			}
 		}
 		int progress = static_cast<int>((processedImages / static_cast<double>(totalImages)) * 100);
 		emit setLoadingProgress(progress);
+	}
+	if (saveToTxtFlag == true)
+	{
+		FaceRecognitionThread::writeToTxt(detectedId);
 	}
 }
 
@@ -163,6 +171,31 @@ QStringList FaceRecognitionThread::getImagePathsFromDirectory()
 	directory.setNameFilters(filters);
 	QStringList jpgFiles = directory.entryList();
 	return jpgFiles;
+}
+
+void FaceRecognitionThread::writeToTxt(std::vector<std::string> detectedId)
+{
+	std::string txtPath = folderPath.toStdString() + "/result_detected_faces.txt";
+	std::ofstream outputFile;
+	CatalogService service = new CatalogService();
+	outputFile.open(txtPath);
+
+	if (!outputFile.is_open())
+	{
+		qDebug() << "Failed to open output text file.";
+		return;
+	}
+
+	// Write detected classes and timestamps to the file.
+	for (size_t i = 0; i < detectedId.size(); ++i)
+	{	
+		std::string currentID = detectedId[i];
+		QStringList entryData = service.getEntryData(QString::fromStdString(currentID));
+		outputFile << detectedId[i] << " " << entryData.at(0).toStdString() << " " << entryData.at(1).toStdString() << std::endl;
+	}
+
+	// Close the file.
+	outputFile.close();
 }
 
 std::vector<std::vector<std::string>> FaceRecognitionThread::createIndexVector()

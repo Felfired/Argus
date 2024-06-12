@@ -12,16 +12,13 @@ FaceRecognition::~FaceRecognition()
 
 }
 
-void FaceRecognition::start(FaceRecognitionDialog* initDialog, QString folderPath, QString distanceCalculationMode)
+void FaceRecognition::start(FaceRecognitionDialog* initDialog, QString folderPath, QString distanceCalculationMode, bool saveToTxtFlag)
 {
-    FaceRecognitionThread* thread = new FaceRecognitionThread(folderPath, distanceCalculationMode);
-    //connect(thread, &FaceRecognitionThread::started, initDialog, &FaceRecognitionDialog::disableButtons);
-    //connect(loadDialog, &MotionDetectionLoad::cancelClicked, thread, &FaceDetectionThread::threadQuit);
-    //connect(thread, &FaceDetectionThread::loadingProgress, loadDialog, &MotionDetectionLoad::updateProgress);
-    //connect(thread, &FaceDetectionThread::currentStatus, loadDialog, &MotionDetectionLoad::updateStatus);
-    //connect(thread, &FaceDetectionThread::resetProgress, loadDialog, &MotionDetectionLoad::resetProgress);
-    //connect(thread, &FaceDetectionThread::threadQuitRequested, loadDialog, &MotionDetectionLoad::onCompletion);
-    //connect(thread, &FaceDetectionThread::threadQuitRequested, initDialog, &FaceDetectionDialog::enableButtons);
+    FaceRecognitionThread* thread = new FaceRecognitionThread(folderPath, distanceCalculationMode, saveToTxtFlag);
+    connect(initDialog, &FaceRecognitionDialog::stopButtonClicked, thread, &FaceRecognitionThread::threadQuit);
+    connect(thread, &FaceRecognitionThread::setLoadingProgress, initDialog, &FaceRecognitionDialog::setLoadingProgress);
+    connect(thread, &FaceRecognitionThread::onThreadQuitRequested, initDialog, &FaceRecognitionDialog::onCompletion);
+    connect(thread, &FaceRecognitionThread::postRecognitionID, initDialog, &FaceRecognitionDialog::addRecognitionToTable);
     connect(thread, &FaceRecognitionThread::finished, thread, &FaceRecognitionThread::deleteLater);
     thread->start();
 }

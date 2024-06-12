@@ -660,7 +660,7 @@
      <addaction name="actionOpenCV"/>
      <addaction name="actionVS"/>
      <addaction name="separator"/>
-     <addaction name="actionArgus"/>
+     <addaction name="actionAboutArgus"/>
     </widget>
     <addaction name="actionHelp"/>
     <addaction name="menuAbout"/>
@@ -771,6 +771,9 @@
    <property name="toolTip">
     <string>Άνοιγμα του οδηγού χρήσης.</string>
    </property>
+   <property name="visible">
+    <bool>false</bool>
+   </property>
   </action>
   <action name="actionMetadata">
    <property name="icon">
@@ -858,6 +861,9 @@
    <property name="text">
     <string>Σχετικά με το Qt...</string>
    </property>
+   <property name="visible">
+    <bool>false</bool>
+   </property>
   </action>
   <action name="actionOpenCV">
    <property name="icon">
@@ -876,8 +882,11 @@
    <property name="text">
     <string>Σχετικά με το Visual Studio 2022...</string>
    </property>
+   <property name="visible">
+    <bool>false</bool>
+   </property>
   </action>
-  <action name="actionArgus">
+  <action name="actionAboutArgus">
    <property name="icon">
     <iconset resource="resources.qrc">
      <normaloff>:/argus/res/app_icons/ar.png</normaloff>:/argus/res/app_icons/ar.png</iconset>

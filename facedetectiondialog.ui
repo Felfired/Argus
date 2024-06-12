@@ -123,19 +123,6 @@
      </rect>
     </property>
    </widget>
-   <widget class="QCheckBox" name="saveToTxtCheckBox">
-    <property name="geometry">
-     <rect>
-      <x>10</x>
-      <y>90</y>
-      <width>441</width>
-      <height>20</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Αποθήκευση στιγμιότυπων όπου εντοπίστηκαν πρόσωπα σε αρχείο κειμένου.</string>
-    </property>
-   </widget>
   </widget>
   <widget class="QTabWidget" name="modelSelectionTabWidget">
    <property name="geometry">

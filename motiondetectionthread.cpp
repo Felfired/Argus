@@ -89,11 +89,11 @@ void MotionDetectionThread::writeToVideo(std::vector<cv::Mat> framesWithObjects,
     emit currentStatus("Δημιουργία βίντεο...");
     int frameWidth = videoCap.get(cv::CAP_PROP_FRAME_WIDTH);
     int frameHeight = videoCap.get(cv::CAP_PROP_FRAME_HEIGHT);
-    std::string stdOVP = outputVideoPath.toStdString() + "/result.mp4";
+    std::string stdOVP = outputVideoPath.toStdString() + "/result_motion_detection.mp4";
 
     cv::VideoWriter videoWriter(stdOVP, cv::VideoWriter::fourcc('H', '2', '6', '4'), 30, cv::Size(frameWidth, frameHeight));
     int processedFrames = 0;
-    int totalFramesWithObjects = framesWithObjects.size();
+    int totalFramesWithObjects = static_cast<int>(framesWithObjects.size());
 
     // Write frames with detected objects to the output video.
     for (const cv::Mat& outputFrame : framesWithObjects)
@@ -112,7 +112,7 @@ void MotionDetectionThread::writeToVideo(std::vector<cv::Mat> framesWithObjects,
 void MotionDetectionThread::writeToTxt(std::vector<std::string> detectedClasses, std::vector<double> timestampVector, QString outputVideoPath)
 {
     emit currentStatus("Εγγραφή χρονικών στιγμών σε αρχείο κειμένου...");
-    std::string txtPath = outputVideoPath.toStdString() + "/result.txt";
+    std::string txtPath = outputVideoPath.toStdString() + "/result_motion_detection.txt";
     int currentLine = 0;
     std::ofstream outputFile;
     outputFile.open(txtPath);
@@ -145,7 +145,7 @@ void MotionDetectionThread::writeToTxt(std::vector<std::string> detectedClasses,
 void MotionDetectionThread::writeToImage(std::vector<cv::Mat> framesWithObjects, std::vector<double> timestampVector, QString outputVideoPath)
 {
     emit currentStatus("Αποθήκευση εικόνων στον φάκελο που ορίσατε...");
-    int totalFrames = framesWithObjects.size();
+    int totalFrames = static_cast<int>(framesWithObjects.size());
     int savedFrames = 0;
 
     if (framesWithObjects.size() != timestampVector.size()) 

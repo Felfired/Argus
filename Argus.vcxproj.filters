@@ -122,6 +122,15 @@
     <ClCompile Include="facerecognitionthread.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="aboutargusdialog.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="aboutopencvdialog.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="contacthelpdialog.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <QtMoc Include="mainwindow.h">
@@ -190,6 +199,15 @@
     <QtMoc Include="facerecognitionthread.h">
       <Filter>Header Files</Filter>
     </QtMoc>
+    <QtMoc Include="aboutargusdialog.h">
+      <Filter>Header Files</Filter>
+    </QtMoc>
+    <QtMoc Include="aboutopencvdialog.h">
+      <Filter>Header Files</Filter>
+    </QtMoc>
+    <QtMoc Include="contacthelpdialog.h">
+      <Filter>Header Files</Filter>
+    </QtMoc>
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="debug\moc_predefs.h.cbt">
@@ -237,6 +255,15 @@
       <Filter>Form Files</Filter>
     </QtUic>
     <QtUic Include="recognitionconfigdialog.ui">
+      <Filter>Form Files</Filter>
+    </QtUic>
+    <QtUic Include="aboutargus.ui">
+      <Filter>Form Files</Filter>
+    </QtUic>
+    <QtUic Include="aboutopencv.ui">
+      <Filter>Form Files</Filter>
+    </QtUic>
+    <QtUic Include="contacthelpdialog.ui">
       <Filter>Form Files</Filter>
     </QtUic>
   </ItemGroup>
@@ -289,6 +316,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="ui_facerecognitionconfigdialog.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ui_aboutargus.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

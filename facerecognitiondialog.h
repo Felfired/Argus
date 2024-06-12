@@ -2,6 +2,7 @@
 #define FACERECOGNITIONDIALOG_H
 
 #include <QDialog>
+#include <QPixmap>
 #include <QMessageBox>
 #include <QPushButton>
 #include <QDialogButtonBox>
@@ -21,14 +22,18 @@ class FaceRecognitionDialog : public QDialog
 public:
 	FaceRecognitionDialog(QWidget* parent = nullptr);
 	~FaceRecognitionDialog();
+	void stopButtonClicked(); 
+	void onCompletion();
+	void setLoadingProgress(int progress);
+	void addRecognitionToTable(std::string idFound);
 	
-
 private slots:
 	void onRejected();
 	void selectFolderButtonClicked();
 	void onAccepted();
 	int onRecognitionCompleted();
 	void setParams();
+	void clearResultsTable();
 
 private:
 	Ui::FaceRecognitionDialog* ui;
@@ -39,7 +44,6 @@ private:
 	QLineEdit* folderDisplayLineEdit;
 	QTableWidget* resultsTableWidget;
 	QCheckBox* saveToTextCheckBox;
-	QCheckBox* deleteDuplicateCheckBox;
 	QProgressBar* progressBar;
 	QString distanceCalculationMode;
 	QString folderPath;

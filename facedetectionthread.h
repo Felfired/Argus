@@ -17,7 +17,6 @@ public:
 	FaceDetectionThread(const QString& videoPath, 
 		bool saveToVideoFlag, 
 		bool saveToImageFlag,
-		bool saveToTxtFlag,
 		double scaleFactor,
 		double ConfidenceThreshold,
 		double yConfidenceThreshold,
@@ -41,7 +40,6 @@ private slots:
 	int detectFacesDNN(QString videoPath,
 		bool saveToVideoFlag,
 		bool saveToImageFlag,
-		bool saveToTxtFlag,
 		QString selectedModel);
 	void getDNNFiles();
 	void getVideoDimensions();
@@ -50,7 +48,7 @@ private slots:
 	std::vector<cv::Rect> detectFaceRectanglesCaffe(const cv::Mat& frame);
 	void saveToVideo(std::vector<cv::Mat> framesWithFaces);
 	void saveToImage(std::vector<cv::Mat> framesWithFaces, std::vector<std::vector<cv::Rect>> detectedRectangles, std::vector<double> timestampVector);
-	void detectFacesCaffe(QString videoPath, bool saveToVideoFlag, bool saveToImageFlag, bool saveToTxtFlag);
+	void detectFacesCaffe(QString videoPath, bool saveToVideoFlag, bool saveToImageFlag);
 	void createImageFiles(std::vector<cv::Mat> croppedFaces, std::vector<double> timestampVector, std::vector<std::pair<int, int>> dictionary);
 	cv::Mat detectFaceRectanglesYunet(const cv::Mat frame);
 	void detectFacesYunet();
@@ -73,7 +71,6 @@ private:
 	double confidenceThreshold;
 	const bool saveToVideoFlag;
 	const bool saveToImageFlag;
-	const bool saveToTxtFlag;
 	double yConfidenceThreshold;
 	double nmsThreshold;
 	int detectionCount;

@@ -17,7 +17,6 @@ public:
 		QString videoPath,
 		bool saveToVideoFlag,
 		bool saveToImageFlag,
-		bool saveToTxtFlag,
 		double scaleFactor,
 		double confidenceThreshold,
 		double yConfidenceThreshold,

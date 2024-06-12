@@ -73,14 +73,14 @@
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
-      <AdditionalIncludeDirectories>C:\Program Files\DarkHelp\include;C:\opencv\build\include;C:\Program Files\Darknet\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\opencv\build\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AdditionalOptions>-Zc:rvalueCast -Zc:inline -Zc:strictStrings -Zc:throwingNew -permissive- -Zc:__cplusplus -Zc:externConstexpr -utf-8 -w34100 -w34189 -w44996 -w44456 -w44457 -w44458 %(AdditionalOptions)</AdditionalOptions>
       <AssemblerListingLocation>release\</AssemblerListingLocation>
       <BrowseInformation>false</BrowseInformation>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
       <DisableSpecificWarnings>4577;4467;%(DisableSpecificWarnings)</DisableSpecificWarnings>
       <ExceptionHandling>Sync</ExceptionHandling>
-      <LanguageStandard>stdcpp17</LanguageStandard>
+      <LanguageStandard>stdcpp20</LanguageStandard>
       <ObjectFileName>release\</ObjectFileName>
       <Optimization>MaxSpeed</Optimization>
       <PreprocessorDefinitions>_WINDOWS;UNICODE;_UNICODE;WIN32;_ENABLE_EXTENDED_ALIGNED_STORAGE;WIN64;NDEBUG;QT_NO_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
@@ -95,8 +95,8 @@
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
     </ClCompile>
     <Link>
-      <AdditionalDependencies>C:\opencv\build\x64\vc16\lib\opencv_world480.lib;C:\Program Files\Darknet\lib\darknet.lib;C:\Program Files\DarkHelp\lib\darkhelp.lib;$(QTDIR)\lib\Qt6EntryPoint.lib;shell32.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>C:\Program Files\DarkHelp\lib;C:\Program Files\Darknet\lib;C:\opencv\build\x64\vc16\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>C:\opencv\build\x64\vc16\lib\opencv_world480.lib;$(QTDIR)\lib\Qt6EntryPoint.lib;shell32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>C:\opencv\build\x64\vc16\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalOptions>"/MANIFESTDEPENDENCY:type='win32' name='Microsoft.Windows.Common-Controls' version='6.0.0.0' publicKeyToken='6595b64144ccf1df' language='*' processorArchitecture='*'" %(AdditionalOptions)</AdditionalOptions>
       <DataExecutionPrevention>true</DataExecutionPrevention>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
@@ -204,11 +204,14 @@
     </QtUic>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="aboutargusdialog.cpp" />
+    <ClCompile Include="aboutopencvdialog.cpp" />
     <ClCompile Include="addpersondialog.cpp" />
     <ClCompile Include="caffeconfigdialog.cpp" />
     <ClCompile Include="catalogdialog.cpp" />
     <ClCompile Include="catalogservice.cpp" />
     <ClCompile Include="configfiledialog.cpp" />
+    <ClCompile Include="contacthelpdialog.cpp" />
     <ClCompile Include="datasetdialog.cpp" />
     <ClCompile Include="facedetection.cpp" />
     <ClCompile Include="facedetectiondialog.cpp" />
@@ -254,10 +257,13 @@
     </CustomBuild>
   </ItemGroup>
   <ItemGroup>
+    <QtUic Include="aboutargus.ui" />
+    <QtUic Include="aboutopencv.ui" />
     <QtUic Include="addpersondialog.ui" />
     <QtUic Include="caffeconfigdialog.ui" />
     <QtUic Include="catalogdialog.ui" />
     <QtUic Include="configfiledialog.ui" />
+    <QtUic Include="contacthelpdialog.ui" />
     <QtUic Include="datasetdialog.ui" />
     <QtUic Include="recognitionconfigdialog.ui" />
     <QtUic Include="facedetectiondialog.ui" />
@@ -289,9 +295,13 @@
     <QtMoc Include="recognitionconfigdialog.h" />
     <QtMoc Include="facerecognition.h" />
     <QtMoc Include="facerecognitionthread.h" />
+    <QtMoc Include="aboutargusdialog.h" />
+    <QtMoc Include="aboutopencvdialog.h" />
+    <QtMoc Include="contacthelpdialog.h" />
     <ClInclude Include="greeklettervalidator.h" />
     <QtMoc Include="imagedisplaydialog.h" />
     <ClInclude Include="latinlettervalidator.h" />
+    <ClInclude Include="ui_aboutargus.h" />
     <ClInclude Include="ui_addpersondialog.h" />
     <ClInclude Include="ui_caffeconfigdialog.h" />
     <ClInclude Include="ui_catalogdialog.h" />
